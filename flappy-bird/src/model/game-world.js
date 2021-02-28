@@ -5,10 +5,12 @@ class GameWorld {
         this.player = new Player();
 
         this.walls = [];
-        this.wallAddCooldown = 1800;
+        this.wallAddCooldown = 2100;
         this.wallAddChance = 0.9;
 
-        this.currentWallAddCooldown = 1000;
+        this.gravity = 0.013;
+
+        this.currentWallAddCooldown = 0;
     }
 }
 

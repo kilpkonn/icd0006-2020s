@@ -3,28 +3,32 @@ class PlayerView {
         this.container = baseContainer;
         this.elem = document.createElement('img');
         this.elem.style.position = 'absolute';
+        this.onResize();
 
-        const rect = this.container.getBoundingClientRect();
-        const imgSize = `${Math.min((rect.right - rect.left) / 20, rect.bottom - rect.top / 11)}px`;
-        this.elem.style.width = imgSize;
-        this.elem.style.height = imgSize;
+        window.addEventListener('resize', () => {
+            this.onResize();
+        });
 
         this.container.append(this.elem);
     }
 
+    onResize() {
+        const rect = this.container.getBoundingClientRect();
+        const imgSize = `${0.06 * Math.min(rect.right - rect.left, rect.bottom - rect.top)}px`;
+        this.elem.style.width = imgSize;
+        this.elem.style.height = imgSize;
+    }
+
     render(props) {
         const rect = this.container.getBoundingClientRect();
-
         const baseX = rect.left + window.scrollX;
         const baseY = rect.top + window.scrollY;
         const baseWidth = rect.right - rect.left;
+        const baseHeight = rect.bottom - rect.top;
 
         this.elem.style.left = `${baseX + baseWidth * props.x}px`;
-        this.elem.style.top = `${baseY + (1 - props.y)}px`;
-
-        console.log(props.dt)
-
-        this.elem.src = `./assets/character/frame-${1 + Math.ceil(props.dt / 200) % 4}.png`
+        this.elem.style.top = `${baseY + (1 - props.y) * baseHeight}px`;
+        this.elem.src = `./assets/character/frame-${1 + Math.ceil(props.time / 200) % 4}.png`
     }
 }
 
