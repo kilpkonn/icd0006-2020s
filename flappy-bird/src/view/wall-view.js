@@ -2,10 +2,12 @@
 class WallView {
     constructor(baseContainer) {
         this.container = baseContainer;
-        this.elemTop = document.createElement('div');
-        this.elemBottom = document.createElement('div')
+        this.elemTop = document.createElement('img');
+        this.elemBottom = document.createElement('img')
         this.elemTop.style.position = 'absolute';
         this.elemBottom.style.position = 'absolute'
+        this.elemTop.src = './assets/props/pipe-top.png';
+        this.elemBottom.src = './assets/props/pipe-bottom.png';
         this.isVisible = false;
     }
 
@@ -38,13 +40,11 @@ class WallView {
         this.elemTop.style.top = `${baseY}px`;
         this.elemTop.style.width = `${baseWidth * Math.min(props.width, 1 - props.x)}px`;
         this.elemTop.style.height = `${baseHeight * props.height}px`;
-        this.elemTop.style.background = 'red'
 
         this.elemBottom.style.left = `${baseX + baseWidth * props.x}px`;
         this.elemBottom.style.top = `${baseY + (props.height + props.gap) * baseHeight}px`;
         this.elemBottom.style.width = `${baseWidth * Math.min(props.width, 1 - props.x)}px`;
         this.elemBottom.style.height = `${baseHeight * (1 - props.gap - props.height)}px`;
-        this.elemBottom.style.background = 'blue';
     }
 }
 

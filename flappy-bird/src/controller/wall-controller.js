@@ -9,7 +9,6 @@ class WallController {
     }
 
     step(dt) {
-        console.log(this.pos.x)
         this.pos.x -= dt * this.speed / 1000;
         this.view.render(this.pos);
     }

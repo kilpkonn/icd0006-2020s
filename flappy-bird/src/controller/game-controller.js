@@ -1,11 +1,13 @@
 import GameWorld from '../model/game-world';
 import WallController from './wall-controller';
+import PlayerController from './player-controller';
 
 class GameController {
     constructor(baseContainer) {
         this.container = baseContainer;
         this.gameWorld = new GameWorld();
-        this.isRunning = true
+        this.player = new PlayerController(this.gameWorld.player, baseContainer);
+        this.isRunning = true;
     }
 
     step(dt) {
@@ -21,6 +23,9 @@ class GameController {
         for (let wall of  this.gameWorld.walls) {
             wall.step(dt);
         }
+
+        this.player.step(dt)
+
     }
 
 }
