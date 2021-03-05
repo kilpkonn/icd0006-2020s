@@ -6,7 +6,7 @@ class PlayerController {
         this.gravity = gravity;
         this.view = new PlayerView(baseContainer);
 
-        window.addEventListener('keypress', (e) => this.onKeyPressed(e))
+        window.addEventListener('keypress', (e) => this.onKeyPressed(e));
     }
 
     step(dt) {
@@ -20,6 +20,12 @@ class PlayerController {
         if (keyEvent.code === 'Space') {
             this.player.velY = this.player.jumpSpeed;
         }
+    }
+
+    reset() {
+        this.player.y = 0.5;
+        this.time = 0;
+        this.score = 0;
     }
 }
 

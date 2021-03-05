@@ -5,6 +5,7 @@ class Wall {
         this.height = height;
         this.gap = gap;
         this.width = width;
+        this.crossed = false;
     }
 }
 

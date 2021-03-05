@@ -46,6 +46,10 @@ class WallView {
         this.elemBottom.style.width = `${baseWidth * Math.min(props.width, 1 - props.x)}px`;
         this.elemBottom.style.height = `${baseHeight * (1 - props.gap - props.height)}px`;
     }
+
+    dispose() {
+        this.elemBottom.remove();
+    }
 }
 
 export default WallView;

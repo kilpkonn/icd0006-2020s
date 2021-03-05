@@ -8,6 +8,7 @@ class Player {
         this.x = 0.1;
         this.velY = 0;
         this.time = 0;
+        this.score = 0;
     }
 }
 
