@@ -26,7 +26,8 @@ class GameOverView {
 
         this.elem.innerHTML = '';
 
-        for (const score of props.scores) {
+        const scores = props.scores.sort((a, b) => a.score < b.score ? 1 : -1);
+        for (const score of scores) {
             let entry = document.createElement('li');
             let nameEntry = document.createElement('span');
             let scoreEntry = document.createElement('span');

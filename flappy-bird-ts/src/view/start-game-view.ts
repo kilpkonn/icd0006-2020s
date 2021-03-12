@@ -22,7 +22,7 @@ class StartGameView {
 
     onResize() {
         const rect = this.container.getBoundingClientRect();
-        this.elem.style.left = `${0.45 * (rect.right - rect.left)}px`;
+        this.elem.style.left = `${0.35 * (rect.right - rect.left)}px`;
         this.elem.style.top = `${0.4 * (rect.bottom - rect.top)}px`;
         this.elem.style.fontSize = `${0.1 * Math.min(rect.right - rect.left, rect.bottom - rect.top)}px`;
     }

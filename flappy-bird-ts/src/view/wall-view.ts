@@ -53,6 +53,7 @@ class WallView {
     }
 
     dispose() {
+        this.elemTop.remove();
         this.elemBottom.remove();
     }
 }
