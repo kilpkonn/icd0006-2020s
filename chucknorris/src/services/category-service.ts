@@ -1,7 +1,7 @@
 
 import {HttpClient, inject} from "aurelia"
 
-@inject
+@inject()
 export class CategoryService {
     constructor(private httpClient: HttpClient) {
     }
