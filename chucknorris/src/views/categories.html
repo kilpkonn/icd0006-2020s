@@ -1,1 +1,25 @@
-hei
+<import from="../components/top-joke"/>
+<import from="../components/regular-joke"/>
+
+<div class="has-text-centered m-4">
+    <h2 class="title is-2">Top jokes</h2>
+</div>
+<div class="container is-fluid">
+    <div class="columns is-desktop is-multiline">
+        <div class="column" repeat.for="topJoke of topJokes">
+            <top-joke joke.bind="topJoke"></top-joke>
+        </div>
+    </div>
+</div>
+
+<div class="has-text-centered m-4">
+    <h2 class="title is-2">Other jokes</h2>
+</div>
+
+<div class="container is-fluid">
+    <div class="columns is-desktop is-multiline">
+        <div class="column is-3" repeat.for="regularJoke of otherJokes">
+            <regular-joke joke.bind="regularJoke"></regular-joke>
+        </div>
+    </div>
+</div>
