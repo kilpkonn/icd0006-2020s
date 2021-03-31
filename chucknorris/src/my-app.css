@@ -1,5 +1,14 @@
 @import '../node_modules/bulma/css/bulma.css';
 
-.message {
+.design-0 {
   background-color: lightblue;
 }
+
+.design-1  {
+  background-color: #d9ffb3;
+}
+
+.design-2  {
+  background-color: #f8d0ff;
+}
+

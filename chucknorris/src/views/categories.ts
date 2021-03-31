@@ -6,6 +6,7 @@ export class Categories implements IRouteViewModel {
     private category: string | null = null;
     private topJokes: IJoke[] = []
     private otherJokes: IJoke[] = []
+    public designId: number = 0;
 
     private subscriptions: IDisposable[] = [];
 
@@ -21,15 +22,15 @@ export class Categories implements IRouteViewModel {
     load(params: Params, next: RouteNode, current: RouteNode | null): void | Promise<void> {
         this.category = params.category;
         console.log(this.category)
-        for (let i = 0; i < 5; i++) {
-            this.appState.fetchJoke(this.category);
-        }
+        this.appState.fetchJokes(this.category, 10);
+
     }
 
     getJokes() {
         const jokes = this.appState.getJokesForCategory(this.category).sort(() => Math.random() - 0.5);
         this.topJokes = jokes.slice(0, 5);
         this.otherJokes = jokes.slice(5);
+        this.designId = Math.round(Math.random() * 3);
     }
 
     detached() {

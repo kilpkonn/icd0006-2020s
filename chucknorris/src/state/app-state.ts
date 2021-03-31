@@ -19,11 +19,14 @@ export class AppState {
     ) {
     }
 
-    fetchJoke(category: string) {
+    fetchJokes(category: string, count: number) {
+        if (count <= 0) {
+            return this.eventAggregator.publish('new-joke', category);
+        }
         this.jokeService.fetchJoke(category)
             .then(joke => {
                 this.jokes = [...this.jokes, joke];
-                this.eventAggregator.publish('new-joke', joke);
+                this.fetchJokes(category, count - 1);
             });
     }
 
