@@ -1,0 +1,36 @@
+<import from="./car-index"/>
+
+<div class="container">
+    <h1>Edit</h1>
+
+    <div class="column">
+        <h4>Car</h4>
+        <hr/>
+        <div class="column">
+            <div class="columns">
+                <div class="column is-4-desktop">
+                    Id
+                </div>
+                <input value.bind="data.id" class="column is-8-desktop">
+            </div>
+            <div class="columns">
+                <div class="column is-4-desktop">
+                    Type Id
+                </div>
+                <input value.bind="data.carTypeId" class="column is-8-desktop">
+            </div>
+            <div class="columns">
+                <div class="column is-4-desktop">
+                    User Id
+                </div>
+                <input value.bind="data.appUserId" class="column is-8-desktop">
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <button click.delegate="save()" class="is-success">Save</button>
+    </div>
+    <div>
+        <a load="/cars">Back to List</a>
+    </div>
+</div>
