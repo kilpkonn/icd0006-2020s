@@ -1,1 +1,56 @@
-details
+<import from="./index" />
+
+<h1>Details</h1>
+
+<div>
+    <h4>Car</h4>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-4">
+            Id
+        </dt>
+        <dd class="col-sm-8">
+            ${data.id}
+        </dd>
+        <dt class="col-sm-4">
+            Type Id
+        </dt>
+        <dd class="col-sm-8">
+            ${data.carTypeId}
+        </dd>
+        <dt class="col-sm-4">
+            User Id
+        </dt>
+        <dd class="col-sm-8">
+            ${data.appUserId}
+        </dd>
+        <dt class="col-sm-4">
+            Created By
+        </dt>
+        <dd class="col-sm-8">
+            ${data.createdBy}
+        </dd>
+        <dt class="col-sm-4">
+            Created At
+        </dt>
+        <dd class="col-sm-8">
+            ${data.createdAt}
+        </dd>
+        <dt class="col-sm-4">
+            Updated By
+        </dt>
+        <dd class="col-sm-8">
+            ${data.updatedBy}
+        </dd>
+        <dt class="col-sm-4">
+            Updated At
+        </dt>
+        <dd class="col-sm-8">
+            ${data.updatedAt}
+        </dd>
+    </dl>
+</div>
+<div>
+
+    <a load="/cars">Back to List</a>
+</div>
