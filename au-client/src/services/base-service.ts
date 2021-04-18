@@ -51,16 +51,7 @@ export class BaseService<TEntity extends IIdentifiable> {
     }
 
     async get(id: string, queryParams?: IQueryParams,): Promise<IFetchResponse<TEntity>> {
-        const authHeaders = this.appState.isLoggedIn() ? {'Authorization': 'Bearer ' + this.appState.token} : {};
-        let url = this.apiEndpointUrl;
-        url = url + '/' + id;
-
-        if (queryParams !== undefined) {
-            url += '?'
-            for (const param in Object.keys(queryParams)) {
-                url += '&' + param + '=' + queryParams[param];
-            }
-        }
+        let {authHeaders, url} = this.prepareUrl(id, queryParams);
 
         try {
             const response = await this.httpClient.fetch(url, {cache: "no-store", headers: authHeaders});
@@ -85,10 +76,10 @@ export class BaseService<TEntity extends IIdentifiable> {
 
     }
 
-    async put(entity: TEntity, queryParams?: IQueryParams,): Promise<IFetchResponse<TEntity>> {
+    private prepareUrl(id: string, queryParams: IQueryParams) {
         const authHeaders = this.appState.isLoggedIn() ? {'Authorization': 'Bearer ' + this.appState.token} : {};
         let url = this.apiEndpointUrl;
-        url = url + '/' + entity.id;
+        url = url + '/' + id;
 
         if (queryParams !== undefined) {
             url += '?'
@@ -96,6 +87,11 @@ export class BaseService<TEntity extends IIdentifiable> {
                 url += '&' + param + '=' + queryParams[param];
             }
         }
+        return {authHeaders, url};
+    }
+
+    async put(entity: TEntity, queryParams?: IQueryParams,): Promise<IFetchResponse<TEntity>> {
+        let {authHeaders, url} = this.prepareUrl(entity.id, queryParams);
 
         let entityStr = JSON.stringify(entity);
 
@@ -105,6 +101,33 @@ export class BaseService<TEntity extends IIdentifiable> {
                 return {
                     statusCode: response.status,
                     data: undefined,
+                };
+            }
+
+            return {
+                statusCode: response.status,
+                errorMessage: response.statusText,
+            };
+        } catch (reason) {
+            return {
+                statusCode: 0,
+                errorMessage: JSON.stringify(reason),
+            };
+        }
+
+    }
+
+    async delete(id: string, queryParams?: IQueryParams,): Promise<IFetchResponse<TEntity>> {
+        let {authHeaders, url} = this.prepareUrl(id, queryParams);
+
+
+        try {
+            const response = await this.httpClient.delete(url, '', {headers: authHeaders});
+            if (response.ok) {
+                const data = (await response.json()) as TEntity;
+                return {
+                    statusCode: response.status,
+                    data: data,
                 };
             }
 

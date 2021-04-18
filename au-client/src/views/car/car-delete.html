@@ -1,0 +1,74 @@
+<import from="./car-index"/>
+
+<div class="container">
+    <h1>CarDetails</h1>
+
+    <div class="column">
+        <h4>Car</h4>
+        <hr/>
+        <div class="column">
+            <div class="columns">
+                <div class="column is-4-desktop">
+                    Id
+                </div>
+                <div class="column is-8-desktop">
+                    ${data.id}
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-4-desktop">
+                    Type Id
+                </div>
+                <div class="column is-8-desktop">
+                    ${data.carTypeId}
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-4-desktop">
+                    User Id
+                </div>
+                <div class="column is-8-desktop">
+                    ${data.appUserId}
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-4-desktop">
+                    Created By
+                </div>
+                <div class="column is-8-desktop">
+                    ${data.createdBy}
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-4-desktop">
+                    Created At
+                </div>
+                <div class="column is-8-desktop">
+                    ${data.createdAt}
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-4-desktop">
+                    Updated By
+                </div>
+                <div class="column is-8-desktop">
+                    ${data.updatedBy}
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-4-desktop">
+                    Updated At
+                </div>
+                <div class="column is-8-desktop">
+                    ${data.updatedAt}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <button class="button is-danger">Delete</button>
+    </div>
+    <div>
+        <a load="/cars">Back to List</a>
+    </div>
+</div>
