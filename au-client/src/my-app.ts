@@ -8,6 +8,6 @@ export class MyApp implements ICustomElementViewModel {
     static routes = [
         {path: 'login', id: 'login', component: Login, title: 'Login'},
         {path: 'register', id: 'register', component: Register, title: 'Register'},
-        {path: 'car', id: 'car', component: CarIndex, title: 'Cars'},
+        {path: 'cars', id: 'car', component: CarIndex, title: 'Cars'},
     ];
 }

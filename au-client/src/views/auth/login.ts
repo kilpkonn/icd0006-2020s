@@ -1,12 +1,13 @@
 import {AppState} from "../../state/app-state";
-import {inject} from "aurelia";
+import {inject, IRouter} from "aurelia";
 
 @inject()
 export class Login {
     private email: string;
     private password: string;
 
-    constructor(private appState: AppState) {
+    constructor(@IRouter private router: IRouter,
+                private appState: AppState) {
     }
 
     async login(event: Event) {
@@ -15,7 +16,7 @@ export class Login {
 
         const res = await this.appState.login(this.email, this.password);
         if (res) {
-            window.location.href = '/cars'
+            await this.router.load('/cars');
         }
     }
 }

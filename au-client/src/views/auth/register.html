@@ -5,24 +5,26 @@
         <form>
             <div class="field">
                 <div class="control">
-                    <input class="input is-medium" type="email" placeholder="Email">
+                    <input value.bind="email" class="input is-medium" type="email" placeholder="Email">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
-                    <input class="input is-medium" type="text" placeholder="Display Name">
+                    <input value.bind="name" class="input is-medium" type="text" placeholder="Display Name">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
-                    <input class="input is-medium" type="password" placeholder="Password">
+                    <input value.bind="password" class="input is-medium" type="password" placeholder="Password">
                 </div>
             </div>
-            <button class="button is-block is-primary is-fullwidth is-medium">Submit</button>
+            <button click.delegate="register($event)" type="submit"
+                    class="button is-block is-primary is-fullwidth is-medium">Submit
+            </button>
             <br/>
-            <small><em>Or you can login <a href="/login">here</a></em></small>
+            <small><em>Or you can login <a load="/login">here</a></em></small>
         </form>
     </div>
 </div>
