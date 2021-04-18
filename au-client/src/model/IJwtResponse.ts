@@ -1,4 +1,4 @@
 
 export interface IJwtResponse {
-    jwt: string
+    token: string
 }

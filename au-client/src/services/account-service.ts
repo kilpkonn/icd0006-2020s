@@ -6,18 +6,19 @@ export class AccountService {
     constructor(private httpClient: HttpClient) {
     }
 
-    async login(email: string, password: string): Promise<IJwtResponse> {
+    async login(email: string, password: string): Promise<IJwtResponse | null> {
         return await this.httpClient
             .post("https://localhost:5001/api/v1/Account/Login", JSON.stringify({
                 email: email,
                 password: password
             }), { cache: "no-store" })
             .then(async response => {
-                return await response.json()
+                const res = await response;
+                return res.ok ? (await res.json()) as IJwtResponse : null;
             });
     }
 
-    async register(email: string, name: string, password: string): Promise<IJwtResponse> {
+    async register(email: string, name: string, password: string): Promise<IJwtResponse | null> {
         return await this.httpClient
             .post("https://localhost:5001/api/v1/Account/Register", JSON.stringify({
                 email: email,
@@ -25,7 +26,8 @@ export class AccountService {
                 password: password
             }), { cache: "no-store" })
             .then(async response => {
-                return await response.json()
+                const res = await response;
+                return res.ok ? (await res.json()) as IJwtResponse : null;
             });
     }
 }

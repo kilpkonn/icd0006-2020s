@@ -1,1 +1,37 @@
-Yay
+<div class="column is-10-desktop m-6>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Type Id</th>
+        <th>User Id</th>
+        <th>Created By</th>
+        <th>Created At</th>
+        <th>Updated By</th>
+        <th>Updated At</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>Id</th>
+        <th>Type Id</th>
+        <th>User Id</th>
+        <th>Created By</th>
+        <th>Created At</th>
+        <th>Updated By</th>
+        <th>Updated At</th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr repeat.for="car of data">
+        <th>${car.id}</th>
+        <td>${car.carTypeId}</td>
+        <td>${car.appUserId}</td>
+        <td>${car.createdBy}</td>
+        <td>${car.createdAt}</td>
+        <td>${car.updatedBy}</td>
+        <td>${car.updatedAt}</td>
+    </tr>
+    </tbody>
+</table>
+</div>

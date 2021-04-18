@@ -14,21 +14,20 @@ export class AppState {
     }
 
     async login(email: string, password: string): Promise<boolean> {
-        const loggedIn = await this.accountService.login(email, password)
-            .then(resp => this.token = resp.jwt)
-            .then(() => true)
-            .catch(() => false);
+        await this.accountService.login(email, password)
+            .then(resp => this.token = resp?.token || '')
+
+        const loggedIn = this.isLoggedIn()
         this.eventAggregator.publish('user-logged-in', loggedIn);
 
         return loggedIn;
     }
 
     async register(email: string, name: string, password: string): Promise<boolean> {
-        const loggedIn = await this.accountService.register(email, name, password)
-            .then(resp => this.token = resp.jwt)
-            .then(() => true)
-            .catch(() => false);
+        await this.accountService.register(email, name, password)
+            .then(resp => this.token = resp?.token || '')
 
+        const loggedIn = this.isLoggedIn()
         this.eventAggregator.publish('user-logged-in', loggedIn);
 
         return loggedIn;

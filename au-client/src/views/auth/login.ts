@@ -15,6 +15,7 @@ export class Login {
         event.stopPropagation();
 
         const res = await this.appState.login(this.email, this.password);
+        console.log(res)
         if (res) {
             await this.router.load('/cars');
         }
