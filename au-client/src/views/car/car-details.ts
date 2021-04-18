@@ -3,7 +3,7 @@ import {CarsService} from "../../services/cars-service";
 import {ICar} from "../../model/ICar";
 
 @inject()
-export class Details implements IRouteViewModel {
+export class CarDetails implements IRouteViewModel {
     private data: ICar
 
     constructor(private carsService: CarsService) {

@@ -3,7 +3,7 @@ import {ICar} from "../../model/ICar";
 import {inject} from "aurelia";
 
 @inject()
-export class Index {
+export class CarIndex {
     private data: ICar[] = []
 
     constructor(private carsService: CarsService) {

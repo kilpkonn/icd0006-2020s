@@ -1,9 +1,6 @@
 import {ICustomElementViewModel} from "aurelia";
 import {Login} from "./views/auth/login";
 import {Register} from "./views/auth/register";
-import {Index as CarsIndex} from "./views/car/index";
-import {Edit as CarsEdit} from "./views/car/edit";
-import {Details as CarsDetails} from "./views/car/details";
 import {CarsRouter} from "./views/car/cars-router";
 
 

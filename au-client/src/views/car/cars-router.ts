@@ -1,12 +1,12 @@
 import {route} from "aurelia";
-import {Details} from "./details";
-import {Index} from "./index";
+import {CarDetails} from "./car-details";
+import {CarIndex} from "./car-index";
 import {Edit} from "./edit";
 
 @route({
     routes: [
-        {path: '', id: 'index', component: Index, title: 'Cars'},
-        {path: ':id', id: 'details', component: Details, title: 'Details'},
+        {path: '', id: 'index', component: CarIndex, title: 'Cars'},
+        {path: ':id', id: 'details', component: CarDetails, title: 'Details'},
         {path: ':id/edit', id: 'edit', component: Edit, title: 'Edit'},
     ]
 })
