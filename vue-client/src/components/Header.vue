@@ -13,9 +13,9 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <router-link to="/{{route}}" class="navbar-item" v-for="route of routes" :key="route">
-          {{route}}
-        </router-link>
+        <router-link to="/cars" class="navbar-item">Cars</router-link>
+        <router-link to="/marks" class="navbar-item">Marks</router-link>
+        <router-link to="/models" class="navbar-item">Models</router-link>
       </div>
     </div>
     <div class="navbar-end">
@@ -42,7 +42,7 @@ import { Vue } from 'vue-class-component'
 import state from '@/store/index'
 
 export default class Header extends Vue {
-  routes: string[] = [];
+  routes: string[] = ['Cars'];
   userLoggedIn = false;
 
   async onLogOutClicked () {
