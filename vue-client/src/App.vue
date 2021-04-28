@@ -1,11 +1,20 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
+  <Header />
   <router-view/>
 </template>
+<script>
+import { Options, Vue } from 'vue-class-component'
+import Header from '@/components/Header'
 
+@Options({
+  components: {
+    Header
+  }
+})
+export default class App extends Vue {
+
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
