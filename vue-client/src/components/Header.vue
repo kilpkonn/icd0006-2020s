@@ -13,21 +13,22 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <router-link to="/cars" class="navbar-item">Cars</router-link>
+        <router-link v-if="token" to="/cars" class="navbar-item">Cars</router-link>
         <router-link to="/marks" class="navbar-item">Marks</router-link>
         <router-link to="/models" class="navbar-item">Models</router-link>
+        <router-link to="/types" class="navbar-item">Types</router-link>
       </div>
     </div>
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a v-if="!userLoggedIn" class="button is-primary" href="/register">
+          <a v-if="!token" class="button is-primary" href="/register">
             <strong>Sign up</strong>
           </a>
-          <a v-if="!userLoggedIn" class="button is-light" href="/login">
+          <a v-if="!token" class="button is-light" href="/login">
             Log in
           </a>
-          <button v-if="userLoggedIn" class="button is-light" @click="onLogOutClicked">
+          <button v-if="token" class="button is-light" @click="onLogOutClicked">
             Log out
           </button>
         </div>
@@ -39,14 +40,17 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component'
-import state from '@/store/index'
+import store from '@/store/index'
 
 export default class Header extends Vue {
   routes: string[] = ['Cars'];
-  userLoggedIn = false;
+
+  get token () {
+    return store.state?.token !== null && store.state.token.length > 1
+  }
 
   async onLogOutClicked () {
-    state.commit('logOut')
+    store.commit('logOut')
   }
 }
 </script>

@@ -1,14 +1,14 @@
 <template>
   <div class="columns m-6">
-    <router-link v-if="isAdmin" to="/cars/create">Create</router-link>
+    <router-link v-if="isAdmin" to="/types/create">Create</router-link>
   </div>
   <div class="column is-10-desktop m-6">
     <table class="table">
       <thead>
       <tr>
         <th>Id</th>
-        <th>Type</th>
-        <th>User</th>
+        <th>Name</th>
+        <th>Model</th>
         <th>Created By</th>
         <th>Created At</th>
         <th>Updated By</th>
@@ -18,8 +18,8 @@
       <tfoot>
       <tr>
         <th>Id</th>
-        <th>Type</th>
-        <th>User</th>
+        <th>Name</th>
+        <th>Model</th>
         <th>Created By</th>
         <th>Created At</th>
         <th>Updated By</th>
@@ -27,14 +27,14 @@
       </tr>
       </tfoot>
       <tbody>
-      <tr v-for="car of cars" :key="car.id">
-        <th><router-link :to="'/cars/' + car.id">{{car.id}}</router-link></th>
-        <td>{{car.carType.name}}</td>
-        <td>{{car.appUser.displayName}}</td>
-        <td>{{car.createdBy}}</td>
-        <td>{{car.createdAt}}</td>
-        <td>{{car.updatedBy}}</td>
-        <td>{{car.updatedAt}}</td>
+      <tr v-for="type of types" :key="type.id">
+        <th><router-link :to="'/types/' + type.id">{{type.id}}</router-link></th>
+        <td>{{type.name}}</td>
+        <td>{{type.carModel?.name}}</td>
+        <td>{{type.createdBy}}</td>
+        <td>{{type.createdAt}}</td>
+        <td>{{type.updatedBy}}</td>
+        <td>{{type.updatedAt}}</td>
       </tr>
       </tbody>
     </table>
@@ -43,23 +43,23 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component'
-import { CarsService } from '@/services/cars-service'
-import { ICar } from '@/models/ICar'
+import { ICarType } from '@/models/ICarType'
+import { CarTypeService } from '@/services/car-type-service'
+import store from '@/store'
 import { getParsedJwt } from '@/util/jwt'
 import { IJwt } from '@/models/IJwt'
-import store from '@/store'
 
-export default class CarsList extends Vue {
-  service: CarsService | null = null
-  cars: ICar[] = []
+export default class TypesList extends Vue {
+  service: CarTypeService | null = null
+  types: ICarType[] = []
 
   async mounted (): Promise<void> {
-    this.service = new CarsService()
+    this.service = new CarTypeService()
     await this.service.getAll()
       .then(res => {
         if (res.data !== undefined) {
           console.log(res.data)
-          this.cars = res.data!
+          this.types = res.data!
         } else {
           console.error(res.errorMessage)
         }

@@ -88,10 +88,8 @@ export class BaseService<TEntity extends IIdentifiable> {
   async post (entity: TEntity): Promise<IFetchResponse<TEntity>> {
     const authHeaders = store.state.token !== '' ? { Authorization: 'Bearer ' + store.state.token } : {}
     const url = this.apiEndpointUrl
-    const entityStr = JSON.stringify(entity)
-
     try {
-      const response = await axios.post(url, entityStr, { headers: authHeaders })
+      const response = await axios.post(url, entity, { headers: authHeaders })
       if (response.status > 199 && response.status < 300) {
         return {
           statusCode: response.status,
@@ -113,11 +111,8 @@ export class BaseService<TEntity extends IIdentifiable> {
 
   async put (entity: TEntity, queryParams?: IQueryParams): Promise<IFetchResponse<TEntity>> {
     const { authHeaders, url } = this.prepareUrl(entity.id, queryParams)
-
-    const entityStr = JSON.stringify(entity)
-
     try {
-      const response = await axios.put(url, entityStr, { headers: authHeaders })
+      const response = await axios.put(url, entity, { headers: authHeaders })
       if (response.status > 199 && response.status < 300) {
         return {
           statusCode: response.status,

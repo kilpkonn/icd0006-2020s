@@ -1,14 +1,14 @@
 <template>
   <div class="columns m-6">
-    <router-link v-if="isAdmin" to="/cars/create">Create</router-link>
+    <router-link v-if="isAdmin" to="/models/create">Create</router-link>
   </div>
   <div class="column is-10-desktop m-6">
     <table class="table">
       <thead>
       <tr>
         <th>Id</th>
-        <th>Type</th>
-        <th>User</th>
+        <th>Name</th>
+        <th>Model</th>
         <th>Created By</th>
         <th>Created At</th>
         <th>Updated By</th>
@@ -18,8 +18,8 @@
       <tfoot>
       <tr>
         <th>Id</th>
-        <th>Type</th>
-        <th>User</th>
+        <th>Name</th>
+        <th>Mark</th>
         <th>Created By</th>
         <th>Created At</th>
         <th>Updated By</th>
@@ -27,14 +27,14 @@
       </tr>
       </tfoot>
       <tbody>
-      <tr v-for="car of cars" :key="car.id">
-        <th><router-link :to="'/cars/' + car.id">{{car.id}}</router-link></th>
-        <td>{{car.carType.name}}</td>
-        <td>{{car.appUser.displayName}}</td>
-        <td>{{car.createdBy}}</td>
-        <td>{{car.createdAt}}</td>
-        <td>{{car.updatedBy}}</td>
-        <td>{{car.updatedAt}}</td>
+      <tr v-for="model of models" :key="model.id">
+        <th><router-link :to="'/models/' + model.id">{{model.id}}</router-link></th>
+        <td>{{model.name}}</td>
+        <td>{{model.carMark?.name}}</td>
+        <td>{{model.createdBy}}</td>
+        <td>{{model.createdAt}}</td>
+        <td>{{model.updatedBy}}</td>
+        <td>{{model.updatedAt}}</td>
       </tr>
       </tbody>
     </table>
@@ -43,23 +43,25 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component'
-import { CarsService } from '@/services/cars-service'
-import { ICar } from '@/models/ICar'
+import { ICarType } from '@/models/ICarType'
+import { CarTypeService } from '@/services/car-type-service'
+import { CarModelService } from '@/services/car-model-service'
+import { ICarModel } from '@/models/ICarModel'
+import store from '@/store'
 import { getParsedJwt } from '@/util/jwt'
 import { IJwt } from '@/models/IJwt'
-import store from '@/store'
 
-export default class CarsList extends Vue {
-  service: CarsService | null = null
-  cars: ICar[] = []
+export default class ModelsList extends Vue {
+  service: CarModelService | null = null
+  models: ICarModel[] = []
 
   async mounted (): Promise<void> {
-    this.service = new CarsService()
+    this.service = new CarModelService()
     await this.service.getAll()
       .then(res => {
         if (res.data !== undefined) {
           console.log(res.data)
-          this.cars = res.data!
+          this.models = res.data!
         } else {
           console.error(res.errorMessage)
         }

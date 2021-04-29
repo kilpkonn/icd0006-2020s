@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <h1>Car Details</h1>
+    <h1>Car Model Details</h1>
 
-    <div v-if="car" class="column">
+    <div v-if="model" class="column">
       <hr/>
       <div class="column">
         <div class="columns">
@@ -10,36 +10,37 @@
             Id
           </div>
           <div class="column is-8-desktop">
-            {{car.id}}
+            {{ model.id }}
           </div>
         </div>
         <div class="columns">
           <div class="column is-4-desktop">
-            Type
+            Name
           </div>
           <div v-if="!isEditing" class="column is-8-desktop">
-            {{car.carType?.carModel.carMark.name || ''}} - {{car.carType?.carModel.name || ''}} - {{car.carType?.name || ''}}
+            {{ model.name }}
           </div>
-          <select v-if="isEditing" v-model="car.carTypeId" class="column is-8-desktop">
-            <option v-for="type of carTypes" :value="type.id" :key="type.id">
-              {{type.carModel.carMark.name}} - {{type.carModel.name}} - {{type.name}}
-            </option>
-          </select>
+          <input v-if="isEditing" v-model="model.name" class="column is-8-desktop">
         </div>
         <div class="columns">
           <div class="column is-4-desktop">
-            User
+            Mark
           </div>
-          <div class="column is-8-desktop">
-            {{car.appUser?.displayName || ''}}
+          <div v-if="!isEditing" class="column is-8-desktop">
+            {{ model.carMark?.name || '' }}
           </div>
+          <select v-if="isEditing" v-model="model.carMarkId" class="column is-8-desktop">
+            <option v-for="mark of carMarks" :value="mark.id" :key="mark.id">
+              {{mark.name}}
+            </option>
+          </select>
         </div>
         <div class="columns">
           <div class="column is-4-desktop">
             Created By
           </div>
           <div class="column is-8-desktop">
-            {{car.createdBy}}
+            {{ model.createdBy }}
           </div>
         </div>
         <div class="columns">
@@ -47,7 +48,7 @@
             Created At
           </div>
           <div class="column is-8-desktop">
-            {{car.createdAt}}
+            {{ model.createdAt }}
           </div>
         </div>
         <div class="columns">
@@ -55,7 +56,7 @@
             Updated By
           </div>
           <div class="column is-8-desktop">
-            {{car.updatedBy}}
+            {{ model.updatedBy }}
           </div>
         </div>
         <div class="columns">
@@ -63,7 +64,7 @@
             Updated At
           </div>
           <div class="column is-8-desktop">
-            {{car.updatedAt}}
+            {{ model.updatedAt }}
           </div>
         </div>
       </div>
@@ -72,7 +73,7 @@
       <button class="button m-2 is-primary" v-if="!isEditing && isAdmin" @click="onClickEdit">Edit</button>
       <button class="button m-2 is-success" v-if="isEditing && isAdmin" @click="onClickSave">Save</button>
       <button class="button m-2 is-danger" v-if="isAdmin" @click="onClickDelete">Delete</button>
-      <router-link class="button m-2" to="/cars">Back to List</router-link>
+      <router-link class="button m-2" to="/models">Back to List</router-link>
     </div>
   </div>
 </template>
@@ -83,6 +84,10 @@ import { ICar } from '@/models/ICar'
 import { CarsService } from '@/services/cars-service'
 import { ICarType } from '@/models/ICarType'
 import { CarTypeService } from '@/services/car-type-service'
+import { ICarModel } from '@/models/ICarModel'
+import { CarModelService } from '@/services/car-model-service'
+import { ICarMark } from '@/models/ICarMark'
+import { CarMarkService } from '@/services/car-mark-service'
 import store from '@/store'
 import { getParsedJwt } from '@/util/jwt'
 import { IJwt } from '@/models/IJwt'
@@ -93,32 +98,33 @@ import { IJwt } from '@/models/IJwt'
     id: String
   }
 })
-export default class CarDetails extends Vue {
-  car: ICar | null = null
-  carTypes: ICarType[] = []
-  service: CarsService | null = null
-  carTypeService: CarTypeService | null = null
+export default class ModelDetails extends Vue {
+  model: ICarModel | null = null
+  carMarks: ICarMark[] = []
+  service: CarModelService | null = null
+  carMarkService: CarMarkService | null = null
   isEditing = false
 
   mounted (): void {
-    this.service = new CarsService()
-    this.carTypeService = new CarTypeService()
-    this.fetchCar()
-    this.carTypeService.getAll()
+    this.service = new CarModelService()
+    this.carMarkService = new CarMarkService()
+    this.fetchModel()
+    this.carMarkService.getAll()
       .then(res => {
         if (res.data !== undefined) {
-          this.carTypes = res.data
+          this.carMarks = res.data
         } else {
           console.log(res.errorMessage)
         }
       })
   }
 
-  private async fetchCar () {
+  private async fetchModel () {
     return this.service?.get(this.$route.params.id as string)
       .then(res => {
         if (res.data !== undefined) {
-          this.car = res.data!
+          console.log(res.data)
+          this.model = res.data!
         } else {
           console.error(res.errorMessage)
         }
@@ -130,19 +136,19 @@ export default class CarDetails extends Vue {
   }
 
   get isAdmin () {
-    return store.state?.token !== null && getParsedJwt<IJwt>(store.state!.token!)?.
-      ['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'].includes('Admin')
+    return store.state?.token !== null && (getParsedJwt<IJwt>(store.state!.token!)?.
+      ['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']?.includes('Admin') || false)
   }
 
   async onClickSave (): Promise<void> {
-    await this.service?.put(this.car!)
-    await this.fetchCar()
+    await this.service?.put(this.model!)
+    await this.fetchModel()
     this.isEditing = false
   }
 
   async onClickDelete (): Promise<void> {
-    await this.service?.delete(this.car!.id)
-    await this.$router.push('/cars')
+    await this.service?.delete(this.model!.id)
+    await this.$router.push('/models')
   }
 }
 </script>

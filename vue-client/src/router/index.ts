@@ -19,12 +19,39 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/cars',
-    name: 'Cars',
     component: () => import('../views/cars/CarsList.vue')
   },
   {
     path: '/cars/:id',
     component: () => import('../views/cars/CarDetails.vue')
+  },
+  {
+    path: '/cars/create',
+    component: () => import('../views/cars/CarCreate.vue')
+  },
+  {
+    path: '/types',
+    component: () => import('../views/types/TypesList.vue')
+  },
+  {
+    path: '/types/:id',
+    component: () => import('../views/types/TypeDetails.vue')
+  },
+  {
+    path: '/types/create',
+    component: () => import('../views/types/TypeCreate.vue')
+  },
+  {
+    path: '/models',
+    component: () => import('../views/models/ModelsList.vue')
+  },
+  {
+    path: '/models/:id',
+    component: () => import('../views/models/ModelDetails.vue')
+  },
+  {
+    path: '/models/create',
+    component: () => import('../views/models/ModelCreate.vue')
   }
 ]
 

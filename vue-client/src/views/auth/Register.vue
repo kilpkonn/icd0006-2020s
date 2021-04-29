@@ -1,6 +1,6 @@
 <template>
-  <div class="columns right has-text-centered mt-6">
-    <div class="column is-4-desktop is-offset-4 mt-6">
+  <div class="columns right has-text-centered mt-6 is-centered">
+    <div class="column is-4-desktop mt-6 is-centered">
       <h1 class="title is-4">Register</h1>
       <p class="description">Register an account</p>
       <form>

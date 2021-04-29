@@ -1,4 +1,9 @@
+import { IIdentifiable } from '@/models/IIdentifiable'
 
-export interface ICarMark {
-    name: string
+export interface ICarMark extends IIdentifiable {
+    name: string,
+  createdBy: string,
+  createdAt: Date,
+  updatedBy: string,
+  updatedAt: Date,
 }
