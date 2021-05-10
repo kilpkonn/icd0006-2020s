@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom';
 import Header from "./components/Header";
 import Login from "./views/auth/Login";
 import Register from "./views/auth/Register";
+import Cars from "./views/cars/Cars";
 
 function App() {
     return (
@@ -18,7 +19,7 @@ function App() {
                         <Route path="/login" component={Login}/>
                         <Route path="/register" component={Register}/>
 
-                        {/*<Route path="/contacttypes/create" component={ContactTypeCreate}/>*/}
+                        <Route path="/cars" component={Cars}/>
                         {/*<Route path="/contacttypes/edit/:id" component={ContactTypeEdit}/>*/}
                         {/*<Route path="/contacttypes/delete/:id" component={ContactTypeDelete}/>*/}
                         {/*<Route path="/contacttypes/:id" component={ContactTypeDetails}/>*/}
