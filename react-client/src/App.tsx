@@ -1,26 +1,35 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './assets/App.css';
+import {Route, Switch} from 'react-router-dom';
+import Header from "./components/Header";
+import Login from "./views/auth/Login";
+import Register from "./views/auth/Register";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Header/>
+            <div className="container">
+                <main role="main" className="pb-3">
+                    <Switch>
+                        {/*<Route exact path="/" component={HomeIndex}/>*/}
+
+                        <Route path="/login" component={Login}/>
+                        <Route path="/register" component={Register}/>
+
+                        {/*<Route path="/contacttypes/create" component={ContactTypeCreate}/>*/}
+                        {/*<Route path="/contacttypes/edit/:id" component={ContactTypeEdit}/>*/}
+                        {/*<Route path="/contacttypes/delete/:id" component={ContactTypeDelete}/>*/}
+                        {/*<Route path="/contacttypes/:id" component={ContactTypeDetails}/>*/}
+                        {/*<Route path="/contacttypes" component={ContactTypeIndex}/>*/}
+
+                        {/*<Route component={Page404}/>*/}
+                    </Switch>
+                </main>
+            </div>
+        </>
+    );
 }
 
 export default App;

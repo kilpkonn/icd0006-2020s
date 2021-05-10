@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './assets/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+require('bulma/css/bulma-rtl.min.css')
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Router basename={process.env.PUBLIC_URL}>
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    </Router>,
+    document.getElementById('root')
+
 );
 
 // If you want to start measuring performance in your app, pass a function
