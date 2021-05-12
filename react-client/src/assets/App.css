@@ -1,3 +1,7 @@
-.alert {
+.alert-danger {
   color: red;
+}
+
+.alert-primary {
+  color: #42b983;
 }

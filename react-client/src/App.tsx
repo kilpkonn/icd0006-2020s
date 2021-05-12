@@ -5,7 +5,9 @@ import {Route, Switch} from 'react-router-dom';
 import Header from "./components/Header";
 import Login from "./views/auth/Login";
 import Register from "./views/auth/Register";
-import Cars from "./views/cars/Cars";
+import CarsList from "./views/cars/CarsList";
+import CarDetails from "./views/cars/CarDetails";
+import CarCreate from "./views/cars/CarCreate";
 
 function App() {
     return (
@@ -19,11 +21,9 @@ function App() {
                         <Route path="/login" component={Login}/>
                         <Route path="/register" component={Register}/>
 
-                        <Route path="/cars" component={Cars}/>
-                        {/*<Route path="/contacttypes/edit/:id" component={ContactTypeEdit}/>*/}
-                        {/*<Route path="/contacttypes/delete/:id" component={ContactTypeDelete}/>*/}
-                        {/*<Route path="/contacttypes/:id" component={ContactTypeDetails}/>*/}
-                        {/*<Route path="/contacttypes" component={ContactTypeIndex}/>*/}
+                        <Route path="/cars/:id" component={CarDetails}/>
+                        <Route path="/cars/create" component={CarCreate}/>
+                        <Route path="/cars" component={CarsList}/>
 
                         {/*<Route component={Page404}/>*/}
                     </Switch>

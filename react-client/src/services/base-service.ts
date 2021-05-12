@@ -2,6 +2,7 @@ import {IIdentifiable} from '../types/IIdentifiable'
 import {IQueryParams} from '../types/IQueryParams'
 import {IFetchResponse} from '../types/IFetchResponse'
 import axios from 'axios'
+import getCookie from "../utils/getCookie";
 
 export class BaseService<TEntity extends IIdentifiable> {
     protected apiEndpointUrl: string
@@ -11,7 +12,8 @@ export class BaseService<TEntity extends IIdentifiable> {
     }
 
     async getAll(queryParams?: IQueryParams): Promise<IFetchResponse<TEntity[]>> {
-        // const authHeaders = store.state.token !== '' ? { Authorization: 'Bearer ' + store.state.token } : {}
+        const jwt = getCookie('jwt')
+        const authHeaders = jwt !== '' ? {Authorization: 'Bearer ' + jwt} : {}
         let url = this.apiEndpointUrl
         if (queryParams !== undefined) {
             url += '?'
@@ -21,12 +23,7 @@ export class BaseService<TEntity extends IIdentifiable> {
         }
 
         try {
-            const response = await axios.get(
-                url,
-                // {
-                //   headers: authHeaders
-                // }
-            )
+            const response = await axios.get(url, {headers: authHeaders})
             if (response.status > 199 && response.status < 300) {
                 return {
                     statusCode: response.status,
@@ -47,9 +44,9 @@ export class BaseService<TEntity extends IIdentifiable> {
     }
 
     async get(id: string, queryParams?: IQueryParams): Promise<IFetchResponse<TEntity>> {
-        const {url} = this.prepareUrl(id, queryParams)
+        const {authHeaders, url} = this.prepareUrl(id, queryParams)
         try {
-            const response = await axios.get(url,) // { headers: authHeaders })
+            const response = await axios.get(url, {headers: authHeaders})
             if (response.status > 199 && response.status < 300) {
                 return {
                     statusCode: response.status,
@@ -70,7 +67,8 @@ export class BaseService<TEntity extends IIdentifiable> {
     }
 
     private prepareUrl(id: string, queryParams?: IQueryParams) {
-        // const authHeaders = store.state.token !== '' ? { Authorization: 'Bearer ' + store.state.token } : {}
+        const jwt = getCookie('jwt')
+        const authHeaders = jwt !== '' ? {Authorization: 'Bearer ' + jwt} : {}
         let url = this.apiEndpointUrl
         url = url + '/' + id
 
@@ -80,14 +78,15 @@ export class BaseService<TEntity extends IIdentifiable> {
                 url += '&' + param + '=' + queryParams[param]
             }
         }
-        return {url} // authHeaders, url }
+        return {authHeaders, url}
     }
 
     async post(entity: TEntity): Promise<IFetchResponse<TEntity>> {
-        // const authHeaders = store.state.token !== '' ? { Authorization: 'Bearer ' + store.state.token } : {}
+        const jwt = getCookie('jwt')
+        const authHeaders = jwt !== '' ? {Authorization: 'Bearer ' + jwt} : {}
         const url = this.apiEndpointUrl
         try {
-            const response = await axios.post(url, entity,) // { headers: authHeaders })
+            const response = await axios.post(url, entity, {headers: authHeaders})
             if (response.status > 199 && response.status < 300) {
                 return {
                     statusCode: response.status,
@@ -108,9 +107,9 @@ export class BaseService<TEntity extends IIdentifiable> {
     }
 
     async put(entity: TEntity, queryParams?: IQueryParams): Promise<IFetchResponse<TEntity>> {
-        const {url} = this.prepareUrl(entity.id, queryParams)
+        const {authHeaders, url} = this.prepareUrl(entity.id, queryParams)
         try {
-            const response = await axios.put(url, entity,) // { headers: authHeaders })
+            const response = await axios.put(url, entity, {headers: authHeaders})
             if (response.status > 199 && response.status < 300) {
                 return {
                     statusCode: response.status,
@@ -131,9 +130,9 @@ export class BaseService<TEntity extends IIdentifiable> {
     }
 
     async delete(id: string, queryParams?: IQueryParams): Promise<IFetchResponse<TEntity>> {
-        const {url} = this.prepareUrl(id, queryParams)
+        const {authHeaders, url} = this.prepareUrl(id, queryParams)
         try {
-            const response = await axios.delete(url,) // { headers: authHeaders })
+            const response = await axios.delete(url, {headers: authHeaders})
             if (response.status > 199 && response.status < 300) {
                 return {
                     statusCode: response.status,
