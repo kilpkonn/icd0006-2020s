@@ -58,7 +58,7 @@ const CarsList = () => {
                     <tbody>
                     {
                         cars.map((car) =>
-                            <tr>
+                            <tr key={car.id}>
                                 <th><NavLink to={'/cars/' + car.id}>{car.id}</NavLink></th>
                                 <td>{car.carType?.name}</td>
                                 <td>{car.appUser?.displayName}</td>
