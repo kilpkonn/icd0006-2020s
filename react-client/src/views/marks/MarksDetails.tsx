@@ -1,31 +1,22 @@
 import {IRouteId} from "../../types/IRouteId";
 import {useEffect, useState} from "react";
 import isAdmin from "../../utils/isAdmin";
-import {ICarModel} from "../../types/ICarModel";
-import {CarModelService} from "../../services/car-model-service";
 import {NavLink, useParams} from "react-router-dom";
 import {ICarMark} from "../../types/ICarMark";
 import {CarMarkService} from "../../services/car-mark-service";
 
 
-const ModelsDetails = () => {
+const MarksDetails = () => {
     const {id} = useParams() as IRouteId;
 
-    const [model, setModel] = useState(null as ICarModel | null);
-    const [carMarks, setCarMarks] = useState([] as ICarMark[]);
+    const [mark, setMark] = useState(null as ICarMark | null);
     const [isEditing, setIsEditing] = useState(false)
-    const service = new CarModelService();
-    const carMarkService = new CarMarkService();
+    const service = new CarMarkService();
 
     useEffect(() => {
         service.get(id).then(res => {
             if (res.data) {
-                setModel(res.data);
-            }
-        })
-        carMarkService.getAll().then(res => {
-            if (res.data) {
-                setCarMarks(res.data);
+                setMark(res.data);
             }
         })
     }, [])
@@ -37,10 +28,10 @@ const ModelsDetails = () => {
     }
 
     const onClickSave = () => {
-        service.put(model!).then((res) => {
+        service.put(mark!).then((res) => {
             service.get(id).then(res => {
                 if (res.data) {
-                    setModel(res.data);
+                    setMark(res.data);
                 }
             })
             setIsEditing(false);
@@ -48,15 +39,15 @@ const ModelsDetails = () => {
     }
 
     const onClickDelete = () => {
-        service.delete(model!.id).then(() => {
-            window.location.href = '/models'
+        service.delete(mark!.id).then(() => {
+            window.location.href = '/marks'
         })
     }
 
     return (
         <div className="container">
-            <h1>Car Model Details</h1>
-            {model &&
+            <h1>Car Mark Details</h1>
+            {mark &&
             <>
                 <div className="column">
                     <hr/>
@@ -66,7 +57,7 @@ const ModelsDetails = () => {
                                 Id
                             </div>
                             <div className="column is-8-desktop">
-                                {model.id}
+                                {mark.id}
                             </div>
                         </div>
                         <div className="columns">
@@ -75,31 +66,12 @@ const ModelsDetails = () => {
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
-                                    {model.name}
+                                    {mark.name}
                                 </div>
                                 :
-                                <input value={model.name}
-                                       onChange={(e) => setModel({...model, name: e.target.value})}
+                                <input value={mark.name}
+                                       onChange={(e) => setMark({...mark, name: e.target.value})}
                                        className="column is-8-desktop"/>
-                            }
-                        </div>
-                        <div className="columns">
-                            <div className="column is-4-desktop">
-                                Mark
-                            </div>
-                            {!isEditing ?
-                                <div className="column is-8-desktop">
-                                    {model?.carMark?.name || ''}
-                                </div>
-                                : <select value={model.carMarkId}
-                                          onChange={(e) => setModel({...model, carMarkId: e.target.value})}
-                                          className="column is-8-desktop">
-                                    {carMarks.map((mark) =>
-                                        <option value={mark.id} key={mark.id}>
-                                            {mark.name}
-                                        </option>
-                                    )}
-                                </select>
                             }
                         </div>
                         <div className="columns">
@@ -107,7 +79,7 @@ const ModelsDetails = () => {
                                 Created By
                             </div>
                             <div className="column is-8-desktop">
-                                {model.createdBy}
+                                {mark.createdBy}
                             </div>
                         </div>
                         <div className="columns">
@@ -115,7 +87,7 @@ const ModelsDetails = () => {
                                 Created At
                             </div>
                             <div className="column is-8-desktop">
-                                {model.createdAt}
+                                {mark.createdAt}
                             </div>
                         </div>
                         <div className="columns">
@@ -123,7 +95,7 @@ const ModelsDetails = () => {
                                 Updated By
                             </div>
                             <div className="column is-8-desktop">
-                                {model.updatedBy}
+                                {mark.updatedBy}
                             </div>
                         </div>
                         <div className="columns">
@@ -131,7 +103,7 @@ const ModelsDetails = () => {
                                 Updated At
                             </div>
                             <div className="column is-8-desktop">
-                                {model.updatedAt}
+                                {mark.updatedAt}
                             </div>
                         </div>
                     </div>
@@ -146,7 +118,7 @@ const ModelsDetails = () => {
                     {(admin) &&
                     <button className="button m-2 is-danger" onClick={onClickDelete}>Delete</button>
                     }
-                    <NavLink className="button m-2" to="/models">Back to List</NavLink>
+                    <NavLink className="button m-2" to="/marks">Back to List</NavLink>
                 </div>
             </>
             }
@@ -154,4 +126,4 @@ const ModelsDetails = () => {
     )
 }
 
-export default ModelsDetails;
+export default MarksDetails;

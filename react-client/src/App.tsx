@@ -13,6 +13,9 @@ import TypesList from "./views/types/TypesList";
 import ModelsList from "./views/models/ModelsList";
 import ModelsDetails from "./views/models/ModelsDetails";
 import ModelsCreate from "./views/models/ModelsCreate";
+import MarksList from "./views/marks/MarksList";
+import MarksCreate from "./views/marks/MarksCreate";
+import MarksDetails from "./views/marks/MarksDetails";
 
 function App() {
     return (
@@ -37,6 +40,10 @@ function App() {
                         <Route path="/models/create" component={ModelsCreate}/>
                         <Route path="/models/:id" component={ModelsDetails}/>
                         <Route path="/models" component={ModelsList}/>
+
+                        <Route path="/marks/create" component={MarksCreate}/>
+                        <Route path="/marks/:id" component={MarksDetails}/>
+                        <Route path="/marks" component={MarksList}/>
 
                         {/*<Route component={Page404}/>*/}
                     </Switch>
