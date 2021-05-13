@@ -4,7 +4,7 @@ import { IIdentifiable } from './IIdentifiable'
 export interface ICarModel extends IIdentifiable {
   name: string,
   carMarkId: string,
-  carMark: ICarMark,
+  carMark: ICarMark | null,
   createdBy: string,
   createdAt: Date,
   updatedBy: string,

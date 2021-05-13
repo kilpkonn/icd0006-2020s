@@ -27,11 +27,11 @@
             Model
           </div>
           <div v-if="!isEditing" class="column is-8-desktop">
-            {{ type.carModel?.carMark.name || '' }} - {{ type.carModel?.name || '' }}
+            {{ type.carModel?.carMark?.name || '' }} - {{ type.carModel?.name || '' }}
           </div>
           <select v-if="isEditing" v-model="type.carModelId" class="column is-8-desktop">
             <option v-for="model of carModels" :value="model.id" :key="model.id">
-              {{model.carMark.name}} - {{model.name}}
+              {{model.carMark?.name}} - {{model.name}}
             </option>
           </select>
         </div>

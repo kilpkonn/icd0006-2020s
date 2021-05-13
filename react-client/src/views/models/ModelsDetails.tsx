@@ -1,47 +1,46 @@
 import {IRouteId} from "../../types/IRouteId";
 import {useEffect, useState} from "react";
-import {CarTypeService} from "../../services/car-type-service";
 import isAdmin from "../../utils/isAdmin";
 import {ICarModel} from "../../types/ICarModel";
 import {CarModelService} from "../../services/car-model-service";
-import {ICarType} from "../../types/ICarType";
 import {NavLink, useParams} from "react-router-dom";
+import {ICarMark} from "../../types/ICarMark";
+import {CarMarkService} from "../../services/car-mark-service";
 
 
-const TypesDetails = () => {
+const ModelsDetails = () => {
     const {id} = useParams() as IRouteId;
 
-    const [type, setType] = useState(null as ICarType | null);
-    const [carModels, setCarModels] = useState([] as ICarModel[]);
+    const [model, setModel] = useState(null as ICarModel | null);
+    const [carMarks, setCarMarks] = useState([] as ICarMark[]);
     const [isEditing, setIsEditing] = useState(false)
-    const service = new CarTypeService();
-    const carModelService = new CarModelService();
+    const service = new CarModelService();
+    const carMarkService = new CarMarkService();
 
     useEffect(() => {
         service.get(id).then(res => {
             if (res.data) {
-                setType(res.data);
+                setModel(res.data);
             }
         })
-        carModelService.getAll().then(res => {
+        carMarkService.getAll().then(res => {
             if (res.data) {
-                setCarModels(res.data);
+                setCarMarks(res.data);
             }
         })
     }, [])
 
     const admin = isAdmin();
 
-
     const onClickEdit = () => {
         setIsEditing(true);
     }
 
     const onClickSave = () => {
-        service.put(type!).then((res) => {
+        service.put(model!).then((res) => {
             service.get(id).then(res => {
                 if (res.data) {
-                    setType(res.data);
+                    setModel(res.data);
                 }
             })
             setIsEditing(false);
@@ -49,15 +48,15 @@ const TypesDetails = () => {
     }
 
     const onClickDelete = () => {
-        service.delete(type!.id).then(() => {
-            window.location.href = '/types'
+        service.delete(model!.id).then(() => {
+            window.location.href = '/models'
         })
     }
 
     return (
         <div className="container">
-            <h1>Car Type Details</h1>
-            {type &&
+            <h1>Car Model Details</h1>
+            {model &&
             <>
                 <div className="column">
                     <hr/>
@@ -67,7 +66,7 @@ const TypesDetails = () => {
                                 Id
                             </div>
                             <div className="column is-8-desktop">
-                                {type.id}
+                                {model.id}
                             </div>
                         </div>
                         <div className="columns">
@@ -76,28 +75,28 @@ const TypesDetails = () => {
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
-                                    {type.name}
+                                    {model.name}
                                 </div>
                                 :
-                                <input value={type.name}
-                                       onChange={(e) => setType({...type, name: e.target.value})}
+                                <input value={model.name}
+                                       onChange={(e) => setModel({...model, name: e.target.value})}
                                        className="column is-8-desktop"/>
                             }
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Model
+                                Mark
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
-                                    {type.carModel?.carMark?.name || ''} - {type.carModel?.name || ''}
+                                    {model?.carMark?.name || ''}
                                 </div>
-                                : <select value={type.carModelId}
-                                          onChange={(e) => setType({...type, carModelId: e.target.value})}
+                                : <select value={model.carMarkId}
+                                          onChange={(e) => setModel({...model, carMarkId: e.target.value})}
                                           className="column is-8-desktop">
-                                    {carModels.map((model) =>
-                                        <option value={model.id} key={model.id}>
-                                            {model.carMark?.name} - {model.name}
+                                    {carMarks.map((mark) =>
+                                        <option value={mark.id} key={mark.id}>
+                                            {mark.name}
                                         </option>
                                     )}
                                 </select>
@@ -108,7 +107,7 @@ const TypesDetails = () => {
                                 Created By
                             </div>
                             <div className="column is-8-desktop">
-                                {type.createdBy}
+                                {model.createdBy}
                             </div>
                         </div>
                         <div className="columns">
@@ -116,7 +115,7 @@ const TypesDetails = () => {
                                 Created At
                             </div>
                             <div className="column is-8-desktop">
-                                {type.createdAt}
+                                {model.createdAt}
                             </div>
                         </div>
                         <div className="columns">
@@ -124,7 +123,7 @@ const TypesDetails = () => {
                                 Updated By
                             </div>
                             <div className="column is-8-desktop">
-                                {type.updatedBy}
+                                {model.updatedBy}
                             </div>
                         </div>
                         <div className="columns">
@@ -132,7 +131,7 @@ const TypesDetails = () => {
                                 Updated At
                             </div>
                             <div className="column is-8-desktop">
-                                {type.updatedAt}
+                                {model.updatedAt}
                             </div>
                         </div>
                     </div>
@@ -155,4 +154,4 @@ const TypesDetails = () => {
     )
 }
 
-export default TypesDetails;
+export default ModelsDetails;

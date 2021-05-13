@@ -10,6 +10,9 @@ import CarCreate from "./views/cars/CarCreate";
 import TypesCreate from "./views/types/TypesCreate";
 import TypesDetails from "./views/types/TypesDetails";
 import TypesList from "./views/types/TypesList";
+import ModelsList from "./views/models/ModelsList";
+import ModelsDetails from "./views/models/ModelsDetails";
+import ModelsCreate from "./views/models/ModelsCreate";
 
 function App() {
     return (
@@ -30,6 +33,10 @@ function App() {
                         <Route path="/types/create" component={TypesCreate}/>
                         <Route path="/types/:id" component={TypesDetails}/>
                         <Route path="/types" component={TypesList}/>
+
+                        <Route path="/models/create" component={ModelsCreate}/>
+                        <Route path="/models/:id" component={ModelsDetails}/>
+                        <Route path="/models" component={ModelsList}/>
 
                         {/*<Route component={Page404}/>*/}
                     </Switch>

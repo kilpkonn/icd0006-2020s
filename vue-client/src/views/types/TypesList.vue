@@ -49,7 +49,7 @@ import store from '@/store'
 import { getParsedJwt } from '@/util/jwt'
 import { IJwt } from '@/models/IJwt'
 
-export default class TypesList extends Vue {
+export default class ModelsList extends Vue {
   service: CarTypeService | null = null
   types: ICarType[] = []
 

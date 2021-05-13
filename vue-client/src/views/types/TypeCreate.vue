@@ -17,7 +17,7 @@
           </div>
           <select v-model="type.carModelId" class="column is-8-desktop">
             <option v-for="model of carModels" :value="model.id" :key="model.id">
-              {{model.carMark.name}} - {{model.name}}
+              {{model.carMark?.name}} - {{model.name}}
             </option>
           </select>
         </div>
