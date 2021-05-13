@@ -29,7 +29,7 @@ const CarsList = () => {
     return (
         <>
             <div className="columns m-6">
-                <NavLink v-if="isAdmin" to="/cars/create">Create</NavLink>
+                <NavLink to="/cars/create">Create</NavLink>
             </div>
             <div className="column is-10-desktop m-6">
                 <table className="table">

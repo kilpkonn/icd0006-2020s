@@ -134,13 +134,13 @@ const CarDetails = () => {
                             </div>
                         </div>
                         <div>
-                            {(!isEditing && admin) &&
+                            {(!isEditing) &&
                             <button className="button m-2 is-primary" onClick={onClickEdit}>Edit</button>
                             }
-                            {(isEditing && admin) &&
+                            {(isEditing) &&
                             <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
                             }
-                            {(admin) &&
+                            {// (admin) &&
                             <button className="button m-2 is-danger" onClick={onClickDelete}>Delete</button>
                             }
                             <NavLink className="button m-2" to="/cars">Back to List</NavLink>

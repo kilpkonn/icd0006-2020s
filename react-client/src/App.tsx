@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './assets/App.css';
 import {Route, Switch} from 'react-router-dom';
 import Header from "./components/Header";
@@ -21,8 +20,8 @@ function App() {
                         <Route path="/login" component={Login}/>
                         <Route path="/register" component={Register}/>
 
-                        <Route path="/cars/:id" component={CarDetails}/>
                         <Route path="/cars/create" component={CarCreate}/>
+                        <Route path="/cars/:id" component={CarDetails}/>
                         <Route path="/cars" component={CarsList}/>
 
                         {/*<Route component={Page404}/>*/}
