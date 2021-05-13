@@ -16,6 +16,9 @@ import ModelsCreate from "./views/models/ModelsCreate";
 import MarksList from "./views/marks/MarksList";
 import MarksCreate from "./views/marks/MarksCreate";
 import MarksDetails from "./views/marks/MarksDetails";
+import ErrorCodesCreate from "./views/errorCodes/ErrorCodesCreate";
+import ErrorCodesDetails from "./views/errorCodes/ErrorCodesDetails";
+import ErrorCodesList from "./views/errorCodes/ErrorCodesList";
 
 function App() {
     return (
@@ -44,6 +47,10 @@ function App() {
                         <Route path="/marks/create" component={MarksCreate}/>
                         <Route path="/marks/:id" component={MarksDetails}/>
                         <Route path="/marks" component={MarksList}/>
+
+                        <Route path="/errors/create" component={ErrorCodesCreate}/>
+                        <Route path="/errors/:id" component={ErrorCodesDetails}/>
+                        <Route path="/errors" component={ErrorCodesList}/>
 
                         {/*<Route component={Page404}/>*/}
                     </Switch>

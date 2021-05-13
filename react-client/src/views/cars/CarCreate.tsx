@@ -11,15 +11,12 @@ const CarCreate = () => {
     const service = new CarsService();
     const carTypesService = new CarTypeService();
 
-    console.log(1)
-
     useEffect(() => {
         carTypesService.getAll().then(res => {
             if (res.data) {
                 setCarTypes(res.data);
             }
         })
-        console.log(3)
 
     }, [])
 
@@ -30,8 +27,6 @@ const CarCreate = () => {
             }
         })
     }
-
-    console.log(2)
 
     return (
         <div className="container">

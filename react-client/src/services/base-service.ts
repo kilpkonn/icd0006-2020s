@@ -88,6 +88,7 @@ export class BaseService<TEntity extends IIdentifiable> {
         try {
             const response = await axios.post(url, entity, {headers: authHeaders})
             if (response.status > 199 && response.status < 300) {
+                console.log(response.data)
                 return {
                     statusCode: response.status,
                     data: response.data

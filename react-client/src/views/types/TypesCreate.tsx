@@ -1,11 +1,9 @@
-import {IRouteId} from "../../types/IRouteId";
 import {useEffect, useState} from "react";
 import {CarTypeService} from "../../services/car-type-service";
-import isAdmin from "../../utils/isAdmin";
 import {ICarModel} from "../../types/ICarModel";
 import {CarModelService} from "../../services/car-model-service";
 import {ICarType} from "../../types/ICarType";
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 
 const TypesCreate = () => {

@@ -1,12 +1,14 @@
 import {NavLink} from "react-router-dom";
+import getCookie from "../utils/getCookie";
 
 const Header = () => {
     const onLogOutClicked = () => {
         localStorage.removeItem('token')
+        document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
         window.location.href = '/'
     }
 
-    const token = localStorage.getItem('token')
+    const jwt = getCookie('jwt');
 
     return (
         <header>
@@ -25,7 +27,8 @@ const Header = () => {
 
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-start">
-                        <NavLink v-if="token" to="/cars" className="navbar-item">Cars</NavLink>
+                        {jwt && <NavLink to="/cars" className="navbar-item">Cars</NavLink>}
+                        {jwt && <NavLink to="/errors" className="navbar-item">Errors</NavLink>}
                         <NavLink to="/marks" className="navbar-item">Marks</NavLink>
                         <NavLink to="/models" className="navbar-item">Models</NavLink>
                         <NavLink to="/types" className="navbar-item">Types</NavLink>
@@ -34,7 +37,7 @@ const Header = () => {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                            {token === null
+                            {(jwt || '') === ''
                                 ? <>
                                     <a className="button is-primary" href="/register">
                                         <strong>Sign up</strong>
