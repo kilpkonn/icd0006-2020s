@@ -31,6 +31,9 @@ import GasRefillsList from "./views/gasRefills/GasRefillsList";
 import TracksCreate from "./views/tracks/TracksCreate";
 import TracksDetails from "./views/tracks/TracksDetails";
 import TracksList from "./views/tracks/TracksList";
+import TrackLocationsCreate from "./views/trackLocations/TrackLocationsCreate";
+import TrackLocationsDetails from "./views/trackLocations/TrackLocationsDetails";
+import TrackLocationsList from "./views/trackLocations/TrackLocationsList";
 
 function App() {
     return (
@@ -79,6 +82,10 @@ function App() {
                         <Route path="/tracks/create" component={TracksCreate}/>
                         <Route path="/tracks/:id" component={TracksDetails}/>
                         <Route path="/tracks" component={TracksList}/>
+
+                        <Route path="/locations/create" component={TrackLocationsCreate}/>
+                        <Route path="/locations/:id" component={TrackLocationsDetails}/>
+                        <Route path="/locations" component={TrackLocationsList}/>
 
                         {/*<Route component={Page404}/>*/}
                     </Switch>
