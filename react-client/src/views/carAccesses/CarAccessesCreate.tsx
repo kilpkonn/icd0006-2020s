@@ -9,7 +9,6 @@ import {ICarAccessType} from "../../types/ICarAccessType";
 import {IAppUser} from "../../types/IAppUser";
 import {UserService} from "../../services/user-service";
 
-
 const CarAccessesCreate = () => {
     const carId = new URLSearchParams(useLocation().search).get("carId");
 
