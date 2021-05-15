@@ -29,6 +29,7 @@ const Header = () => {
                     <div className="navbar-start">
                         {jwt && <NavLink to="/cars" className="navbar-item">Cars</NavLink>}
                         {jwt && <NavLink to="/errors" className="navbar-item">Errors</NavLink>}
+                        {jwt && <NavLink to="/accesses" className="navbar-item">Accesses</NavLink>}
                         <NavLink to="/marks" className="navbar-item">Marks</NavLink>
                         <NavLink to="/models" className="navbar-item">Models</NavLink>
                         <NavLink to="/types" className="navbar-item">Types</NavLink>

@@ -133,6 +133,54 @@ const CarDetails = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className="column is-10-desktop m-6">
+                            <h3>Error Codes</h3> <NavLink to="/errors/create">Create</NavLink>
+                            <table className="table">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Can Id</th>
+                                    <th>Can Data</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    car.carErrorCodes?.map((code) =>
+                                        <tr key={code.id}>
+                                            <th><NavLink to={'/errors/' + code.id}>{code.id}</NavLink></th>
+                                            <td>0x{code.canId.toString(16)}</td>
+                                            <td>0x{code.canData.toString(16)}</td>
+                                        </tr>
+                                    )
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="column is-10-desktop m-6">
+                            <h3>Car Accesses</h3> <NavLink to="/accesses/create">Create</NavLink>
+                            <table className="table">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Access Type</th>
+                                    <th>Created At</th>
+                                    <th>Created By</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    car.carAccesses?.map((access) =>
+                                        <tr key={access.id}>
+                                            <td><NavLink to={'/accesses/' + access.id}>{access.appUser?.displayName || ''}</NavLink></td>
+                                            <td>{access.carAccessType?.name || ''}</td>
+                                            <td>{access.createdAt}</td>
+                                            <td>{access.createdBy}</td>
+                                        </tr>
+                                    )
+                                }
+                                </tbody>
+                            </table>
+                        </div>
                         <div>
                             {(!isEditing) &&
                             <button className="button m-2 is-primary" onClick={onClickEdit}>Edit</button>

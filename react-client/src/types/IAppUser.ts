@@ -1,4 +1,5 @@
+import {IIdentifiable} from "./IIdentifiable";
 
-export interface IAppUser {
+export interface IAppUser extends IIdentifiable {
   displayName: string
 }

@@ -3,18 +3,20 @@ import {useEffect, useState} from "react";
 import {EPageStatus} from "../../types/EPageStatus";
 import {CarErrorCodeService} from "../../services/car-error-code-service";
 import {ICarErrorCode} from "../../types/ICarErrorCode";
+import {ICarAccess} from "../../types/ICarAccess";
+import {CarAccessService} from "../../services/car-access-service";
 
-const ErrorCodesList = () => {
-    const [errorCodes, setErrorCodes] = useState([] as ICarErrorCode[]);
+const CarAccessesList = () => {
+    const [accesses, setAccesses] = useState([] as ICarAccess[]);
     const [pageStatus, setPageStatus] = useState({pageStatus: EPageStatus.Loading, statusCode: -1});
-    const service = new CarErrorCodeService();
+    const service = new CarAccessService();
 
     const loadData = async () => {
         let result = await service.getAll();
 
         if (result.data) {
             setPageStatus({pageStatus: EPageStatus.OK, statusCode: 0});
-            setErrorCodes(result.data!);
+            setAccesses(result.data!);
         } else {
             setPageStatus({pageStatus: EPageStatus.Error, statusCode: result.statusCode});
         }
@@ -25,34 +27,40 @@ const ErrorCodesList = () => {
     return (
         <>
             <div className="columns m-6">
-                <NavLink to="/errors/create">Create</NavLink>
+                <NavLink to="/accesses/create">Create</NavLink>
             </div>
             <div className="column is-10-desktop m-6">
                 <table className="table">
                     <thead>
                     <tr>
                         <th>Id</th>
+                        <th>User</th>
                         <th>Car</th>
-                        <th>Can Id</th>
-                        <th>Can Data</th>
+                        <th>Type</th>
+                        <th>Created At</th>
+                        <th>Created By</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
+                        <th>User</th>
                         <th>Car</th>
-                        <th>Can Id</th>
-                        <th>Can Data</th>
+                        <th>Type</th>
+                        <th>Created At</th>
+                        <th>Created By</th>
                     </tr>
                     </tfoot>
                     <tbody>
                     {
-                        errorCodes.map((code) =>
-                            <tr key={code.id}>
-                                <th><NavLink to={'/errors/' + code.id}>{code.id}</NavLink></th>
-                                <td>{code.carId}</td>
-                                <td>0x{code.canId.toString(16)}</td>
-                                <td>0x{code.canData.toString(16)}</td>
+                        accesses.map((access) =>
+                            <tr key={access.id}>
+                                <th><NavLink to={'/accesses/' + access.id}>{access.id}</NavLink></th>
+                                <td>{access.appUser?.displayName}</td>
+                                <td>{access.carId}</td>
+                                <td>{access.carAccessType?.name}</td>
+                                <td>{access.createdAt}</td>
+                                <td>{access.createdBy}</td>
                             </tr>
                         )
                     }
@@ -63,4 +71,4 @@ const ErrorCodesList = () => {
     )
 }
 
-export default ErrorCodesList;
+export default CarAccessesList;
