@@ -22,6 +22,9 @@ import ErrorCodesList from "./views/errorCodes/ErrorCodesList";
 import CarAccessesCreate from "./views/carAccesses/CarAccessesCreate";
 import CarAccessesDetails from "./views/carAccesses/CarAccessesDetails";
 import CarAccessesList from "./views/carAccesses/CarAccessesList";
+import AccessTypesList from "./views/carAccessTypes/AccessTypesList";
+import AccessTypesDetails from "./views/carAccessTypes/AccessTypesDetails";
+import AccessTypesCreate from "./views/carAccessTypes/AccessTypesCreate";
 
 function App() {
     return (
@@ -55,9 +58,14 @@ function App() {
                         <Route path="/errors/:id" component={ErrorCodesDetails}/>
                         <Route path="/errors" component={ErrorCodesList}/>
 
+                        <Route path="/accesstypes/create" component={AccessTypesCreate}/>
+                        <Route path="/accesstypes/:id" component={AccessTypesDetails}/>
+                        <Route path="/accesstypes" component={AccessTypesList}/>
+
                         <Route path="/accesses/create" component={CarAccessesCreate}/>
                         <Route path="/accesses/:id" component={CarAccessesDetails}/>
                         <Route path="/accesses" component={CarAccessesList}/>
+
 
                         {/*<Route component={Page404}/>*/}
                     </Switch>
