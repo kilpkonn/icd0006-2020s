@@ -134,7 +134,7 @@ const CarDetails = () => {
                             </div>
                         </div>
                         <div className="column is-10-desktop m-6">
-                            <h3>Error Codes</h3> <NavLink to="/errors/create">Create</NavLink>
+                            <h3>Error Codes</h3> <NavLink to={"/errors/create?carId=" + car.id}>Create</NavLink>
                             <table className="table">
                                 <thead>
                                 <tr>

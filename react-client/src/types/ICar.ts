@@ -20,3 +20,7 @@ export interface ICar extends IIdentifiable {
 export interface INewCar {
   carTypeId: string,
 }
+
+export interface ICarId {
+  carId: string,
+}

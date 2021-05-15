@@ -1,10 +1,6 @@
-import {IRouteId} from "../../types/IRouteId";
 import {useEffect, useState} from "react";
-import isAdmin from "../../utils/isAdmin";
-import {NavLink, useParams} from "react-router-dom";
-import {ICarErrorCode} from "../../types/ICarErrorCode";
+import {NavLink, useLocation} from "react-router-dom";
 import {ICar} from "../../types/ICar";
-import {CarErrorCodeService} from "../../services/car-error-code-service";
 import {CarsService} from "../../services/cars-service";
 import {ICarAccess} from "../../types/ICarAccess";
 import {CarAccessService} from "../../services/car-access-service";
@@ -15,7 +11,9 @@ import {UserService} from "../../services/user-service";
 
 
 const CarAccessesCreate = () => {
-    const [access, setAccess] = useState({appUserId: '', carId: '', carAccessTypeId: ''} as ICarAccess);
+    const carId = new URLSearchParams(useLocation().search).get("carId");
+
+    const [access, setAccess] = useState({appUserId: '', carId: carId || '', carAccessTypeId: ''} as ICarAccess);
     const [cars, setCars] = useState([] as ICar[]);
     const [accessTypes, setAccessTypes] = useState([] as ICarAccessType[]);
     const [users, setUsers] = useState([] as IAppUser[]);

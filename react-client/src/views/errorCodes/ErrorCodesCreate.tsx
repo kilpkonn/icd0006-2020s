@@ -1,13 +1,14 @@
 import {useEffect, useState} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation, useParams} from "react-router-dom";
 import {ICarErrorCode, INewErrorCode} from "../../types/ICarErrorCode";
-import {ICar} from "../../types/ICar";
+import {ICar, ICarId} from "../../types/ICar";
 import {CarErrorCodeService} from "../../services/car-error-code-service";
 import {CarsService} from "../../services/cars-service";
 
 
 const ErrorCodesCreate = () => {
-    const [errorCode, setErrorCode] = useState({carId: '', canId: -1, canData: -1} as INewErrorCode);
+    const carId = new URLSearchParams(useLocation().search).get("carId");
+    const [errorCode, setErrorCode] = useState({carId: carId || '', canId: -1, canData: -1} as INewErrorCode);
     const [cars, setCars] = useState([] as ICar[]);
     const service = new CarErrorCodeService();
     const carsService = new CarsService();
@@ -38,7 +39,8 @@ const ErrorCodesCreate = () => {
                         <div className="column is-4-desktop">
                             Car
                         </div>
-                        <select onChange={(e) => setErrorCode({...errorCode, carId: e.target.value})}
+                        <select value={errorCode.carId}
+                                onChange={(e) => setErrorCode({...errorCode, carId: e.target.value})}
                                 className="column is-8-desktop">
                             {cars.map((car) =>
                                 <option value={car.id} key={car.id}>
