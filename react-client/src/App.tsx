@@ -28,6 +28,9 @@ import AccessTypesCreate from "./views/carAccessTypes/AccessTypesCreate";
 import GasRefillsCreate from "./views/gasRefills/GasRefillsCreate";
 import GasRefillsDetails from "./views/gasRefills/GasRefillsDetails";
 import GasRefillsList from "./views/gasRefills/GasRefillsList";
+import TracksCreate from "./views/tracks/TracksCreate";
+import TracksDetails from "./views/tracks/TracksDetails";
+import TracksList from "./views/tracks/TracksList";
 
 function App() {
     return (
@@ -72,6 +75,10 @@ function App() {
                         <Route path="/refills/create" component={GasRefillsCreate}/>
                         <Route path="/refills/:id" component={GasRefillsDetails}/>
                         <Route path="/refills" component={GasRefillsList}/>
+
+                        <Route path="/tracks/create" component={TracksCreate}/>
+                        <Route path="/tracks/:id" component={TracksDetails}/>
+                        <Route path="/tracks" component={TracksList}/>
 
                         {/*<Route component={Page404}/>*/}
                     </Switch>

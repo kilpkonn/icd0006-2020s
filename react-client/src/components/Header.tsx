@@ -33,6 +33,8 @@ const Header = () => {
                         {jwt && isAdmin() && <NavLink to="/accesstypes" className="navbar-item">Access Types</NavLink>}
                         {jwt && <NavLink to="/accesses" className="navbar-item">Accesses</NavLink>}
                         {jwt && <NavLink to="/refills" className="navbar-item">Refills</NavLink>}
+                        {jwt && <NavLink to="/tracks" className="navbar-item">Tracks</NavLink>}
+                        {jwt && <NavLink to="/locations" className="navbar-item">Track Locations</NavLink>}
                         <NavLink to="/marks" className="navbar-item">Marks</NavLink>
                         <NavLink to="/models" className="navbar-item">Models</NavLink>
                         <NavLink to="/types" className="navbar-item">Types</NavLink>
