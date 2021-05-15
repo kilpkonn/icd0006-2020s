@@ -25,6 +25,9 @@ import CarAccessesList from "./views/carAccesses/CarAccessesList";
 import AccessTypesList from "./views/carAccessTypes/AccessTypesList";
 import AccessTypesDetails from "./views/carAccessTypes/AccessTypesDetails";
 import AccessTypesCreate from "./views/carAccessTypes/AccessTypesCreate";
+import GasRefillsCreate from "./views/gasRefills/GasRefillsCreate";
+import GasRefillsDetails from "./views/gasRefills/GasRefillsDetails";
+import GasRefillsList from "./views/gasRefills/GasRefillsList";
 
 function App() {
     return (
@@ -66,6 +69,9 @@ function App() {
                         <Route path="/accesses/:id" component={CarAccessesDetails}/>
                         <Route path="/accesses" component={CarAccessesList}/>
 
+                        <Route path="/refills/create" component={GasRefillsCreate}/>
+                        <Route path="/refills/:id" component={GasRefillsDetails}/>
+                        <Route path="/refills" component={GasRefillsList}/>
 
                         {/*<Route component={Page404}/>*/}
                     </Switch>
