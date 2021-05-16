@@ -4,9 +4,12 @@ import {CarModelService} from "../../services/car-model-service";
 import {NavLink} from "react-router-dom";
 import {ICarMark} from "../../types/ICarMark";
 import {CarMarkService} from "../../services/car-mark-service";
+import {useStore} from "react-context-hook";
 
 
 const ModelsCreate = () => {
+    const [resources] = useStore('resources')
+
     const [model, setModel] = useState({name: '', carMarkId: ''} as ICarModel);
     const [carMarks, setCarMarks] = useState([] as ICarMark[]);
     const service = new CarModelService();
@@ -30,13 +33,13 @@ const ModelsCreate = () => {
 
     return (
         <div className="container">
-            <h1>Add new Car Model</h1>
+            <h1>{resources.Common.Create}</h1>
             <div className="column">
                 <hr/>
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Name
+                            {resources.Dto.CarModel.Name}
                         </div>
 
                         <input onChange={(e) => setModel({...model, name: e.target.value})}
@@ -44,7 +47,7 @@ const ModelsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Mark
+                            {resources.Dto.CarModel.CarMark}
                         </div>
                         <select value={model.carMarkId}
                                 onChange={(e) => setModel({...model, carMarkId: e.target.value})}
@@ -59,8 +62,8 @@ const ModelsCreate = () => {
                 </div>
             </div>
             <div>
-                <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
-                <NavLink className="button m-2" to="/models">Back to List</NavLink>
+                <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
+                <NavLink className="button m-2" to="/models">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )

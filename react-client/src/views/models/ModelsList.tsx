@@ -4,9 +4,12 @@ import {NavLink} from "react-router-dom";
 import isAdmin from "../../utils/isAdmin";
 import {ICarModel} from "../../types/ICarModel";
 import {CarModelService} from "../../services/car-model-service";
+import {useStore} from "react-context-hook";
 
 
 const ModelsList = () => {
+    const [resources] = useStore('resources')
+
     const [models, setModels] = useState([] as ICarModel[]);
     const [pageStatus, setPageStatus] = useState({pageStatus: EPageStatus.Loading, statusCode: -1});
     const service = new CarModelService();
@@ -32,7 +35,7 @@ const ModelsList = () => {
         <>
             <div className="columns m-6">
                 {admin &&
-                <NavLink to="/models/create">Create</NavLink>
+                <NavLink to="/models/create">{resources.Common.Create}</NavLink>
                 }
             </div>
             <div className="column is-10-desktop m-6">
@@ -40,19 +43,19 @@ const ModelsList = () => {
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Model</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th>{resources.Dto.CarModel.Name}</th>
+                        <th>{resources.Dto.CarModel.CarMark}</th>
+                        <th>{resources.Shared.CreatedAt}</th>
+                        <th>{resources.Shared.UpdatedAt}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Model</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th>{resources.Dto.CarModel.Name}</th>
+                        <th>{resources.Dto.CarModel.CarMark}</th>
+                        <th>{resources.Shared.CreatedAt}</th>
+                        <th>{resources.Shared.UpdatedAt}</th>
                     </tr>
                     </tfoot>
                     <tbody>

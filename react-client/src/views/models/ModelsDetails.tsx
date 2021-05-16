@@ -6,9 +6,12 @@ import {CarModelService} from "../../services/car-model-service";
 import {NavLink, useParams} from "react-router-dom";
 import {ICarMark} from "../../types/ICarMark";
 import {CarMarkService} from "../../services/car-mark-service";
+import {useStore} from "react-context-hook";
 
 
 const ModelsDetails = () => {
+    const [resources] = useStore('resources')
+
     const {id} = useParams() as IRouteId;
 
     const [model, setModel] = useState(null as ICarModel | null);
@@ -55,7 +58,7 @@ const ModelsDetails = () => {
 
     return (
         <div className="container">
-            <h1>Car Model Details</h1>
+            <h1>{resources.Shared.CarModel}</h1>
             {model &&
             <>
                 <div className="column">
@@ -71,7 +74,7 @@ const ModelsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Name
+                                {resources.Dto.CarModel.Name}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -85,7 +88,7 @@ const ModelsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Mark
+                                {resources.Dto.CarModel.CarMark}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -104,7 +107,7 @@ const ModelsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Created By
+                                {resources.Shared.CreatedBy}
                             </div>
                             <div className="column is-8-desktop">
                                 {model.createdBy}
@@ -112,7 +115,7 @@ const ModelsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Created At
+                                {resources.Shared.CreatedAt}
                             </div>
                             <div className="column is-8-desktop">
                                 {model.createdAt}
@@ -120,7 +123,7 @@ const ModelsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Updated By
+                                {resources.Shared.UpdatedBy}
                             </div>
                             <div className="column is-8-desktop">
                                 {model.updatedBy}
@@ -128,7 +131,7 @@ const ModelsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Updated At
+                                {resources.Shared.UpdatedAt}
                             </div>
                             <div className="column is-8-desktop">
                                 {model.updatedAt}
@@ -138,15 +141,15 @@ const ModelsDetails = () => {
                 </div>
                 <div>
                     {(!isEditing && admin) &&
-                    <button className="button m-2 is-primary" onClick={onClickEdit}>Edit</button>
+                    <button className="button m-2 is-primary" onClick={onClickEdit}>{resources.Common.Edit}</button>
                     }
                     {(isEditing && admin) &&
-                    <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
+                    <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
                     }
                     {(admin) &&
-                    <button className="button m-2 is-danger" onClick={onClickDelete}>Delete</button>
+                    <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                     }
-                    <NavLink className="button m-2" to="/models">Back to List</NavLink>
+                    <NavLink className="button m-2" to="/models">{resources.Common.Back}</NavLink>
                 </div>
             </>
             }
