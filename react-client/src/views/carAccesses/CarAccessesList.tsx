@@ -5,8 +5,11 @@ import {CarErrorCodeService} from "../../services/car-error-code-service";
 import {ICarErrorCode} from "../../types/ICarErrorCode";
 import {ICarAccess} from "../../types/ICarAccess";
 import {CarAccessService} from "../../services/car-access-service";
+import {useStore} from "react-context-hook";
 
 const CarAccessesList = () => {
+    const [resources] = useStore('resources')
+
     const [accesses, setAccesses] = useState([] as ICarAccess[]);
     const [pageStatus, setPageStatus] = useState({pageStatus: EPageStatus.Loading, statusCode: -1});
     const service = new CarAccessService();
@@ -27,28 +30,28 @@ const CarAccessesList = () => {
     return (
         <>
             <div className="columns m-6">
-                <NavLink to="/accesses/create">Create</NavLink>
+                <NavLink to="/accesses/create">{resources.Common.Create}</NavLink>
             </div>
             <div className="column is-10-desktop m-6">
                 <table className="table">
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>User</th>
-                        <th>Car</th>
-                        <th>Type</th>
-                        <th>Created At</th>
-                        <th>Created By</th>
+                        <th>{resources.Dto.CarAccess.AppUser}</th>
+                        <th>{resources.Dto.CarAccess.Car}</th>
+                        <th>{resources.Dto.CarAccess.CarType}</th>
+                        <th>{resources.Dto.CarAccess.CreatedAt}</th>
+                        <th>{resources.Dto.CarAccess.CreatedBy}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
-                        <th>User</th>
-                        <th>Car</th>
-                        <th>Type</th>
-                        <th>Created At</th>
-                        <th>Created By</th>
+                        <th>{resources.Dto.CarAccess.AppUser}</th>
+                        <th>{resources.Dto.CarAccess.Car}</th>
+                        <th>{resources.Dto.CarAccess.CarType}</th>
+                        <th>{resources.Dto.CarAccess.CreatedAt}</th>
+                        <th>{resources.Dto.CarAccess.CreatedBy}</th>
                     </tr>
                     </tfoot>
                     <tbody>

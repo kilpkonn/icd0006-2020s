@@ -37,6 +37,11 @@ export interface Common {
     Logout: string;
     Register: string;
     Hello: string;
+    CreatedAt: string;
+    CreatedBy: string;
+    UpdatedAt: string;
+    UpdatedBy: string;
+    Save: string;
 }
 
 export interface ResourceManager2 {

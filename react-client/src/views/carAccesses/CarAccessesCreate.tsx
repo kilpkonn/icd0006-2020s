@@ -8,8 +8,11 @@ import {CarAccessTypeService} from "../../services/car-access-type-service";
 import {ICarAccessType} from "../../types/ICarAccessType";
 import {IAppUser} from "../../types/IAppUser";
 import {UserService} from "../../services/user-service";
+import {useStore} from "react-context-hook";
 
 const CarAccessesCreate = () => {
+    const [resources] = useStore('resources')
+
     const carId = new URLSearchParams(useLocation().search).get("carId");
 
     const [access, setAccess] = useState({appUserId: '', carId: carId || '', carAccessTypeId: ''} as ICarAccess);
@@ -53,13 +56,13 @@ const CarAccessesCreate = () => {
 
     return (
         <div className="container">
-            <h1>Car Access</h1>
+            <h1>{resources.Common.CarAccess}</h1>
             <div className="column">
                 <hr/>
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Access Type
+                            {resources.Dto.CarAccess.CarAccessType}
                         </div>
                         <select value={access.carAccessTypeId}
                                 onChange={(e) => setAccess({...access, carAccessTypeId: e.target.value})}
@@ -74,7 +77,7 @@ const CarAccessesCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Car
+                            {resources.Dto.CarAccess.Car}
                         </div>
                         <select value={access.carId}
                                 onChange={(e) => setAccess({...access, carId: e.target.value})}
@@ -89,7 +92,7 @@ const CarAccessesCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            User
+                            {resources.Dto.CarAccess.AppUser}
                         </div>
                         <select value={access.appUserId}
                                 onChange={(e) => setAccess({...access, appUserId: e.target.value})}
@@ -103,7 +106,7 @@ const CarAccessesCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Created By
+                            {resources.Common.CreatedBy}
                         </div>
                         <div className="column is-8-desktop">
                             {access.createdBy}
@@ -111,7 +114,7 @@ const CarAccessesCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Created At
+                            {resources.Common.CreatedAt}
                         </div>
                         <div className="column is-8-desktop">
                             {access.createdAt}
@@ -120,8 +123,8 @@ const CarAccessesCreate = () => {
                 </div>
             </div>
             <div>
-                <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
-                <NavLink className="button m-2" to="/types">Back to List</NavLink>
+                <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Create}</button>
+                <NavLink className="button m-2" to="/types">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )

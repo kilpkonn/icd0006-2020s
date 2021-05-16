@@ -1,10 +1,7 @@
 import {IRouteId} from "../../types/IRouteId";
 import {useEffect, useState} from "react";
-import isAdmin from "../../utils/isAdmin";
 import {NavLink, useParams} from "react-router-dom";
-import {ICarErrorCode} from "../../types/ICarErrorCode";
 import {ICar} from "../../types/ICar";
-import {CarErrorCodeService} from "../../services/car-error-code-service";
 import {CarsService} from "../../services/cars-service";
 import {ICarAccess} from "../../types/ICarAccess";
 import {CarAccessService} from "../../services/car-access-service";
@@ -12,9 +9,12 @@ import {CarAccessTypeService} from "../../services/car-access-type-service";
 import {ICarAccessType} from "../../types/ICarAccessType";
 import {IAppUser} from "../../types/IAppUser";
 import {UserService} from "../../services/user-service";
+import {useStore} from "react-context-hook";
 
 
 const CarAccessesDetails = () => {
+    const [resources] = useStore('resources')
+
     const {id} = useParams() as IRouteId;
 
     const [access, setAccess] = useState(null as ICarAccess | null);
@@ -73,7 +73,7 @@ const CarAccessesDetails = () => {
 
     return (
         <div className="container">
-            <h1>Car Access</h1>
+            <h1>{resources.Dto.CarAccess.AccessType}</h1>
             {access &&
             <>
                 <div className="column">
@@ -89,7 +89,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Access Type
+                                {resources.CarAccess.CarAccessType}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -108,7 +108,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Car
+                                {resources.CarAccess.Car}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -127,7 +127,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                User
+                                {resources.CarAccess.AppUser}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -146,7 +146,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Created By
+                                {resources.Common.CreatedBy}
                             </div>
                             <div className="column is-8-desktop">
                                 {access.createdBy}
@@ -154,7 +154,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Created At
+                                {resources.Common.CreatedAt}
                             </div>
                             <div className="column is-8-desktop">
                                 {access.createdAt}
@@ -164,15 +164,15 @@ const CarAccessesDetails = () => {
                 </div>
                 <div>
                     {(!isEditing) &&
-                    <button className="button m-2 is-primary" onClick={onClickEdit}>Edit</button>
+                    <button className="button m-2 is-primary" onClick={onClickEdit}>{resources.Common.Edit}</button>
                     }
                     {(isEditing) &&
-                    <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
+                    <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
                     }
                     {// (admin) &&
-                        <button className="button m-2 is-danger" onClick={onClickDelete}>Delete</button>
+                        <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                     }
-                    <NavLink className="button m-2" to="/types">Back to List</NavLink>
+                    <NavLink className="button m-2" to="/types">{resources.Common.Back}</NavLink>
                 </div>
             </>
             }
