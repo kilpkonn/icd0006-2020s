@@ -4,9 +4,12 @@ import isAdmin from "../utils/isAdmin";
 import {LangService} from "../services/lang-service";
 import {useEffect, useState} from "react";
 import {ISupportedLanguage} from "../types/ISupportedLanguage";
+import {useStore} from "react-context-hook";
+import {RootObject} from "../types/ILangResources";
 
 const Header = () => {
     const [languages, setLanguages] = useState(null as ISupportedLanguage[] | null);
+    const [resources, setResources] = useStore('resources')
     const [dropDownActive, setDropDownActive] = useState(false);
     const [selectedLang, setSelectedLang] = useState("");
     const langService = new LangService();
@@ -20,6 +23,12 @@ const Header = () => {
                     if (res.data.length > 0) {
                         const prev  =res.data.filter(e => e.name === localStorage.getItem('lang'))
                         setSelectedLang(prev.length > 0 ? prev[0].nativeName : res.data[res.data.length - 1].nativeName)
+
+                        langService.getResources().then(res => {
+                            if (res.data) {
+                                setResources(res.data);
+                            }
+                        })
                     }
                 }
             })
@@ -59,16 +68,16 @@ const Header = () => {
 
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-start">
-                        {jwt && <NavLink to="/cars" className="navbar-item">Cars</NavLink>}
-                        {jwt && <NavLink to="/errors" className="navbar-item">Errors</NavLink>}
-                        {jwt && isAdmin() && <NavLink to="/accesstypes" className="navbar-item">Access Types</NavLink>}
-                        {jwt && <NavLink to="/accesses" className="navbar-item">Accesses</NavLink>}
-                        {jwt && <NavLink to="/refills" className="navbar-item">Refills</NavLink>}
-                        {jwt && <NavLink to="/tracks" className="navbar-item">Tracks</NavLink>}
-                        {jwt && <NavLink to="/locations" className="navbar-item">Track Locations</NavLink>}
-                        <NavLink to="/marks" className="navbar-item">Marks</NavLink>
-                        <NavLink to="/models" className="navbar-item">Models</NavLink>
-                        <NavLink to="/types" className="navbar-item">Types</NavLink>
+                        {jwt && <NavLink to="/cars" className="navbar-item">{resources.Shared.Car}</NavLink>}
+                        {jwt && <NavLink to="/errors" className="navbar-item">{resources.Shared.Error}</NavLink>}
+                        {jwt && isAdmin() && <NavLink to="/accesstypes" className="navbar-item">{resources.Shared.AccessType}</NavLink>}
+                        {jwt && <NavLink to="/accesses" className="navbar-item">{resources.Shared.CarAccess}</NavLink>}
+                        {jwt && <NavLink to="/refills" className="navbar-item">{resources.Shared.GasRefill}</NavLink>}
+                        {jwt && <NavLink to="/tracks" className="navbar-item">{resources.Shared.Track}</NavLink>}
+                        {jwt && <NavLink to="/locations" className="navbar-item">{resources.Shared.TrackLocation}</NavLink>}
+                        <NavLink to="/marks" className="navbar-item">{resources.Shared.CarMark}</NavLink>
+                        <NavLink to="/models" className="navbar-item">{resources.Shared.CarModel}</NavLink>
+                        <NavLink to="/types" className="navbar-item">{resources.Shared.CarType}</NavLink>
                     </div>
                 </div>
                 <div className={"navbar-item dropdown" + (dropDownActive ? " is-active" : "")}>
@@ -96,15 +105,15 @@ const Header = () => {
                             {(jwt || '') === ''
                                 ? <>
                                     <a className="button is-primary" href="/register">
-                                        <strong>Sign up</strong>
+                                        <strong>{resources.Common.Register}</strong>
                                     </a>
                                     <a className="button is-light" href="/login">
-                                        Log in
+                                        {resources.Common.Login}
                                     </a>
                                 </>
                                 :
                                 <button className="button is-light" onClick={onLogOutClicked}>
-                                    Log out
+                                    {resources.Common.Logout}
                                 </button>
                             }
                         </div>
