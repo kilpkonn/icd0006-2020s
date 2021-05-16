@@ -62,7 +62,7 @@ const CarAccessesCreate = () => {
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            {resources.Dto.CarAccess.CarAccessType}
+                            {resources.Dto.CarAccess.AccessType}
                         </div>
                         <select value={access.carAccessTypeId}
                                 onChange={(e) => setAccess({...access, carAccessTypeId: e.target.value})}

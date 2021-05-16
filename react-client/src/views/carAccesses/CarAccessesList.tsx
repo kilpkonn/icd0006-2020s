@@ -39,9 +39,9 @@ const CarAccessesList = () => {
                         <th>Id</th>
                         <th>{resources.Dto.CarAccess.AppUser}</th>
                         <th>{resources.Dto.CarAccess.Car}</th>
-                        <th>{resources.Dto.CarAccess.CarType}</th>
-                        <th>{resources.Dto.CarAccess.CreatedAt}</th>
-                        <th>{resources.Dto.CarAccess.CreatedBy}</th>
+                        <th>{resources.Dto.CarAccess.AccessType}</th>
+                        <th>{resources.Shared.CreatedAt}</th>
+                        <th>{resources.Shared.CreatedBy}</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -49,9 +49,9 @@ const CarAccessesList = () => {
                         <th>Id</th>
                         <th>{resources.Dto.CarAccess.AppUser}</th>
                         <th>{resources.Dto.CarAccess.Car}</th>
-                        <th>{resources.Dto.CarAccess.CarType}</th>
-                        <th>{resources.Dto.CarAccess.CreatedAt}</th>
-                        <th>{resources.Dto.CarAccess.CreatedBy}</th>
+                        <th>{resources.Dto.CarAccess.AccessType}</th>
+                        <th>{resources.Shared.CreatedAt}</th>
+                        <th>{resources.Shared.CreatedBy}</th>
                     </tr>
                     </tfoot>
                     <tbody>

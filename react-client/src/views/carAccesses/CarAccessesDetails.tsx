@@ -89,7 +89,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                {resources.Dto.CarAccess.CarAccessType}
+                                {resources.Dto.CarAccess.AccessType}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
