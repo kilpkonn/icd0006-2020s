@@ -5,9 +5,12 @@ import {CarsService} from "../../services/cars-service";
 import {IGasRefill} from "../../types/IGasRefill";
 import {GasRefillsService} from "../../services/gas-refills-service";
 import DatePicker from "react-date-picker";
+import {useStore} from "react-context-hook";
 
 
 const GasRefillsCreate = () => {
+    const [resources] = useStore('resources')
+
     const [gasRefill, setGasRefill] = useState({carId: '', amountRefilled: -1, cost: -1, timestamp: new Date()} as IGasRefill);
     const [cars, setCars] = useState([] as ICar[]);
     const service = new GasRefillsService();
@@ -31,13 +34,13 @@ const GasRefillsCreate = () => {
 
     return (
         <div className="container">
-            <h1>Add new Gas Refill</h1>
+            <h1>{resources.Common.Create}</h1>
             <div className="column">
                 <hr/>
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Car
+                            {resources.Dto.GasRefill.Car}
                         </div>
                         <select onChange={(e) => setGasRefill({...gasRefill, carId: e.target.value})}
                                 className="column is-8-desktop">
@@ -50,7 +53,7 @@ const GasRefillsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Amount refilled
+                            {resources.Dto.GasRefill.AmountRefilled}
                         </div>
                         <input type="number"
                                value={gasRefill.amountRefilled}
@@ -60,7 +63,7 @@ const GasRefillsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Cost
+                            {resources.Dto.GasRefill.Cost}
                         </div>
                         <input type="number"
                                value={gasRefill.cost}
@@ -69,7 +72,7 @@ const GasRefillsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Timestamp
+                            {resources.Dto.GasRefill.Cost}
                         </div>
                         <DatePicker
                             value={gasRefill.timestamp}
@@ -79,8 +82,8 @@ const GasRefillsCreate = () => {
                 </div>
             </div>
             <div>
-                <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
-                <NavLink className="button m-2" to="/types">Back to List</NavLink>
+                <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Create}</button>
+                <NavLink className="button m-2" to="/types">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )

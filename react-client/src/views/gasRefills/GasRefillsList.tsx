@@ -3,8 +3,11 @@ import {useEffect, useState} from "react";
 import {EPageStatus} from "../../types/EPageStatus";
 import {IGasRefill} from "../../types/IGasRefill";
 import {GasRefillsService} from "../../services/gas-refills-service";
+import {useStore} from "react-context-hook";
 
 const GasRefillsList = () => {
+    const [resources] = useStore('resources')
+
     const [gasRefills, setGasRefills] = useState([] as IGasRefill[]);
     const [pageStatus, setPageStatus] = useState({pageStatus: EPageStatus.Loading, statusCode: -1});
     const service = new GasRefillsService();
@@ -25,26 +28,26 @@ const GasRefillsList = () => {
     return (
         <>
             <div className="columns m-6">
-                <NavLink to="/refills/create">Create</NavLink>
+                <NavLink to="/refills/create">{resources.Common.Create}</NavLink>
             </div>
             <div className="column is-10-desktop m-6">
                 <table className="table">
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Amount</th>
-                        <th>Cost</th>
-                        <th>Timestamp</th>
-                        <th>Car Id</th>
+                        <th>{resources.Dto.GasRefill.AmountRefilled}</th>
+                        <th>{resources.Dto.GasRefill.Cost}</th>
+                        <th>{resources.Dto.GasRefill.Timestamp}</th>
+                        <th>{resources.Dto.GasRefill.CarId}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
-                        <th>Amount</th>
-                        <th>Cost</th>
-                        <th>Timestamp</th>
-                        <th>Car Id</th>
+                        <th>{resources.Dto.GasRefill.AmountRefilled}</th>
+                        <th>{resources.Dto.GasRefill.Cost}</th>
+                        <th>{resources.Dto.GasRefill.Timestamp}</th>
+                        <th>{resources.Dto.GasRefill.CarId}</th>
                     </tr>
                     </tfoot>
                     <tbody>

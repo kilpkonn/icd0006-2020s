@@ -1,17 +1,17 @@
 import {IRouteId} from "../../types/IRouteId";
 import {useEffect, useState} from "react";
-import isAdmin from "../../utils/isAdmin";
 import {NavLink, useParams} from "react-router-dom";
-import {ICarErrorCode} from "../../types/ICarErrorCode";
 import {ICar} from "../../types/ICar";
-import {CarErrorCodeService} from "../../services/car-error-code-service";
 import DatePicker from 'react-date-picker';
 import {CarsService} from "../../services/cars-service";
 import {IGasRefill} from "../../types/IGasRefill";
 import {GasRefillsService} from "../../services/gas-refills-service";
+import {useStore} from "react-context-hook";
 
 
 const GasRefillsDetails = () => {
+    const [resources] = useStore('resources')
+
     const {id} = useParams() as IRouteId;
 
     const [gasRefill, setGasRefill] = useState(null as IGasRefill | null);
@@ -56,7 +56,7 @@ const GasRefillsDetails = () => {
 
     return (
         <div className="container">
-            <h1>Gas refills</h1>
+            <h1>{resources.Shared.GasRefill}</h1>
             {gasRefill &&
             <>
                 <div className="column">
@@ -72,7 +72,7 @@ const GasRefillsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Amount
+                                {resources.Dto.GasRefill.AmountRefilled}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -87,7 +87,7 @@ const GasRefillsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Cost
+                                {resources.Dto.GasRefill.Cost}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -102,7 +102,7 @@ const GasRefillsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Timestamp
+                                {resources.Dto.GasRefill.Timestamp}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -117,7 +117,7 @@ const GasRefillsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Car id
+                                {resources.Dto.GasRefill.Car}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -138,15 +138,15 @@ const GasRefillsDetails = () => {
                 </div>
                 <div>
                     {(!isEditing) &&
-                    <button className="button m-2 is-primary" onClick={onClickEdit}>Edit</button>
+                    <button className="button m-2 is-primary" onClick={onClickEdit}>{resources.Common.Edit}</button>
                     }
                     {(isEditing) &&
-                    <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
+                    <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
                     }
                     {// (admin) &&
-                        <button className="button m-2 is-danger" onClick={onClickDelete}>Delete</button>
+                        <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                     }
-                    <NavLink className="button m-2" to="/refills">Back to List</NavLink>
+                    <NavLink className="button m-2" to="/refills">{resources.Common.Back}</NavLink>
                 </div>
             </>
             }
