@@ -5,7 +5,6 @@ import {LangService} from "../services/lang-service";
 import {useEffect, useState} from "react";
 import {ISupportedLanguage} from "../types/ISupportedLanguage";
 import {useStore} from "react-context-hook";
-import {RootObject} from "../types/ILangResources";
 
 const Header = () => {
     const [languages, setLanguages] = useState(null as ISupportedLanguage[] | null);

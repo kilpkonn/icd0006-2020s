@@ -68,6 +68,65 @@ export interface Shared {
     Roles: string;
 }
 
+export interface ResourceManager3 {
+    BaseName: string;
+    IgnoreCase: boolean;
+    ResourceSetType: string;
+}
+
+export interface Login {
+    ResourceManager: ResourceManager3;
+    UseLocalAccount: string;
+    ForgotPassword: string;
+    RgeisterNewUser: string;
+    ResendEmail: string;
+    LoginThirdParty: string;
+    NoThirdParty: string;
+    LogIn: string;
+    RememberMe: string;
+    InvalidLoginAttempt: string;
+    Password: string;
+    Email: string;
+}
+
+export interface ResourceManager4 {
+    BaseName: string;
+    IgnoreCase: boolean;
+    ResourceSetType: string;
+}
+
+export interface Register {
+    ResourceManager: ResourceManager4;
+    Email: string;
+    FirstName: string;
+    LastName: string;
+    Password: string;
+    ConfirmPassword: string;
+    CreateNewAccount: string;
+    PageTitle: string;
+    ButtonRegister: string;
+    Register3rdParty: string;
+    DateOfBirth: string;
+    Gender: string;
+    Mandatory: string;
+    PasswordsDontMatch: string;
+    Register3rdPartyNotConfigured: string;
+    DisplayName: string;
+}
+
+export interface ResourceManager5 {
+    BaseName: string;
+    IgnoreCase: boolean;
+    ResourceSetType: string;
+}
+
+export interface Logout {
+    ResourceManager: ResourceManager5;
+    LogOut: string;
+    ClickHereToLogOut: string;
+    SuccessfullyLoggedOut: string;
+}
+
 export interface Layout {
     Languages: string;
 }
@@ -80,60 +139,18 @@ export interface Views {
     Shared: Shared2;
 }
 
-export interface ResourceManager3 {
-    BaseName: string;
-    IgnoreCase: boolean;
-    ResourceSetType: string;
-}
-
-export interface Car {
-    ResourceManager: ResourceManager3;
-    CarTypeId: string;
-    CarType: string;
-    AppUserId: string;
-    AppUser: string;
-}
-
-export interface ResourceManager4 {
-    BaseName: string;
-    IgnoreCase: boolean;
-    ResourceSetType: string;
-}
-
-export interface CarAccess {
-    ResourceManager: ResourceManager4;
-    AppUserId: string;
-    AppUser: string;
-    CarId: string;
-    Car: string;
-    AccessTypeId: string;
-    AccessType: string;
-}
-
-export interface ResourceManager5 {
-    BaseName: string;
-    IgnoreCase: boolean;
-    ResourceSetType: string;
-}
-
-export interface CarAccessType {
-    ResourceManager: ResourceManager5;
-    Name: string;
-    AccessLevel: string;
-}
-
 export interface ResourceManager6 {
     BaseName: string;
     IgnoreCase: boolean;
     ResourceSetType: string;
 }
 
-export interface CarErrorCode {
+export interface Car {
     ResourceManager: ResourceManager6;
-    CanId: string;
-    CarId: string;
-    Car: string;
-    Data: string;
+    CarTypeId: string;
+    CarType: string;
+    AppUserId: string;
+    AppUser: string;
 }
 
 export interface ResourceManager7 {
@@ -142,10 +159,14 @@ export interface ResourceManager7 {
     ResourceSetType: string;
 }
 
-export interface CarMark {
+export interface CarAccess {
     ResourceManager: ResourceManager7;
-    Name: string;
-    Models: string;
+    AppUserId: string;
+    AppUser: string;
+    CarId: string;
+    Car: string;
+    AccessTypeId: string;
+    AccessType: string;
 }
 
 export interface ResourceManager8 {
@@ -154,13 +175,10 @@ export interface ResourceManager8 {
     ResourceSetType: string;
 }
 
-export interface CarModel {
+export interface CarAccessType {
     ResourceManager: ResourceManager8;
     Name: string;
-    ReleaseDate: string;
-    CarMarkId: string;
-    CarMark: string;
-    Types: string;
+    AccessLevel: string;
 }
 
 export interface ResourceManager9 {
@@ -169,11 +187,12 @@ export interface ResourceManager9 {
     ResourceSetType: string;
 }
 
-export interface CarType {
+export interface CarErrorCode {
     ResourceManager: ResourceManager9;
-    Name: string;
-    ModelId: string;
-    Model: string;
+    CanId: string;
+    CarId: string;
+    Car: string;
+    Data: string;
 }
 
 export interface ResourceManager10 {
@@ -182,8 +201,48 @@ export interface ResourceManager10 {
     ResourceSetType: string;
 }
 
-export interface GasRefill {
+export interface CarMark {
     ResourceManager: ResourceManager10;
+    Name: string;
+    Models: string;
+}
+
+export interface ResourceManager11 {
+    BaseName: string;
+    IgnoreCase: boolean;
+    ResourceSetType: string;
+}
+
+export interface CarModel {
+    ResourceManager: ResourceManager11;
+    Name: string;
+    ReleaseDate: string;
+    CarMarkId: string;
+    CarMark: string;
+    Types: string;
+}
+
+export interface ResourceManager12 {
+    BaseName: string;
+    IgnoreCase: boolean;
+    ResourceSetType: string;
+}
+
+export interface CarType {
+    ResourceManager: ResourceManager12;
+    Name: string;
+    ModelId: string;
+    Model: string;
+}
+
+export interface ResourceManager13 {
+    BaseName: string;
+    IgnoreCase: boolean;
+    ResourceSetType: string;
+}
+
+export interface GasRefill {
+    ResourceManager: ResourceManager13;
     AmountRefilled: string;
     Timestamp: string;
     Cost: string;
@@ -193,14 +252,14 @@ export interface GasRefill {
     Car: string;
 }
 
-export interface ResourceManager11 {
+export interface ResourceManager14 {
     BaseName: string;
     IgnoreCase: boolean;
     ResourceSetType: string;
 }
 
 export interface Track {
-    ResourceManager: ResourceManager11;
+    ResourceManager: ResourceManager14;
     StartTimestamp: string;
     EndTimestamp: string;
     Distance: string;
@@ -210,14 +269,14 @@ export interface Track {
     AppUser: string;
 }
 
-export interface ResourceManager12 {
+export interface ResourceManager15 {
     BaseName: string;
     IgnoreCase: boolean;
     ResourceSetType: string;
 }
 
 export interface TrackLocation {
-    ResourceManager: ResourceManager12;
+    ResourceManager: ResourceManager15;
     Lat: string;
     Lng: string;
     Elevation: string;
@@ -245,6 +304,9 @@ export interface Dto {
 export interface RootObject {
     Common: Common;
     Shared: Shared;
+    Login: Login;
+    Register: Register;
+    Logout: Logout;
     Views: Views;
     Dto: Dto;
 }

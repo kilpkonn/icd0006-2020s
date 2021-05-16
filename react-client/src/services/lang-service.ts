@@ -33,6 +33,10 @@ export class LangService {
 
     async getResources(): Promise<IFetchResponse<RootObject>> {
         let url = this.apiEndpointUrl + "/GetLangResources"
+        const lang = localStorage.getItem('lang');
+        if (lang != null) {
+            url += '?culture=' + lang;
+        }
 
         try {
             const response = await axios.get(url)
