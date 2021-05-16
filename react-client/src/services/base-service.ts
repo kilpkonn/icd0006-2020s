@@ -15,6 +15,11 @@ export class BaseService<TEntity extends IIdentifiable> {
         const jwt = getCookie('jwt')
         const authHeaders = jwt !== '' ? {Authorization: 'Bearer ' + jwt} : {}
         let url = this.apiEndpointUrl
+        const lang = localStorage.getItem('lang');
+        if (lang != null) {
+            url += '?culture=' + lang;
+        }
+
         if (queryParams !== undefined) {
             url += '?'
             for (const param in Object.keys(queryParams)) {
@@ -72,6 +77,11 @@ export class BaseService<TEntity extends IIdentifiable> {
         let url = this.apiEndpointUrl
         url = url + '/' + id
 
+        const lang = localStorage.getItem('lang');
+        if (lang != null) {
+            url += '?culture=' + lang;
+        }
+
         if (queryParams !== undefined) {
             url += '?'
             for (const param in Object.keys(queryParams)) {
@@ -84,7 +94,11 @@ export class BaseService<TEntity extends IIdentifiable> {
     async post(entity: TEntity): Promise<IFetchResponse<TEntity>> {
         const jwt = getCookie('jwt')
         const authHeaders = jwt !== '' ? {Authorization: 'Bearer ' + jwt} : {}
-        const url = this.apiEndpointUrl
+        let url = this.apiEndpointUrl
+        const lang = localStorage.getItem('lang');
+        if (lang != null) {
+            url += '?culture=' + lang;
+        }
         try {
             const response = await axios.post(url, entity, {headers: authHeaders})
             if (response.status > 199 && response.status < 300) {

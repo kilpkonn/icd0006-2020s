@@ -1,12 +1,43 @@
 import {NavLink} from "react-router-dom";
 import getCookie from "../utils/getCookie";
 import isAdmin from "../utils/isAdmin";
+import {LangService} from "../services/lang-service";
+import {useEffect, useState} from "react";
+import {ISupportedLanguage} from "../types/ISupportedLanguage";
 
 const Header = () => {
+    const [languages, setLanguages] = useState(null as ISupportedLanguage[] | null);
+    const [dropDownActive, setDropDownActive] = useState(false);
+    const [selectedLang, setSelectedLang] = useState("");
+    const langService = new LangService();
+
+    useEffect(() => {
+        if (languages == null) {
+            langService.getSupportedLanguages().then(res => {
+                if (res.data) {
+                    console.log(res.data)
+                    setLanguages(res.data)
+                    if (res.data.length > 0) {
+                        const prev  =res.data.filter(e => e.name === localStorage.getItem('lang'))
+                        setSelectedLang(prev.length > 0 ? prev[0].nativeName : res.data[res.data.length - 1].nativeName)
+                    }
+                }
+            })
+        }
+    })
+
     const onLogOutClicked = () => {
-        localStorage.removeItem('token')
-        document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+        document.cookie.split(";").forEach(function (c) {
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        });
         window.location.href = '/'
+    }
+
+    const setLang = (lang: ISupportedLanguage) => {
+        setDropDownActive(false);
+        setSelectedLang(lang.nativeName)
+        localStorage.setItem('lang', lang.name);
+        window.location.reload()
     }
 
     const jwt = getCookie('jwt');
@@ -38,6 +69,25 @@ const Header = () => {
                         <NavLink to="/marks" className="navbar-item">Marks</NavLink>
                         <NavLink to="/models" className="navbar-item">Models</NavLink>
                         <NavLink to="/types" className="navbar-item">Types</NavLink>
+                    </div>
+                </div>
+                <div className={"navbar-item dropdown" + (dropDownActive ? " is-active" : "")}>
+                    <div className="dropdown-trigger">
+                        <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => setDropDownActive(true)}>
+                            <span>{selectedLang}</span>
+                            <span className="icon is-small"><i className="fas fa-angle-down" aria-hidden="true"></i></span>
+                        </button>
+                    </div>
+                    <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div className="dropdown-content">
+                            {
+                                languages?.map(lang =>
+                                    <a key={lang.name} className="dropdown-item" onClick={() => setLang(lang)}>
+                                        {lang.nativeName}
+                                    </a>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
                 <div className="navbar-end">
