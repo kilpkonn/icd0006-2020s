@@ -4,9 +4,12 @@ import isAdmin from "../../utils/isAdmin";
 import {NavLink, useParams} from "react-router-dom";
 import {ICarMark} from "../../types/ICarMark";
 import {CarMarkService} from "../../services/car-mark-service";
+import {useStore} from "react-context-hook";
 
 
 const MarksDetails = () => {
+    const [resources] = useStore('resources')
+
     const {id} = useParams() as IRouteId;
 
     const [mark, setMark] = useState(null as ICarMark | null);
@@ -46,7 +49,7 @@ const MarksDetails = () => {
 
     return (
         <div className="container">
-            <h1>Car Mark Details</h1>
+            <h1>{resources.Shared.CarMark}</h1>
             {mark &&
             <>
                 <div className="column">
@@ -62,7 +65,7 @@ const MarksDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Name
+                                {resources.Dto.CarMark.Name}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -76,7 +79,7 @@ const MarksDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Created By
+                                {resources.Shared.CreatedBy}
                             </div>
                             <div className="column is-8-desktop">
                                 {mark.createdBy}
@@ -84,7 +87,7 @@ const MarksDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Created At
+                                {resources.Shared.CreatedAt}
                             </div>
                             <div className="column is-8-desktop">
                                 {mark.createdAt}
@@ -92,7 +95,7 @@ const MarksDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Updated By
+                                {resources.Shared.UpdatedBy}
                             </div>
                             <div className="column is-8-desktop">
                                 {mark.updatedBy}
@@ -100,7 +103,7 @@ const MarksDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Updated At
+                                {resources.Shared.UpdatedAt}
                             </div>
                             <div className="column is-8-desktop">
                                 {mark.updatedAt}
@@ -110,15 +113,15 @@ const MarksDetails = () => {
                 </div>
                 <div>
                     {(!isEditing && admin) &&
-                    <button className="button m-2 is-primary" onClick={onClickEdit}>Edit</button>
+                    <button className="button m-2 is-primary" onClick={onClickEdit}>{resources.Common.Edit}</button>
                     }
                     {(isEditing && admin) &&
-                    <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
+                    <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
                     }
                     {(admin) &&
-                    <button className="button m-2 is-danger" onClick={onClickDelete}>Delete</button>
+                    <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                     }
-                    <NavLink className="button m-2" to="/marks">Back to List</NavLink>
+                    <NavLink className="button m-2" to="/marks">{resources.Common.Back}</NavLink>
                 </div>
             </>
             }

@@ -4,9 +4,12 @@ import {NavLink} from "react-router-dom";
 import isAdmin from "../../utils/isAdmin";
 import {ICarMark} from "../../types/ICarMark";
 import {CarMarkService} from "../../services/car-mark-service";
+import {useStore} from "react-context-hook";
 
 
 const MarksList = () => {
+    const [resources] = useStore('resources')
+
     const [marks, setMarks] = useState([] as ICarMark[]);
     const [pageStatus, setPageStatus] = useState({pageStatus: EPageStatus.Loading, statusCode: -1});
     const service = new CarMarkService();
@@ -32,7 +35,7 @@ const MarksList = () => {
         <>
             <div className="columns m-6">
                 {admin &&
-                <NavLink to="/marks/create">Create</NavLink>
+                <NavLink to="/marks/create">{resources.Common.Create}</NavLink>
                 }
             </div>
             <div className="column is-10-desktop m-6">
@@ -40,17 +43,17 @@ const MarksList = () => {
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th>{resources.Dto.CarMark.Name}</th>
+                        <th>{resources.Shared.UpdatedBy}</th>
+                        <th>{resources.Shared.UpdatedAt}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th>{resources.Dto.CarMark.Name}</th>
+                        <th>{resources.Shared.UpdatedBy}</th>
+                        <th>{resources.Shared.UpdatedAt}</th>
                     </tr>
                     </tfoot>
                     <tbody>

@@ -2,9 +2,12 @@ import {useState} from "react";
 import {NavLink} from "react-router-dom";
 import {ICarMark} from "../../types/ICarMark";
 import {CarMarkService} from "../../services/car-mark-service";
+import {useStore} from "react-context-hook";
 
 
 const MarksCreate = () => {
+    const [resources] = useStore('resources')
+
     const [mark, setMark] = useState({name: ''} as ICarMark);
     const service = new CarMarkService();
 
@@ -18,13 +21,13 @@ const MarksCreate = () => {
 
     return (
         <div className="container">
-            <h1>Add new Car Mark</h1>
+            <h1>{resources.Common.Create}</h1>
             <div className="column">
                 <hr/>
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Name
+                            {resources.Dto.CarMark.Name}
                         </div>
 
                         <input onChange={(e) => setMark({...mark, name: e.target.value})}
@@ -33,8 +36,8 @@ const MarksCreate = () => {
                 </div>
             </div>
             <div>
-                <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
-                <NavLink className="button m-2" to="/marks">Back to List</NavLink>
+                <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Create}</button>
+                <NavLink className="button m-2" to="/marks">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )
