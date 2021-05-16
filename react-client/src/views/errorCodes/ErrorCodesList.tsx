@@ -3,8 +3,10 @@ import {useEffect, useState} from "react";
 import {EPageStatus} from "../../types/EPageStatus";
 import {CarErrorCodeService} from "../../services/car-error-code-service";
 import {ICarErrorCode} from "../../types/ICarErrorCode";
+import {useStore} from "react-context-hook";
 
 const ErrorCodesList = () => {
+    const [resources] = useStore('resources')
     const [errorCodes, setErrorCodes] = useState([] as ICarErrorCode[]);
     const [pageStatus, setPageStatus] = useState({pageStatus: EPageStatus.Loading, statusCode: -1});
     const service = new CarErrorCodeService();
@@ -25,24 +27,24 @@ const ErrorCodesList = () => {
     return (
         <>
             <div className="columns m-6">
-                <NavLink to="/errors/create">Create</NavLink>
+                <NavLink to="/errors/create">{resources.Common.Create}</NavLink>
             </div>
             <div className="column is-10-desktop m-6">
                 <table className="table">
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Car</th>
-                        <th>Can Id</th>
-                        <th>Can Data</th>
+                        <th>{resources.Dto.CarErrorCode.Car}</th>
+                        <th>{resources.Dto.CarErrorCode.CanId}</th>
+                        <th>{resources.Dto.CarErrorCode.Data}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
-                        <th>Car</th>
-                        <th>Can Id</th>
-                        <th>Can Data</th>
+                        <th>{resources.Dto.CarErrorCode.Car}</th>
+                        <th>{resources.Dto.CarErrorCode.CanId}</th>
+                        <th>{resources.Dto.CarErrorCode.Data}</th>
                     </tr>
                     </tfoot>
                     <tbody>

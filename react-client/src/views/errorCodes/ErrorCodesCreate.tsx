@@ -4,9 +4,11 @@ import {ICarErrorCode, INewErrorCode} from "../../types/ICarErrorCode";
 import {ICar, ICarId} from "../../types/ICar";
 import {CarErrorCodeService} from "../../services/car-error-code-service";
 import {CarsService} from "../../services/cars-service";
+import {useStore} from "react-context-hook";
 
 
 const ErrorCodesCreate = () => {
+    const [resources] = useStore('resources')
     const carId = new URLSearchParams(useLocation().search).get("carId");
     const [errorCode, setErrorCode] = useState({carId: carId || '', canId: -1, canData: -1} as INewErrorCode);
     const [cars, setCars] = useState([] as ICar[]);
@@ -31,13 +33,13 @@ const ErrorCodesCreate = () => {
 
     return (
         <div className="container">
-            <h1>Add new Car Error Code</h1>
+            <h1>{resources.Common.Create}</h1>
             <div className="column">
                 <hr/>
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Car
+                            {resources.Dto.CarErrorCode.Car}
                         </div>
                         <select value={errorCode.carId}
                                 onChange={(e) => setErrorCode({...errorCode, carId: e.target.value})}
@@ -51,7 +53,7 @@ const ErrorCodesCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            CAN id
+                            {resources.Dto.CarErrorCode.CanId}
                         </div>
                         <input type="number"
                                value={errorCode.canId}
@@ -61,7 +63,7 @@ const ErrorCodesCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            CAN data
+                            {resources.Dto.CarErrorCode.Data}
                         </div>
                         <input type="number"
                                value={errorCode.canData}
@@ -71,8 +73,8 @@ const ErrorCodesCreate = () => {
                 </div>
             </div>
             <div>
-                <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
-                <NavLink className="button m-2" to="/types">Back to List</NavLink>
+                <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
+                <NavLink className="button m-2" to="/types">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )
