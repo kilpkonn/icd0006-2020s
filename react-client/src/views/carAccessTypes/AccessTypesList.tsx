@@ -2,13 +2,14 @@ import {useEffect, useState} from "react";
 import {EPageStatus} from "../../types/EPageStatus";
 import {NavLink} from "react-router-dom";
 import isAdmin from "../../utils/isAdmin";
-import {ICarMark} from "../../types/ICarMark";
-import {CarMarkService} from "../../services/car-mark-service";
 import {ICarAccessType} from "../../types/ICarAccessType";
 import {CarAccessTypeService} from "../../services/car-access-type-service";
+import {useStore} from "react-context-hook";
 
 
 const AccessTypesList = () => {
+    const [resources] = useStore('resources')
+
     const [accessTypes, setAccessTypes] = useState([] as ICarAccessType[]);
     const [pageStatus, setPageStatus] = useState({pageStatus: EPageStatus.Loading, statusCode: -1});
     const service = new CarAccessTypeService();
@@ -34,7 +35,7 @@ const AccessTypesList = () => {
         <>
             <div className="columns m-6">
                 {admin &&
-                <NavLink to="/accesstypes/create">Create</NavLink>
+                <NavLink to="/accesstypes/create">{resources.Common.Create}</NavLink>
                 }
             </div>
             <div className="column is-10-desktop m-6">
@@ -42,15 +43,15 @@ const AccessTypesList = () => {
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Access level</th>
+                        <th>{resources.Dto.CarAccessType.Name}</th>
+                        <th>{resources.Dto.CarAccessType.AccessLevel}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Access level</th>
+                        <th>{resources.Dto.CarAccessType.Name}</th>
+                        <th>{resources.Dto.CarAccessType.AccessLevel}</th>
                     </tr>
                     </tfoot>
                     <tbody>

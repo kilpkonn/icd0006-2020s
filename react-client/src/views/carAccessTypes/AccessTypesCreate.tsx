@@ -2,9 +2,11 @@ import {useState} from "react";
 import {NavLink} from "react-router-dom";
 import {ICarAccessType} from "../../types/ICarAccessType";
 import {CarAccessTypeService} from "../../services/car-access-type-service";
-
+import {useStore} from "react-context-hook";
 
 const AccessTypesCreate = () => {
+    const [resources] = useStore('resources')
+
     const [accessType, setAccessType] = useState({name: '', accessLevel: 10} as ICarAccessType);
     const service = new CarAccessTypeService();
 
@@ -18,13 +20,13 @@ const AccessTypesCreate = () => {
 
     return (
         <div className="container">
-            <h1>Add new Car Access Type</h1>
+            <h1>{resources.Common.CarAccessType}</h1>
             <div className="column">
                 <hr/>
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Name
+                            {resources.Dto.CarAccessType.Name}
                         </div>
                         <input value={accessType.name}
                                onChange={(e) => setAccessType({...accessType, name: e.target.value})}
@@ -32,7 +34,7 @@ const AccessTypesCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Access level
+                            {resources.Dto.CarAccessType.AccessLevel}
                         </div>
                         <input type="number"
                                value={accessType.accessLevel}
@@ -42,8 +44,8 @@ const AccessTypesCreate = () => {
                 </div>
             </div>
             <div>
-                <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
-                <NavLink className="button m-2" to="/accesstypes">Back to List</NavLink>
+                <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
+                <NavLink className="button m-2" to="/accesstypes">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )

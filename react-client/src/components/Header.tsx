@@ -69,7 +69,7 @@ const Header = () => {
                     <div className="navbar-start">
                         {jwt && <NavLink to="/cars" className="navbar-item">{resources.Shared.Car}</NavLink>}
                         {jwt && <NavLink to="/errors" className="navbar-item">{resources.Shared.Error}</NavLink>}
-                        {jwt && isAdmin() && <NavLink to="/accesstypes" className="navbar-item">{resources.Shared.AccessType}</NavLink>}
+                        {jwt && isAdmin() && <NavLink to="/accesstypes" className="navbar-item">{resources.Shared.CarAccessType}</NavLink>}
                         {jwt && <NavLink to="/accesses" className="navbar-item">{resources.Shared.CarAccess}</NavLink>}
                         {jwt && <NavLink to="/refills" className="navbar-item">{resources.Shared.GasRefill}</NavLink>}
                         {jwt && <NavLink to="/tracks" className="navbar-item">{resources.Shared.Track}</NavLink>}

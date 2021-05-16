@@ -2,13 +2,13 @@ import {IRouteId} from "../../types/IRouteId";
 import {useEffect, useState} from "react";
 import isAdmin from "../../utils/isAdmin";
 import {NavLink, useParams} from "react-router-dom";
-import {ICarMark} from "../../types/ICarMark";
-import {CarMarkService} from "../../services/car-mark-service";
 import {ICarAccessType} from "../../types/ICarAccessType";
 import {CarAccessTypeService} from "../../services/car-access-type-service";
-
+import {useStore} from "react-context-hook";
 
 const AccessTypesDetails = () => {
+    const [resources] = useStore('resources')
+
     const {id} = useParams() as IRouteId;
 
     const [accessType, setAccessType] = useState(null as ICarAccessType | null);
@@ -48,7 +48,7 @@ const AccessTypesDetails = () => {
 
     return (
         <div className="container">
-            <h1>Car Access Types</h1>
+            <h1>{resources.Common.CarAccessType}</h1>
             {accessType &&
             <>
                 <div className="column">
@@ -64,7 +64,7 @@ const AccessTypesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Name
+                                {resources.Dto.CarAccessType.Name}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -78,7 +78,7 @@ const AccessTypesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Access level
+                                {resources.Dto.CarAccessType.AccessLevel}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -96,15 +96,15 @@ const AccessTypesDetails = () => {
                 </div>
                 <div>
                     {(!isEditing && admin) &&
-                    <button className="button m-2 is-primary" onClick={onClickEdit}>Edit</button>
+                    <button className="button m-2 is-primary" onClick={onClickEdit}>{resources.Common.Edit}</button>
                     }
                     {(isEditing && admin) &&
-                    <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
+                    <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
                     }
                     {(admin) &&
-                    <button className="button m-2 is-danger" onClick={onClickDelete}>Delete</button>
+                    <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                     }
-                    <NavLink className="button m-2" to="/accesstypes">Back to List</NavLink>
+                    <NavLink className="button m-2" to="/accesstypes">{resources.Common.Back}</NavLink>
                 </div>
             </>
             }
