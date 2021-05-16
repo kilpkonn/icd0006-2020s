@@ -4,9 +4,12 @@ import {CarTypeService} from "../../services/car-type-service";
 import {ICarType} from "../../types/ICarType";
 import {NavLink} from "react-router-dom";
 import isAdmin from "../../utils/isAdmin";
+import {useStore} from "react-context-hook";
 
 
 const TypesList = () => {
+    const [resources] = useStore('resources')
+
     const [types, setTypes] = useState([] as ICarType[]);
     const [pageStatus, setPageStatus] = useState({pageStatus: EPageStatus.Loading, statusCode: -1});
     const service = new CarTypeService();
@@ -32,7 +35,7 @@ const TypesList = () => {
         <>
             <div className="columns m-6">
                 {admin &&
-                    <NavLink to="/types/create">Create</NavLink>
+                    <NavLink to="/types/create">{resources.Common.Create}</NavLink>
                 }
             </div>
             <div className="column is-10-desktop m-6">
@@ -40,19 +43,19 @@ const TypesList = () => {
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Model</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th>{resources.Dto.CarType.Name}</th>
+                        <th>{resources.Dto.CarType.Model}</th>
+                        <th>{resources.Shared.CreatedAt}</th>
+                        <th>{resources.Shared.UpdatedAt}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Model</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th>{resources.Dto.CarType.Name}</th>
+                        <th>{resources.Dto.CarType.Model}</th>
+                        <th>{resources.Shared.CreatedAt}</th>
+                        <th>{resources.Shared.UpdatedAt}</th>
                     </tr>
                     </tfoot>
                     <tbody>

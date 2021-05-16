@@ -4,9 +4,12 @@ import {ICarModel} from "../../types/ICarModel";
 import {CarModelService} from "../../services/car-model-service";
 import {ICarType} from "../../types/ICarType";
 import {NavLink} from "react-router-dom";
+import {useStore} from "react-context-hook";
 
 
 const TypesCreate = () => {
+    const [resources] = useStore('resources')
+
     const [type, setType] = useState({name: '', carModelId: ''} as ICarType);
     const [carModels, setCarModels] = useState([] as ICarModel[]);
     const service = new CarTypeService();
@@ -30,13 +33,13 @@ const TypesCreate = () => {
 
     return (
         <div className="container">
-            <h1>Add new Car Type</h1>
+            <h1>{resources.Common.Create}</h1>
             <div className="column">
                 <hr/>
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Name
+                            {resources.Dto.CarType.Name}
                         </div>
 
                         <input onChange={(e) => setType({...type, name: e.target.value})}
@@ -44,7 +47,7 @@ const TypesCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Model
+                            {resources.Dto.CarType.Model}
                         </div>
                         <select onChange={(e) => setType({...type, carModelId: e.target.value})}
                                 className="column is-8-desktop">
@@ -58,8 +61,8 @@ const TypesCreate = () => {
                 </div>
             </div>
             <div>
-                <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
-                <NavLink className="button m-2" to="/types">Back to List</NavLink>
+                <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
+                <NavLink className="button m-2" to="/types">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )
