@@ -4,8 +4,11 @@ import {useEffect, useState} from "react";
 import Loader from "../../components/Loader";
 import {EPageStatus} from "../../types/EPageStatus";
 import {CarsService} from "../../services/cars-service";
+import {useStore} from "react-context-hook";
 
 const CarsList = () => {
+    const [resources] = useStore('resources')
+
     const [cars, setCars] = useState([] as ICar[]);
     const [pageStatus, setPageStatus] = useState({ pageStatus: EPageStatus.Loading, statusCode: -1 });
     const service = new CarsService();
@@ -29,30 +32,30 @@ const CarsList = () => {
     return (
         <>
             <div className="columns m-6">
-                <NavLink to="/cars/create">Create</NavLink>
+                <NavLink to="/cars/create">{resources.Common.Create}</NavLink>
             </div>
             <div className="column is-10-desktop m-6">
                 <table className="table">
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Type</th>
-                        <th>User</th>
-                        <th>Created By</th>
-                        <th>Created At</th>
-                        <th>Updated By</th>
-                        <th>Updated At</th>
+                        <th>{resources.Dto.Car.CarType}</th>
+                        <th>{resources.Dto.Car.AppUser}</th>
+                        <th>{resources.Shared.CreatedBy}</th>
+                        <th>{resources.Shared.CreatedAt}</th>
+                        <th>{resources.Shared.UpdatedBy}</th>
+                        <th>{resources.Shared.UpdatedAt}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
-                        <th>Type</th>
-                        <th>User</th>
-                        <th>Created By</th>
-                        <th>Created At</th>
-                        <th>Updated By</th>
-                        <th>Updated At</th>
+                        <th>{resources.Dto.Car.CarType}</th>
+                        <th>{resources.Dto.Car.AppUser}</th>
+                        <th>{resources.Shared.CreatedBy}</th>
+                        <th>{resources.Shared.CreatedAt}</th>
+                        <th>{resources.Shared.UpdatedBy}</th>
+                        <th>{resources.Shared.UpdatedAt}</th>
                     </tr>
                     </tfoot>
                     <tbody>

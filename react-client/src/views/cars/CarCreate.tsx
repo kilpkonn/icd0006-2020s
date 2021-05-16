@@ -4,8 +4,11 @@ import {ICar} from "../../types/ICar";
 import {useEffect, useState} from "react";
 import {CarsService} from "../../services/cars-service";
 import {CarTypeService} from "../../services/car-type-service";
+import {useStore} from "react-context-hook";
 
 const CarCreate = () => {
+    const [resources] = useStore('resources')
+
     const [car, setCar] = useState({carTypeId: ''} as ICar);
     const [carTypes, setCarTypes] = useState([] as ICarType[]);
     const service = new CarsService();
@@ -30,13 +33,13 @@ const CarCreate = () => {
 
     return (
         <div className="container">
-            <h1>Create new car</h1>
+            <h1>{resources.Common.Car}</h1>
             <div className="column">
                 <hr/>
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Type
+                            {resources.Dto.Car.CarType}
                         </div>
                         {
                             <select onChange={(e) => setCar({...car, carTypeId: e.target.value})}
@@ -54,9 +57,9 @@ const CarCreate = () => {
             </div>
             <div>
                 {
-                    <button className="button m-2 is-success" onClick={onClickSave}>Create</button>
+                    <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
                 }
-                <NavLink className="button m-2" to="/cars">Back to List</NavLink>
+                <NavLink className="button m-2" to="/cars">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )

@@ -6,8 +6,11 @@ import {IRouteId} from "../../types/IRouteId";
 import {CarsService} from "../../services/cars-service";
 import {CarTypeService} from "../../services/car-type-service";
 import isAdmin from "../../utils/isAdmin";
+import {useStore} from "react-context-hook";
 
 const CarDetails = () => {
+    const [resources] = useStore('resources')
+
     const {id} = useParams() as IRouteId;
 
     const [car, setCar] = useState(null as ICar | null);
@@ -55,7 +58,7 @@ const CarDetails = () => {
 
     return (
         <div className="container">
-            <h1>Car Details</h1>
+            <h1>{resources.Common.Car}</h1>
             {
                 car ?
                     <>
@@ -72,7 +75,7 @@ const CarDetails = () => {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-4-desktop">
-                                        Type
+                                        {resources.Dto.Car.CarType}
                                     </div>
                                     {
                                         !isEditing ? <div className="column is-8-desktop">
@@ -93,7 +96,7 @@ const CarDetails = () => {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-4-desktop">
-                                        User
+                                        {resources.Dto.Car.AppUser}
                                     </div>
                                     <div className="column is-8-desktop">
                                         {car.appUser?.displayName || ''}
@@ -101,7 +104,7 @@ const CarDetails = () => {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-4-desktop">
-                                        Created By
+                                        {resources.Common.CreatedBy}
                                     </div>
                                     <div className="column is-8-desktop">
                                         {car.createdBy}
@@ -109,7 +112,7 @@ const CarDetails = () => {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-4-desktop">
-                                        Created At
+                                        {resources.Common.CreatedAt}
                                     </div>
                                     <div className="column is-8-desktop">
                                         {car.createdAt}
@@ -117,7 +120,7 @@ const CarDetails = () => {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-4-desktop">
-                                        Updated By
+                                        {resources.Common.UpdatedBy}
                                     </div>
                                     <div className="column is-8-desktop">
                                         {car.updatedBy}
@@ -125,7 +128,7 @@ const CarDetails = () => {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-4-desktop">
-                                        Updated At
+                                        {resources.Common.UpdatedAt}
                                     </div>
                                     <div className="column is-8-desktop">
                                         {car.updatedAt}
@@ -134,13 +137,13 @@ const CarDetails = () => {
                             </div>
                         </div>
                         <div className="column is-10-desktop m-6">
-                            <h3>Error Codes</h3> <NavLink to={"/errors/create?carId=" + car.id}>Create</NavLink>
+                            <h3>{resources.Common.CarErrorCode}</h3> <NavLink to={"/errors/create?carId=" + car.id}>{resources.Common.Create}</NavLink>
                             <table className="table">
                                 <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Can Id</th>
-                                    <th>Can Data</th>
+                                    <th>{resources.Dto.CarErrorCode.CanId}</th>
+                                    <th>{resources.Dto.CarErrorCode.Data}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -157,14 +160,14 @@ const CarDetails = () => {
                             </table>
                         </div>
                         <div className="column is-10-desktop m-6">
-                            <h3>Car Accesses</h3> <NavLink to="/accesses/create">Create</NavLink>
+                            <h3>{resources.Common.CarAccess}</h3> <NavLink to="/accesses/create">{resources.Common.Create}</NavLink>
                             <table className="table">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Access Type</th>
-                                    <th>Created At</th>
-                                    <th>Created By</th>
+                                    <th>{resources.Dto.CarAccess.AppUser}</th>
+                                    <th>{resources.Dto.CarAccess.CarAccessType}</th>
+                                    <th>{resources.Common.CreatedAt}</th>
+                                    <th>{resources.Common.CreatedBy}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -183,18 +186,18 @@ const CarDetails = () => {
                         </div>
                         <div>
                             {(!isEditing) &&
-                            <button className="button m-2 is-primary" onClick={onClickEdit}>Edit</button>
+                            <button className="button m-2 is-primary" onClick={onClickEdit}>{resources.Common.Edit}</button>
                             }
                             {(isEditing) &&
-                            <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
+                            <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
                             }
                             {// (admin) &&
-                            <button className="button m-2 is-danger" onClick={onClickDelete}>Delete</button>
+                            <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                             }
-                            <NavLink className="button m-2" to="/cars">Back to List</NavLink>
+                            <NavLink className="button m-2" to="/cars">{resources.Common.Back}</NavLink>
                         </div>
                     </>
-                    : <span className="alert-primary">Loading</span>
+                    : <span className="alert-primary">...</span>
             }
         </div>
     )

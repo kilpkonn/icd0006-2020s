@@ -37,10 +37,6 @@ export interface Common {
     Logout: string;
     Register: string;
     Hello: string;
-    CreatedAt: string;
-    CreatedBy: string;
-    UpdatedAt: string;
-    UpdatedBy: string;
     Save: string;
 }
 
@@ -71,6 +67,10 @@ export interface Shared {
     WebApplication: string;
     Users: string;
     Roles: string;
+    CreatedAt: string;
+    CreatedBy: string;
+    UpdatedAt: string;
+    UpdatedBy: string;
 }
 
 export interface ResourceManager3 {

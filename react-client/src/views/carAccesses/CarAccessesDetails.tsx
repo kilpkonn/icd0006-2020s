@@ -89,7 +89,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                {resources.CarAccess.CarAccessType}
+                                {resources.Dto.CarAccess.CarAccessType}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -108,7 +108,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                {resources.CarAccess.Car}
+                                {resources.Dto.CarAccess.Car}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -127,7 +127,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                {resources.CarAccess.AppUser}
+                                {resources.Dto.CarAccess.AppUser}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -146,7 +146,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                {resources.Common.CreatedBy}
+                                {resources.Shared.CreatedBy}
                             </div>
                             <div className="column is-8-desktop">
                                 {access.createdBy}
@@ -154,7 +154,7 @@ const CarAccessesDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                {resources.Common.CreatedAt}
+                                {resources.Shared.CreatedAt}
                             </div>
                             <div className="column is-8-desktop">
                                 {access.createdAt}
