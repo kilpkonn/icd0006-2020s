@@ -1,16 +1,16 @@
 import {IRouteId} from "../../types/IRouteId";
 import {useEffect, useState} from "react";
 import {NavLink, useParams} from "react-router-dom";
-import {ICar} from "../../types/ICar";
-import {CarErrorCodeService} from "../../services/car-error-code-service";
-import {CarsService} from "../../services/cars-service";
 import {ITrackLocation} from "../../types/ITrackLocation";
 import {ITrack} from "../../types/ITrack";
 import {TrackLocationService} from "../../services/track-location-service";
 import {TrackService} from "../../services/track-service";
+import {useStore} from "react-context-hook";
 
 
 const TrackLocationsDetails = () => {
+    const [resources] = useStore('resources')
+
     const {id} = useParams() as IRouteId;
 
     const [trackLocation, setTrackLocation] = useState(null as ITrackLocation | null);
@@ -55,7 +55,7 @@ const TrackLocationsDetails = () => {
 
     return (
         <div className="container">
-            <h1>Track Location</h1>
+            <h1>{resources.Shared.TrackLocation}</h1>
             {trackLocation &&
             <>
                 <div className="column">
@@ -71,7 +71,7 @@ const TrackLocationsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Latitude
+                                {resources.Dto.TrackLocation.Lat}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -86,7 +86,7 @@ const TrackLocationsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Longitude
+                                {resources.Dto.TrackLocation.Lng}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -101,7 +101,7 @@ const TrackLocationsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Elevation
+                                {resources.Dto.TrackLocation.Elevation}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -116,7 +116,7 @@ const TrackLocationsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Accuracy
+                                {resources.Dto.TrackLocation.Accuracy}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -131,7 +131,7 @@ const TrackLocationsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Elevation accuracy
+                                {resources.Dto.TrackLocation.ElevationAccuracy}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -146,7 +146,7 @@ const TrackLocationsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Speed
+                                {resources.Dto.TrackLocation.Speed}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -161,7 +161,7 @@ const TrackLocationsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                RPM
+                                {resources.Dto.TrackLocation.Rpm}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -176,7 +176,7 @@ const TrackLocationsDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Track id
+                                {resources.Dto.TrackLocation.Track}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -197,15 +197,15 @@ const TrackLocationsDetails = () => {
                 </div>
                 <div>
                     {(!isEditing) &&
-                    <button className="button m-2 is-primary" onClick={onClickEdit}>Edit</button>
+                    <button className="button m-2 is-primary" onClick={onClickEdit}>{resources.Common.Edit}</button>
                     }
                     {(isEditing) &&
-                    <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
+                    <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
                     }
                     {// (admin) &&
-                        <button className="button m-2 is-danger" onClick={onClickDelete}>Delete</button>
+                        <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                     }
-                    <NavLink className="button m-2" to="/locations">Back to List</NavLink>
+                    <NavLink className="button m-2" to="/locations">{resources.Common.Back}</NavLink>
                 </div>
             </>
             }

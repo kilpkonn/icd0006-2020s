@@ -4,9 +4,12 @@ import {ITrackLocation} from "../../types/ITrackLocation";
 import {ITrack} from "../../types/ITrack";
 import {TrackLocationService} from "../../services/track-location-service";
 import {TrackService} from "../../services/track-service";
+import {useStore} from "react-context-hook";
 
 
 const TrackLocationsCreate = () => {
+    const [resources] = useStore('resources')
+
     const [trackLocation, setTrackLocation] = useState({
         trackId: '',
         lat: 0.0,
@@ -39,13 +42,13 @@ const TrackLocationsCreate = () => {
 
     return (
         <div className="container">
-            <h1>Add new Track Location</h1>
+            <h1>{resources.Common.Create}</h1>
             <div className="column">
                 <hr/>
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Track
+                            {resources.Dto.TrackLocation.Track}
                         </div>
                         <select onChange={(e) => setTrackLocation({...trackLocation, trackId: e.target.value})}
                                 className="column is-8-desktop">
@@ -58,7 +61,7 @@ const TrackLocationsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Latitude
+                            {resources.Dto.TrackLocation.Lat}
                         </div>
                         <input type="float"
                                value={trackLocation.lat}
@@ -67,7 +70,7 @@ const TrackLocationsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Longitude
+                            {resources.Dto.TrackLocation.Lng}
                         </div>
                         <input type="float"
                                value={trackLocation.lng}
@@ -76,7 +79,7 @@ const TrackLocationsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Accuracy
+                            {resources.Dto.TrackLocation.Accuracy}
                         </div>
                         <input type="float"
                                value={trackLocation.accuracy}
@@ -85,7 +88,7 @@ const TrackLocationsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Elevation
+                            {resources.Dto.TrackLocation.Elevation}
                         </div>
                         <input type="float"
                                value={trackLocation.elevation}
@@ -94,7 +97,7 @@ const TrackLocationsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Elevation Accuracy
+                            {resources.Dto.TrackLocation.ElevationAccuracy}
                         </div>
                         <input type="float"
                                value={trackLocation.elevationAccuracy}
@@ -103,7 +106,7 @@ const TrackLocationsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Speed
+                            {resources.Dto.TrackLocation.Speed}
                         </div>
                         <input type="float"
                                value={trackLocation.speed}
@@ -112,7 +115,7 @@ const TrackLocationsCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            RPM
+                            {resources.Dto.TrackLocation.Rpm}
                         </div>
                         <input type="float"
                                value={trackLocation.rpm}
@@ -122,8 +125,8 @@ const TrackLocationsCreate = () => {
                 </div>
             </div>
             <div>
-                <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
-                <NavLink className="button m-2" to="/locations">Back to List</NavLink>
+                <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
+                <NavLink className="button m-2" to="/locations">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )

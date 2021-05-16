@@ -3,8 +3,11 @@ import {useEffect, useState} from "react";
 import {EPageStatus} from "../../types/EPageStatus";
 import {ITrackLocation} from "../../types/ITrackLocation";
 import {TrackLocationService} from "../../services/track-location-service";
+import {useStore} from "react-context-hook";
 
 const TrackLocationsList = () => {
+    const [resources] = useStore('resources')
+
     const [trackLocations, setTrackLocations] = useState([] as ITrackLocation[]);
     const [pageStatus, setPageStatus] = useState({pageStatus: EPageStatus.Loading, statusCode: -1});
     const service = new TrackLocationService();
@@ -25,32 +28,32 @@ const TrackLocationsList = () => {
     return (
         <>
             <div className="columns m-6">
-                <NavLink to="/locations/create">Create</NavLink>
+                <NavLink to="/locations/create">{resources.Common.Create}</NavLink>
             </div>
             <div className="column is-10-desktop m-6">
                 <table className="table">
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Track Id</th>
-                        <th>Lng</th>
-                        <th>Lat</th>
-                        <th>Accuracy</th>
-                        <th>Elevation</th>
-                        <th>RPM</th>
-                        <th>Speed</th>
+                        <th>{resources.Dto.TrackLocation.TrackId}</th>
+                        <th>{resources.Dto.TrackLocation.Lng}</th>
+                        <th>{resources.Dto.TrackLocation.Lat}</th>
+                        <th>{resources.Dto.TrackLocation.Accuracy}</th>
+                        <th>{resources.Dto.TrackLocation.Elevation}</th>
+                        <th>{resources.Dto.TrackLocation.Rpm}</th>
+                        <th>{resources.Dto.TrackLocation.Speed}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
-                        <th>Track Id</th>
-                        <th>Lng</th>
-                        <th>Lat</th>
-                        <th>Accuracy</th>
-                        <th>Elevation</th>
-                        <th>RPM</th>
-                        <th>Speed</th>
+                        <th>{resources.Dto.TrackLocation.TrackId}</th>
+                        <th>{resources.Dto.TrackLocation.Lng}</th>
+                        <th>{resources.Dto.TrackLocation.Lat}</th>
+                        <th>{resources.Dto.TrackLocation.Accuracy}</th>
+                        <th>{resources.Dto.TrackLocation.Elevation}</th>
+                        <th>{resources.Dto.TrackLocation.Rpm}</th>
+                        <th>{resources.Dto.TrackLocation.Speed}</th>
                     </tr>
                     </tfoot>
                     <tbody>
