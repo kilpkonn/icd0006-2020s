@@ -6,9 +6,12 @@ import {CarsService} from "../../services/cars-service";
 import {ITrack} from "../../types/ITrack";
 import {TrackService} from "../../services/track-service";
 import DatePicker from "react-date-picker";
+import {useStore} from "react-context-hook";
 
 
 const TracksDetails = () => {
+    const [resources] = useStore('resources')
+
     const {id} = useParams() as IRouteId;
 
     const [track, setTrack] = useState(null as ITrack | null);
@@ -53,7 +56,7 @@ const TracksDetails = () => {
 
     return (
         <div className="container">
-            <h1>Track</h1>
+            <h1>{resources.Shared.Track}</h1>
             {track &&
             <>
                 <div className="column">
@@ -69,7 +72,7 @@ const TracksDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Distance
+                                {resources.Dto.Track.Distance}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -84,7 +87,7 @@ const TracksDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Start timestamp
+                                {resources.Dto.Track.StartTimestamp}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -99,7 +102,7 @@ const TracksDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                End timestamp
+                                {resources.Dto.Track.EndTimestamp}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -114,7 +117,7 @@ const TracksDetails = () => {
                         </div>
                         <div className="columns">
                             <div className="column is-4-desktop">
-                                Car id
+                                {resources.Dto.Track.Car}
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
@@ -135,15 +138,15 @@ const TracksDetails = () => {
                 </div>
                 <div>
                     {(!isEditing) &&
-                    <button className="button m-2 is-primary" onClick={onClickEdit}>Edit</button>
+                    <button className="button m-2 is-primary" onClick={onClickEdit}>{resources.Common.Edit}</button>
                     }
                     {(isEditing) &&
-                    <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
+                    <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
                     }
                     {// (admin) &&
-                        <button className="button m-2 is-danger" onClick={onClickDelete}>Delete</button>
+                        <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                     }
-                    <NavLink className="button m-2" to="/tracks">Back to List</NavLink>
+                    <NavLink className="button m-2" to="/tracks">{resources.Common.Back}</NavLink>
                 </div>
             </>
             }

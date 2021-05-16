@@ -1,15 +1,16 @@
 import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
-import {ICarErrorCode, INewErrorCode} from "../../types/ICarErrorCode";
 import {ICar} from "../../types/ICar";
-import {CarErrorCodeService} from "../../services/car-error-code-service";
 import {CarsService} from "../../services/cars-service";
 import {ITrack} from "../../types/ITrack";
 import {TrackService} from "../../services/track-service";
 // @ts-ignore
 import DateTimePicker from 'react-datetime-picker'
+import {useStore} from "react-context-hook";
 
 const TracksCreate = () => {
+    const [resources] = useStore('resources')
+
     const [track, setTrack] = useState({carId: '', distance: 0.0, startTimestamp: new Date(), endTimestamp: new Date()} as ITrack);
     const [cars, setCars] = useState([] as ICar[]);
     const service = new TrackService();
@@ -33,13 +34,13 @@ const TracksCreate = () => {
 
     return (
         <div className="container">
-            <h1>Add new Track</h1>
+            <h1>{resources.Common.Create}</h1>
             <div className="column">
                 <hr/>
                 <div className="column">
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Car
+                            {resources.Dto.Track.Car}
                         </div>
                         <select onChange={(e) => setTrack({...track, carId: e.target.value})}
                                 className="column is-8-desktop">
@@ -52,7 +53,7 @@ const TracksCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Distance
+                            {resources.Dto.Track.Distance}
                         </div>
                         <input type="number"
                                value={track.distance}
@@ -61,7 +62,7 @@ const TracksCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            Start Timestamp
+                            {resources.Dto.Track.StartTimestamp}
                         </div>
                         <DateTimePicker
                             value={track.startTimestamp}
@@ -70,7 +71,7 @@ const TracksCreate = () => {
                     </div>
                     <div className="columns">
                         <div className="column is-4-desktop">
-                            End Timestamp
+                            {resources.Dto.Track.EndTimestamp}
                         </div>
                         <DateTimePicker
                             value={track.endTimestamp}
@@ -80,8 +81,8 @@ const TracksCreate = () => {
                 </div>
             </div>
             <div>
-                <button className="button m-2 is-success" onClick={onClickSave}>Save</button>
-                <NavLink className="button m-2" to="/tracks">Back to List</NavLink>
+                <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
+                <NavLink className="button m-2" to="/tracks">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )

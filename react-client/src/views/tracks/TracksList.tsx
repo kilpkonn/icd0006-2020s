@@ -3,8 +3,11 @@ import {useEffect, useState} from "react";
 import {EPageStatus} from "../../types/EPageStatus";
 import {ITrack} from "../../types/ITrack";
 import {TrackService} from "../../services/track-service";
+import {useStore} from "react-context-hook";
 
 const TracksList = () => {
+    const [resources] = useStore('resources')
+
     const [tracks, setTracks] = useState([] as ITrack[]);
     const [pageStatus, setPageStatus] = useState({pageStatus: EPageStatus.Loading, statusCode: -1});
     const service = new TrackService();
@@ -25,26 +28,26 @@ const TracksList = () => {
     return (
         <>
             <div className="columns m-6">
-                <NavLink to="/tracks/create">Create</NavLink>
+                <NavLink to="/tracks/create">{resources.Common.Create}</NavLink>
             </div>
             <div className="column is-10-desktop m-6">
                 <table className="table">
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Car</th>
-                        <th>Distance</th>
-                        <th>Start</th>
-                        <th>End</th>
+                        <th>{resources.Dto.Track.Car}</th>
+                        <th>{resources.Dto.Track.Distance}</th>
+                        <th>{resources.Dto.Track.StartTimestamp}</th>
+                        <th>{resources.Dto.Track.EndTimestamp}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Id</th>
-                        <th>Car</th>
-                        <th>Distance</th>
-                        <th>Start</th>
-                        <th>End</th>
+                        <th>{resources.Dto.Track.Car}</th>
+                        <th>{resources.Dto.Track.Distance}</th>
+                        <th>{resources.Dto.Track.StartTimestamp}</th>
+                        <th>{resources.Dto.Track.EndTimestamp}</th>
                     </tr>
                     </tfoot>
                     <tbody>
