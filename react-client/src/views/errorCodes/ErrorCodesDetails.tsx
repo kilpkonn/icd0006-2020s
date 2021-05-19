@@ -7,6 +7,7 @@ import {ICar} from "../../types/ICar";
 import {CarErrorCodeService} from "../../services/car-error-code-service";
 import {CarsService} from "../../services/cars-service";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 
 const ErrorCodesDetails = () => {
@@ -131,7 +132,7 @@ const ErrorCodesDetails = () => {
                                 {resources.Shared.CreatedAt}
                             </div>
                             <div className="column is-8-desktop">
-                                {errorCode.createdAt}
+                                {showDateTime(errorCode.createdAt)}
                             </div>
                         </div>
                         <div className="columns">
@@ -147,7 +148,7 @@ const ErrorCodesDetails = () => {
                                 {resources.Shared.UpdatedAt}
                             </div>
                             <div className="column is-8-desktop">
-                                {errorCode.updatedAt}
+                                {showDateTime(errorCode.updatedAt)}
                             </div>
                         </div>
                     </div>

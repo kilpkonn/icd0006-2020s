@@ -7,6 +7,7 @@ import {CarsService} from "../../services/cars-service";
 import {IGasRefill} from "../../types/IGasRefill";
 import {GasRefillsService} from "../../services/gas-refills-service";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 
 const GasRefillsDetails = () => {
@@ -106,7 +107,7 @@ const GasRefillsDetails = () => {
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
-                                    {gasRefill.timestamp}
+                                    {showDateTime(gasRefill.timestamp)}
                                 </div>
                                 :
                                 <DatePicker

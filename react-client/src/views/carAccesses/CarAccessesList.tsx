@@ -1,11 +1,10 @@
 import {NavLink} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {EPageStatus} from "../../types/EPageStatus";
-import {CarErrorCodeService} from "../../services/car-error-code-service";
-import {ICarErrorCode} from "../../types/ICarErrorCode";
 import {ICarAccess} from "../../types/ICarAccess";
 import {CarAccessService} from "../../services/car-access-service";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 const CarAccessesList = () => {
     const [resources] = useStore('resources')
@@ -62,7 +61,7 @@ const CarAccessesList = () => {
                                 <td>{access.appUser?.displayName}</td>
                                 <td>{access.carId}</td>
                                 <td>{access.carAccessType?.name}</td>
-                                <td>{access.createdAt}</td>
+                                <td>{showDateTime(access.createdAt)}</td>
                                 <td>{access.createdBy}</td>
                             </tr>
                         )

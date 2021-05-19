@@ -4,6 +4,7 @@ import {EPageStatus} from "../../types/EPageStatus";
 import {ITrack} from "../../types/ITrack";
 import {TrackService} from "../../services/track-service";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 const TracksList = () => {
     const [resources] = useStore('resources')
@@ -56,9 +57,9 @@ const TracksList = () => {
                             <tr key={track.id}>
                                 <th><NavLink to={'/tracks/' + track.id}>{track.id}</NavLink></th>
                                 <td>{track.carId}</td>
-                                <td>{track.distance}</td>
-                                <td>{track.startTimestamp}</td>
-                                <td>{track.endTimestamp}</td>
+                                <td>{track.distance}km</td>
+                                <td>{showDateTime(track.startTimestamp)}</td>
+                                <td>{showDateTime(track.endTimestamp)}</td>
                             </tr>
                         )
                     }

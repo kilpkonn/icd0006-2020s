@@ -7,6 +7,7 @@ import {CarsService} from "../../services/cars-service";
 import {CarTypeService} from "../../services/car-type-service";
 import isAdmin from "../../utils/isAdmin";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 const CarDetails = () => {
     const [resources] = useStore('resources')
@@ -104,7 +105,7 @@ const CarDetails = () => {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-4-desktop">
-                                        {resources.Common.CreatedBy}
+                                        {resources.Shared.CreatedBy}
                                     </div>
                                     <div className="column is-8-desktop">
                                         {car.createdBy}
@@ -112,15 +113,15 @@ const CarDetails = () => {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-4-desktop">
-                                        {resources.Common.CreatedAt}
+                                        {resources.Shared.CreatedAt}
                                     </div>
                                     <div className="column is-8-desktop">
-                                        {car.createdAt}
+                                        {showDateTime(car.createdAt)}
                                     </div>
                                 </div>
                                 <div className="columns">
                                     <div className="column is-4-desktop">
-                                        {resources.Common.UpdatedBy}
+                                        {resources.Shared.UpdatedBy}
                                     </div>
                                     <div className="column is-8-desktop">
                                         {car.updatedBy}
@@ -128,10 +129,10 @@ const CarDetails = () => {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-4-desktop">
-                                        {resources.Common.UpdatedAt}
+                                        {resources.Shared.UpdatedAt}
                                     </div>
                                     <div className="column is-8-desktop">
-                                        {car.updatedAt}
+                                        {showDateTime(car.updatedAt)}
                                     </div>
                                 </div>
                             </div>
@@ -165,9 +166,9 @@ const CarDetails = () => {
                                 <thead>
                                 <tr>
                                     <th>{resources.Dto.CarAccess.AppUser}</th>
-                                    <th>{resources.Dto.CarAccess.CarAccessType}</th>
-                                    <th>{resources.Common.CreatedAt}</th>
-                                    <th>{resources.Common.CreatedBy}</th>
+                                    <th>{resources.Dto.CarAccess.AccessType}</th>
+                                    <th>{resources.Shared.CreatedAt}</th>
+                                    <th>{resources.Shared.CreatedBy}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -176,7 +177,7 @@ const CarDetails = () => {
                                         <tr key={access.id}>
                                             <td><NavLink to={'/accesses/' + access.id}>{access.appUser?.displayName || ''}</NavLink></td>
                                             <td>{access.carAccessType?.name || ''}</td>
-                                            <td>{access.createdAt}</td>
+                                            <td>{showDateTime(access.createdAt)}</td>
                                             <td>{access.createdBy}</td>
                                         </tr>
                                     )

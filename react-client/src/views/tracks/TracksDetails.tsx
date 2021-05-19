@@ -7,6 +7,7 @@ import {ITrack} from "../../types/ITrack";
 import {TrackService} from "../../services/track-service";
 import DatePicker from "react-date-picker";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 
 const TracksDetails = () => {
@@ -76,7 +77,7 @@ const TracksDetails = () => {
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
-                                    {track.distance}
+                                    {track.distance}km
                                 </div>
                                 :
                                 <input type="number"
@@ -91,7 +92,7 @@ const TracksDetails = () => {
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
-                                    {track.startTimestamp}
+                                    {showDateTime(track.startTimestamp)}
                                 </div>
                                 :
                                 <DatePicker
@@ -106,7 +107,7 @@ const TracksDetails = () => {
                             </div>
                             {!isEditing ?
                                 <div className="column is-8-desktop">
-                                    {track.endTimestamp}
+                                    {showDateTime(track.endTimestamp)}
                                 </div>
                                 :
                                 <DatePicker

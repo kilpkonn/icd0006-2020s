@@ -4,6 +4,7 @@ import {EPageStatus} from "../../types/EPageStatus";
 import {IGasRefill} from "../../types/IGasRefill";
 import {GasRefillsService} from "../../services/gas-refills-service";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 const GasRefillsList = () => {
     const [resources] = useStore('resources')
@@ -57,7 +58,7 @@ const GasRefillsList = () => {
                                 <th><NavLink to={'/refills/' + refill.id}>{refill.id}</NavLink></th>
                                 <td>{refill.amountRefilled}</td>
                                 <td>{refill.cost}</td>
-                                <td>{refill.timestamp}</td>
+                                <td>{showDateTime(refill.timestamp)}</td>
                                 <td>{refill.carId}</td>
                             </tr>
                         )

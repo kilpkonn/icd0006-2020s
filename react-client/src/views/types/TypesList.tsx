@@ -5,6 +5,7 @@ import {ICarType} from "../../types/ICarType";
 import {NavLink} from "react-router-dom";
 import isAdmin from "../../utils/isAdmin";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 
 const TypesList = () => {
@@ -65,8 +66,8 @@ const TypesList = () => {
                                 <th><NavLink to={'/types/' + type.id}>{type.id}</NavLink></th>
                                 <td>{type.name}</td>
                                 <td>{type.carModel?.name}</td>
-                                <td>{type.createdAt}</td>
-                                <td>{type.updatedAt}</td>
+                                <td>{showDateTime(type.createdAt)}</td>
+                                <td>{showDateTime(type.updatedAt)}</td>
                             </tr>
                         )
                     }

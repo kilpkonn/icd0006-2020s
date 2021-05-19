@@ -5,6 +5,7 @@ import isAdmin from "../../utils/isAdmin";
 import {ICarModel} from "../../types/ICarModel";
 import {CarModelService} from "../../services/car-model-service";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 
 const ModelsList = () => {
@@ -65,8 +66,8 @@ const ModelsList = () => {
                                 <th><NavLink to={'/models/' + model.id}>{model.id}</NavLink></th>
                                 <td>{model.name}</td>
                                 <td>{model.carMark?.name}</td>
-                                <td>{model.createdAt}</td>
-                                <td>{model.updatedAt}</td>
+                                <td>{showDateTime(model.createdAt)}</td>
+                                <td>{showDateTime(model.updatedAt)}</td>
                             </tr>
                         )
                     }

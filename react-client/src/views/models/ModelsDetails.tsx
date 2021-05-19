@@ -7,6 +7,7 @@ import {NavLink, useParams} from "react-router-dom";
 import {ICarMark} from "../../types/ICarMark";
 import {CarMarkService} from "../../services/car-mark-service";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 
 const ModelsDetails = () => {
@@ -118,7 +119,7 @@ const ModelsDetails = () => {
                                 {resources.Shared.CreatedAt}
                             </div>
                             <div className="column is-8-desktop">
-                                {model.createdAt}
+                                {showDateTime(model.createdAt)}
                             </div>
                         </div>
                         <div className="columns">
@@ -134,7 +135,7 @@ const ModelsDetails = () => {
                                 {resources.Shared.UpdatedAt}
                             </div>
                             <div className="column is-8-desktop">
-                                {model.updatedAt}
+                                {showDateTime(model.updatedAt)}
                             </div>
                         </div>
                     </div>

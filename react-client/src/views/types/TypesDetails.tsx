@@ -7,6 +7,7 @@ import {CarModelService} from "../../services/car-model-service";
 import {ICarType} from "../../types/ICarType";
 import {NavLink, useParams} from "react-router-dom";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 
 const TypesDetails = () => {
@@ -119,7 +120,7 @@ const TypesDetails = () => {
                                 {resources.Shared.CreatedAt}
                             </div>
                             <div className="column is-8-desktop">
-                                {type.createdAt}
+                                {showDateTime(type.createdAt)}
                             </div>
                         </div>
                         <div className="columns">
@@ -135,7 +136,7 @@ const TypesDetails = () => {
                                 {resources.Shared.UpdatedAt}
                             </div>
                             <div className="column is-8-desktop">
-                                {type.updatedAt}
+                                {showDateTime(type.updatedAt)}
                             </div>
                         </div>
                     </div>

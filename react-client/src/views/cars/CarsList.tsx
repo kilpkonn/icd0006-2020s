@@ -5,6 +5,7 @@ import Loader from "../../components/Loader";
 import {EPageStatus} from "../../types/EPageStatus";
 import {CarsService} from "../../services/cars-service";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 const CarsList = () => {
     const [resources] = useStore('resources')
@@ -66,9 +67,9 @@ const CarsList = () => {
                                 <td>{car.carType?.name}</td>
                                 <td>{car.appUser?.displayName}</td>
                                 <td>{car.createdBy}</td>
-                                <td>{car.createdAt}</td>
+                                <td>{showDateTime(car.createdAt)}</td>
                                 <td>{car.updatedBy}</td>
-                                <td>{car.updatedAt}</td>
+                                <td>{showDateTime(car.updatedAt)}</td>
                             </tr>
                         )
                     }

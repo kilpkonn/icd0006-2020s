@@ -10,6 +10,7 @@ import {ICarAccessType} from "../../types/ICarAccessType";
 import {IAppUser} from "../../types/IAppUser";
 import {UserService} from "../../services/user-service";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 
 const CarAccessesDetails = () => {
@@ -157,7 +158,7 @@ const CarAccessesDetails = () => {
                                 {resources.Shared.CreatedAt}
                             </div>
                             <div className="column is-8-desktop">
-                                {access.createdAt}
+                                {showDateTime(access.createdAt)}
                             </div>
                         </div>
                     </div>

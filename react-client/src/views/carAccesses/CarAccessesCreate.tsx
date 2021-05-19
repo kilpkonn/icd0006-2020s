@@ -9,6 +9,7 @@ import {ICarAccessType} from "../../types/ICarAccessType";
 import {IAppUser} from "../../types/IAppUser";
 import {UserService} from "../../services/user-service";
 import {useStore} from "react-context-hook";
+import showDateTime from "../../utils/showDateTime";
 
 const CarAccessesCreate = () => {
     const [resources] = useStore('resources')
@@ -104,22 +105,22 @@ const CarAccessesCreate = () => {
                             )}
                         </select>
                     </div>
-                    <div className="columns">
-                        <div className="column is-4-desktop">
-                            {resources.Common.CreatedBy}
-                        </div>
-                        <div className="column is-8-desktop">
-                            {access.createdBy}
-                        </div>
-                    </div>
-                    <div className="columns">
-                        <div className="column is-4-desktop">
-                            {resources.Common.CreatedAt}
-                        </div>
-                        <div className="column is-8-desktop">
-                            {access.createdAt}
-                        </div>
-                    </div>
+                    {/*<div className="columns">*/}
+                    {/*    <div className="column is-4-desktop">*/}
+                    {/*        {resources.Common.CreatedBy}*/}
+                    {/*    </div>*/}
+                    {/*    <div className="column is-8-desktop">*/}
+                    {/*        {access.createdBy}*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className="columns">*/}
+                    {/*    <div className="column is-4-desktop">*/}
+                    {/*        {resources.Common.CreatedAt}*/}
+                    {/*    </div>*/}
+                    {/*    <div className="column is-8-desktop">*/}
+                    {/*        {showDateTime(access.createdAt)}*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </div>
             <div>
