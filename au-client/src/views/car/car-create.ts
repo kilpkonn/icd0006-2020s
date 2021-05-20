@@ -23,7 +23,7 @@ export class CarCreate implements IRouteViewModel {
     save() {
         this.carService.post(this.data)
             .then(async () => {
-                await this.router.load('/au/cars');
+                await this.router.load('/cars');
             })
     }
 }
