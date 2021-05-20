@@ -1,7 +1,8 @@
-import {EventAggregator, IDisposable, IRouteViewModel, LifecycleFlags, Params, RouteNode} from "aurelia";
+import {EventAggregator, IDisposable, inject, IRouteViewModel, LifecycleFlags, Params, RouteNode} from "aurelia";
 import {AppState} from "../state/app-state";
 import {IJoke} from "../model/IJoke";
 
+@inject()
 export class Categories implements IRouteViewModel {
     private category: string | null = null;
     private topJokes: IJoke[] = []
