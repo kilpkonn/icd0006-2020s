@@ -5,13 +5,13 @@ import {Categories} from "./views/categories";
 export class MyApp implements ICustomElementViewModel {
   static routes = [
     {
-      path: 'home',
+      path: '/au/home',
       id: 'home',
       component: Home,
       title: 'Home'
     },
     {
-      path: 'categories/:category',
+      path: '/au/categories/:category',
       id: 'categories',
       component: Categories,
       title: 'Categories'
