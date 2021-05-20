@@ -11,13 +11,13 @@ import {CarCreate} from "./views/car/car-create";
 
 export class MyApp implements ICustomElementViewModel {
     static routes = [
-        {path: 'au/login', id: 'login', component: Login, title: 'Login'},
-        {path: 'au/register', id: 'register', component: Register, title: 'Register'},
+        {path: 'login', id: 'login', component: Login, title: 'Login'},
+        {path: 'register', id: 'register', component: Register, title: 'Register'},
         // {path: 'au/cars', id: 'car', component: CarsRouter, title: 'Cars'},
-        {path: 'au/cars', id: 'index', component: CarIndex, title: 'Cars'},
-        {path: 'au/cars/:id', id: 'details', component: CarDetails, title: 'Details'},
-        {path: 'au/cars/:id/delete', id: 'delete', component: CarDelete, title: 'Delete'},
-        {path: 'au/cars/:id/edit', id: 'edit', component: CarEdit, title: 'Edit'},
-        {path: 'au/cars/create', id: 'create', component: CarCreate, title: 'Create'},
+        {path: 'cars', id: 'index', component: CarIndex, title: 'Cars'},
+        {path: 'cars/:id', id: 'details', component: CarDetails, title: 'Details'},
+        {path: 'cars/:id/delete', id: 'delete', component: CarDelete, title: 'Delete'},
+        {path: 'cars/:id/edit', id: 'edit', component: CarEdit, title: 'Edit'},
+        {path: 'cars/create', id: 'create', component: CarCreate, title: 'Create'},
     ];
 }
