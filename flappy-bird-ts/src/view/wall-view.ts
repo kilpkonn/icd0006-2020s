@@ -11,8 +11,8 @@ class WallView {
         this.elemBottom = document.createElement('img')
         this.elemTop.style.position = 'absolute';
         this.elemBottom.style.position = 'absolute'
-        this.elemTop.src = './assets/props/pipe-top.png';
-        this.elemBottom.src = './assets/props/pipe-bottom.png';
+        this.elemTop.src = '/flappy-bird-ts/assets/props/pipe-top.png';
+        this.elemBottom.src = '/flappy-bird-ts/assets/props/pipe-bottom.png';
         this.isVisible = false;
     }
 

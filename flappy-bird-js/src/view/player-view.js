@@ -28,7 +28,7 @@ class PlayerView {
 
         this.elem.style.left = `${baseX + baseWidth * props.x}px`;
         this.elem.style.top = `${baseY + (1 - props.y) * baseHeight}px`;
-        this.elem.src = `./assets/character/frame-${1 + Math.ceil(props.time / 200) % 4}.png`
+        this.elem.src = `/flappy-bird-js/assets/character/frame-${1 + Math.ceil(props.time / 200) % 4}.png`
     }
 }
 

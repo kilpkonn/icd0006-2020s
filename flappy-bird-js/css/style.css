@@ -6,7 +6,7 @@ ul {
 
 .parallax {
     /* The image used */
-    background-image: url("/assets/background/background.jpg");
+    background-image: url("/flappy-bird-js/assets/background/background.jpg");
 
     /* Full height */
     height: 100%;
