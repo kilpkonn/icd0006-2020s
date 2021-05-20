@@ -3,6 +3,6 @@ import {IGasRefill} from "../types/IGasRefill";
 
 export class GasRefillsService extends BaseService<IGasRefill> {
     constructor () {
-        super('/api/v1/GasRefill')
+        super('https://icd0009.azurewebsites.net/api/v1/GasRefill')
     }
 }

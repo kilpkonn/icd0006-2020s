@@ -8,7 +8,7 @@ export class AccountService {
 
     async login(email: string, password: string): Promise<IJwtResponse | null> {
         return await this.httpClient
-            .post("/api/v1/Account/Login", JSON.stringify({
+            .post("https://icd0009.azurewebsites.net/api/v1/Account/Login", JSON.stringify({
                 email: email,
                 password: password
             }), { cache: "no-store" })
@@ -20,7 +20,7 @@ export class AccountService {
 
     async register(email: string, name: string, password: string): Promise<IJwtResponse | null> {
         return await this.httpClient
-            .post("https://localhost:5001/api/v1/Account/Register", JSON.stringify({
+            .post("https://icd0009.azurewebsites.net/api/v1/Account/Register", JSON.stringify({
                 email: email,
                 displayName: name,
                 password: password

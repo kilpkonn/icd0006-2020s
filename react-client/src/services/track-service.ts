@@ -3,6 +3,6 @@ import {ITrack} from "../types/ITrack";
 
 export class TrackService extends BaseService<ITrack> {
     constructor () {
-        super('/api/v1/Track')
+        super('https://icd0009.azurewebsites.net/api/v1/Track')
     }
 }

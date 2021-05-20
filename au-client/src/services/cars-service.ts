@@ -7,6 +7,6 @@ import {AppState} from "../state/app-state";
 export class CarsService extends BaseService<ICar> {
 
     constructor(httpClient: HttpClient, appState: AppState) {
-        super('/api/v1/Car', httpClient, appState);
+        super('https://icd0009.azurewebsites.net/api/v1/Car', httpClient, appState);
     }
 }

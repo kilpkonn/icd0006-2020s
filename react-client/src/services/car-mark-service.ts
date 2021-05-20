@@ -3,6 +3,6 @@ import { ICarMark } from '../types/ICarMark'
 
 export class CarMarkService extends BaseService<ICarMark> {
   constructor () {
-    super('/api/v1/CarMark')
+    super('https://icd0009.azurewebsites.net/api/v1/CarMark')
   }
 }

@@ -5,7 +5,7 @@ import { IFetchResponse } from '@/models/IFetchResponse'
 
 export class CarsService extends BaseService<ICar> {
   constructor () {
-    super('/api/v1/Car')
+    super('https://icd0009.azurewebsites.net/api/v1/Car')
   }
 
   async put (entity: ICar, queryParams?: IQueryParams): Promise<IFetchResponse<ICar>> {

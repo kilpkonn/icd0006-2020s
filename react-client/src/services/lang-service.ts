@@ -5,7 +5,7 @@ import {RootObject} from "../types/ILangResources";
 
 
 export class LangService {
-    apiEndpointUrl = "/api/v1/Lang"
+    apiEndpointUrl = "https://icd0009.azurewebsites.net/api/v1/Lang"
 
     async getSupportedLanguages(): Promise<IFetchResponse<ISupportedLanguage[]>> {
         let url = this.apiEndpointUrl + "/GetSupportedLanguages"

@@ -7,6 +7,6 @@ import {ICarType} from "../model/ICarType";
 export class CarTypeService extends BaseService<ICarType> {
 
     constructor(httpClient: HttpClient, appState: AppState) {
-        super('/api/v1/CarType', httpClient, appState);
+        super('https://icd0009.azurewebsites.net/api/v1/CarType', httpClient, appState);
     }
 }
