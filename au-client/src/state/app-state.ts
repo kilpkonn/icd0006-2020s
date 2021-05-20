@@ -35,7 +35,7 @@ export class AppState {
 
     logout() {
         this.token = '';
-        window.location.href = '/login'
+        window.location.href = '/au/login'
     }
 
     isLoggedIn(): boolean {

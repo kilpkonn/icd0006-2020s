@@ -6,9 +6,9 @@ import {CarsRouter} from "./views/car/cars-router";
 
 export class MyApp implements ICustomElementViewModel {
     static routes = [
-        {path: 'au/login', id: 'login', component: Login, title: 'Login'},
-        {path: 'au/register', id: 'register', component: Register, title: 'Register'},
-        {path: 'au/cars', id: 'car', component: CarsRouter, title: 'Cars'},
+        {path: 'login', id: 'login', component: Login, title: 'Login'},
+        {path: 'register', id: 'register', component: Register, title: 'Register'},
+        {path: 'cars', id: 'car', component: CarsRouter, title: 'Cars'},
         // {path: 'cars/:id/edit', id: 'car', component: CarsEdit, title: 'Cars edit'},
         // {path: 'cars/:id', id: 'car', component: CarsDetails, title: 'Cars details'},
     ];
