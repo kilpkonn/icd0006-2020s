@@ -25,7 +25,7 @@ export class CarEdit implements IRouteViewModel {
     save() {
         this.carService.put(this.data)
             .then(async () => {
-                await this.router.load('/cars');
+                await this.router.load('/au/cars');
             })
     }
 }

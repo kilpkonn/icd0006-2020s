@@ -147,7 +147,7 @@ const GasRefillsDetails = () => {
                     {// (admin) &&
                         <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                     }
-                    <NavLink className="button m-2" to="/refills">{resources.Common.Back}</NavLink>
+                    <NavLink className="button m-2" to="/react/refills">{resources.Common.Back}</NavLink>
                 </div>
             </>
             }

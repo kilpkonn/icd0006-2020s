@@ -161,7 +161,7 @@ const CarDetails = () => {
                             </table>
                         </div>
                         <div className="column is-10-desktop m-6">
-                            <h3>{resources.Common.CarAccess}</h3> <NavLink to="/accesses/create">{resources.Common.Create}</NavLink>
+                            <h3>{resources.Common.CarAccess}</h3> <NavLink to="/react/accesses/create">{resources.Common.Create}</NavLink>
                             <table className="table">
                                 <thead>
                                 <tr>
@@ -195,7 +195,7 @@ const CarDetails = () => {
                             {// (admin) &&
                             <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                             }
-                            <NavLink className="button m-2" to="/cars">{resources.Common.Back}</NavLink>
+                            <NavLink className="button m-2" to="/react/cars">{resources.Common.Back}</NavLink>
                         </div>
                     </>
                     : <span className="alert-primary">...</span>

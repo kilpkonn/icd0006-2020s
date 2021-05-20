@@ -28,7 +28,7 @@ const TrackLocationsList = () => {
     return (
         <>
             <div className="columns m-6">
-                <NavLink to="/locations/create">{resources.Common.Create}</NavLink>
+                <NavLink to="/react/locations/create">{resources.Common.Create}</NavLink>
             </div>
             <div className="column is-10-desktop m-6">
                 <table className="table">

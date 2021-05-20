@@ -13,10 +13,10 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <router-link v-if="token" to="/cars" class="navbar-item">CarsList</router-link>
-        <router-link to="/marks" class="navbar-item">Marks</router-link>
-        <router-link to="/models" class="navbar-item">Models</router-link>
-        <router-link to="/types" class="navbar-item">Types</router-link>
+        <router-link v-if="token" to="/vue/cars" class="navbar-item">CarsList</router-link>
+        <router-link to="/vue/marks" class="navbar-item">Marks</router-link>
+        <router-link to="/vue/models" class="navbar-item">Models</router-link>
+        <router-link to="/vue/types" class="navbar-item">Types</router-link>
       </div>
     </div>
     <div class="navbar-end">

@@ -36,7 +36,7 @@ const ModelsList = () => {
         <>
             <div className="columns m-6">
                 {admin &&
-                <NavLink to="/models/create">{resources.Common.Create}</NavLink>
+                <NavLink to="/react/models/create">{resources.Common.Create}</NavLink>
                 }
             </div>
             <div className="column is-10-desktop m-6">

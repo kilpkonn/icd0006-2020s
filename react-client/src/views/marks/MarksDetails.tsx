@@ -122,7 +122,7 @@ const MarksDetails = () => {
                     {(admin) &&
                     <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                     }
-                    <NavLink className="button m-2" to="/marks">{resources.Common.Back}</NavLink>
+                    <NavLink className="button m-2" to="/react/marks">{resources.Common.Back}</NavLink>
                 </div>
             </>
             }
