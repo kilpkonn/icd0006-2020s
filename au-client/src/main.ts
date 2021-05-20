@@ -3,6 +3,6 @@ import {RouterConfiguration} from 'aurelia'
 import {MyApp} from './my-app';
 
 Aurelia
-    .register(RouterConfiguration)
+    .register(RouterConfiguration.customize({useUrlFragmentHash: false}))
     .app(MyApp)
     .start();
