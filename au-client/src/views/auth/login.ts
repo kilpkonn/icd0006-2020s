@@ -17,7 +17,7 @@ export class Login {
         const res = await this.appState.login(this.email, this.password);
         console.log(res)
         if (res) {
-            await this.router.load('/cars');
+            await this.router.load('/au/cars');
         }
     }
 }

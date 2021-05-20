@@ -17,7 +17,7 @@ export class Register {
 
         const res = await this.appState.register(this.email, this.name, this.password);
         if (res) {
-            await this.router.load('/cars');
+            await this.router.load('/au/cars');
         }
     }
 }

@@ -15,14 +15,14 @@ export class CarDetails implements IRouteViewModel {
     }
 
     async edit() {
-        await this.router.load('/cars/' + this.data.id + '/edit');
+        await this.router.load('/au/cars/' + this.data.id + '/au/edit');
     }
 
     async delete() {
-        await this.router.load('/cars/' + this.data.id + '/delete');
+        await this.router.load('/au/cars/' + this.data.id + '/au/delete');
     }
 
     async back() {
-        await this.router.load('/cars');
+        await this.router.load('/au/cars');
     }
 }
