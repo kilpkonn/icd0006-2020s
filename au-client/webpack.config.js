@@ -16,7 +16,7 @@ const postcssLoader = {
 };
 
 module.exports = function(env, { analyze }) {
-  const production = env.production || process.env.NODE_ENV === 'production';
+  const production = true; //env.production || process.env.NODE_ENV === 'production';
   return {
     target: 'web',
     mode: production ? 'production' : 'development',

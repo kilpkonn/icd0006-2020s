@@ -1,8 +1,8 @@
 import Aurelia from 'aurelia';
-import {RouterConfiguration} from 'aurelia-direct-router'
+import {RouterConfiguration} from 'aurelia'
 import {MyApp} from './my-app';
 
 Aurelia
-    .register(RouterConfiguration.customize({useUrlFragmentHash: false, basePath: '/au/'}))
+    .register(RouterConfiguration.customize({useUrlFragmentHash: false}))
     .app(MyApp)
     .start();
