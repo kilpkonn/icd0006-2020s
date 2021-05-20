@@ -5,7 +5,7 @@ import {RootObject} from "../types/ILangResources";
 
 
 export class LangService {
-    apiEndpointUrl = "https://localhost:5001/api/v1/Lang"
+    apiEndpointUrl = "/api/v1/Lang"
 
     async getSupportedLanguages(): Promise<IFetchResponse<ISupportedLanguage[]>> {
         let url = this.apiEndpointUrl + "/GetSupportedLanguages"

@@ -26,8 +26,10 @@ module.exports = function(env, { analyze }) {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
+      publicPath: production ? '/au/' : '/',
       filename: production ? '[name].[contenthash].bundle.js' : '[name].bundle.js'
     },
+
     resolve: {
       extensions: ['.ts', '.js'],
       modules: [path.resolve(__dirname, 'src'), 'node_modules']

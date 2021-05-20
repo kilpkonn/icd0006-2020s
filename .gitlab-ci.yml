@@ -1,0 +1,10 @@
+image: tmaier/docker-compose:latest
+build-job:
+  only:
+    - master
+  stage: build
+  script:
+    - cd ./WebApplication
+    - docker build . -t kilpkonn/icd0006-webfront
+    - docker login -u "kilpkonn" -p "${CI_DOCKERHUB_TOKEN}"
+    - docker push "kilpkonn/icd0006-webfront"

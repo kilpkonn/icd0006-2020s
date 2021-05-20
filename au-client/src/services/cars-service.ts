@@ -7,6 +7,6 @@ import {AppState} from "../state/app-state";
 export class CarsService extends BaseService<ICar> {
 
     constructor(httpClient: HttpClient, appState: AppState) {
-        super('https://localhost:5001/api/v1/Car', httpClient, appState);
+        super('/api/v1/Car', httpClient, appState);
     }
 }

@@ -5,7 +5,7 @@ import { IQueryParams } from '@/models/IQueryParams'
 
 export class CarTypeService extends BaseService<ICarType> {
   constructor () {
-    super('https://localhost:5001/api/v1/CarType')
+    super('/api/v1/CarType')
   }
 
   async put (entity: ICarType, queryParams?: IQueryParams): Promise<IFetchResponse<ICarType>> {

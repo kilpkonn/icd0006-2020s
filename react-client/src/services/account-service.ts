@@ -5,7 +5,7 @@ import { IRegisterInfo } from '../types/IRegisterInfo'
 
 export class AccountService {
   static async login (loginInfo: ILoginInfo): Promise<IJwtResponse | null> {
-    return await axios.post<IJwtResponse>('https://localhost:5001/api/v1/Account/Login',
+    return await axios.post<IJwtResponse>('/api/v1/Account/Login',
       JSON.stringify(loginInfo),
       { headers: { 'Content-type': 'application/json' } }
     ).then(async (response: AxiosResponse<IJwtResponse>) => {
@@ -21,7 +21,7 @@ export class AccountService {
 
   static async register (registerInfo: IRegisterInfo): Promise<IJwtResponse | null> {
     return await axios
-      .post<IJwtResponse>('https://localhost:5001/api/v1/Account/Register', registerInfo,
+      .post<IJwtResponse>('/api/v1/Account/Register', registerInfo,
         { headers: { 'Content-type': 'application/json' } }
       ).then(async (response: AxiosResponse<IJwtResponse>) => {
         if (response.status > 199 && response.status < 300) {

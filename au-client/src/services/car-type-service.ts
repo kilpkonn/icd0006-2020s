@@ -7,6 +7,6 @@ import {ICarType} from "../model/ICarType";
 export class CarTypeService extends BaseService<ICarType> {
 
     constructor(httpClient: HttpClient, appState: AppState) {
-        super('https://localhost:5001/api/v1/CarType', httpClient, appState);
+        super('/api/v1/CarType', httpClient, appState);
     }
 }

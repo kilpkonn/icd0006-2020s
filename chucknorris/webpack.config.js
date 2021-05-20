@@ -16,7 +16,7 @@ const postcssLoader = {
 };
 
 module.exports = function(env, { analyze }) {
-  const production = env.production || process.env.NODE_ENV === 'production';
+  const production = true;
   return {
     target: 'web',
     mode: production ? 'production' : 'development',
@@ -26,6 +26,7 @@ module.exports = function(env, { analyze }) {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
+      publicPath: production ? '/chucknorris/' : '/',
       filename: production ? '[name].[contenthash].bundle.js' : '[name].bundle.js'
     },
     resolve: {

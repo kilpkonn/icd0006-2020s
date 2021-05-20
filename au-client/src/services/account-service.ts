@@ -8,7 +8,7 @@ export class AccountService {
 
     async login(email: string, password: string): Promise<IJwtResponse | null> {
         return await this.httpClient
-            .post("https://localhost:5001/api/v1/Account/Login", JSON.stringify({
+            .post("/api/v1/Account/Login", JSON.stringify({
                 email: email,
                 password: password
             }), { cache: "no-store" })
