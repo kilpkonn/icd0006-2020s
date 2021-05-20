@@ -26,7 +26,7 @@ const TypesCreate = () => {
     const onClickSave = () => {
         service.post(type!).then((res) => {
             if (res.data) {
-                window.location.href = `/types/${res.data.id}`
+                window.location.href = `/react/types/${res.data.id}`
             }
         })
     }

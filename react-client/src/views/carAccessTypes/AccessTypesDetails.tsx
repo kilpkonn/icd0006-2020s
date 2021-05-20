@@ -42,7 +42,7 @@ const AccessTypesDetails = () => {
 
     const onClickDelete = () => {
         service.delete(accessType!.id).then(() => {
-            window.location.href = '/accesstypes'
+            window.location.href = '/react//accesstypes'
         })
     }
 

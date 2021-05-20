@@ -14,7 +14,7 @@ const MarksCreate = () => {
     const onClickSave = () => {
         service.post(mark!).then((res) => {
             if (res.data) {
-                window.location.href = `/marks/${res.data.id}`
+                window.location.href = `/react/marks/${res.data.id}`
             }
         })
     }

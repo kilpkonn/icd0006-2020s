@@ -44,7 +44,7 @@ const MarksDetails = () => {
 
     const onClickDelete = () => {
         service.delete(mark!.id).then(() => {
-            window.location.href = '/marks'
+            window.location.href = '/react//marks'
         })
     }
 

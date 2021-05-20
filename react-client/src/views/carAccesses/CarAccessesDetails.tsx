@@ -68,7 +68,7 @@ const CarAccessesDetails = () => {
 
     const onClickDelete = () => {
         service.delete(access!.id).then(() => {
-            window.location.href = '/accesses'
+            window.location.href = '/react//accesses'
         })
     }
 

@@ -27,7 +27,7 @@ const TracksCreate = () => {
     const onClickSave = () => {
         service.post(track!).then((res) => {
             if (res.data) {
-                window.location.href = `/tracks/${res.data.id}`
+                window.location.href = `/react/tracks/${res.data.id}`
             }
         })
     }

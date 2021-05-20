@@ -53,7 +53,7 @@ const ModelsDetails = () => {
 
     const onClickDelete = () => {
         service.delete(model!.id).then(() => {
-            window.location.href = '/models'
+            window.location.href = '/react//models'
         })
     }
 

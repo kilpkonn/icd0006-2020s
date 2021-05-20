@@ -26,7 +26,7 @@ const ErrorCodesCreate = () => {
     const onClickSave = () => {
         service.post(errorCode! as ICarErrorCode).then((res) => {
             if (res.data) {
-                window.location.href = `/errors/${res.data.id}`
+                window.location.href = `/react/errors/${res.data.id}`
             }
         })
     }

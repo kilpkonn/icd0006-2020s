@@ -53,7 +53,7 @@ const CarDetails = () => {
 
     const onClickDelete = () => {
         service.delete(car!.id).then(() => {
-            window.location.href = '/cars'
+            window.location.href = '/react//cars'
         })
     }
 

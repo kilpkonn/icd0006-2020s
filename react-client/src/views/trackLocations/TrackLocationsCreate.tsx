@@ -35,7 +35,7 @@ const TrackLocationsCreate = () => {
     const onClickSave = () => {
         service.post(trackLocation!).then((res) => {
             if (res.data) {
-                window.location.href = `/locations/${res.data.id}`
+                window.location.href = `/react/locations/${res.data.id}`
             }
         })
     }

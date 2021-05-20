@@ -27,7 +27,7 @@ const GasRefillsCreate = () => {
     const onClickSave = () => {
         service.post(gasRefill! as IGasRefill).then((res) => {
             if (res.data) {
-                window.location.href = `/refills/${res.data.id}`
+                window.location.href = `/react/refills/${res.data.id}`
             }
         })
     }

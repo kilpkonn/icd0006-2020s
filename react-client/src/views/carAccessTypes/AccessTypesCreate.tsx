@@ -13,7 +13,7 @@ const AccessTypesCreate = () => {
     const onClickSave = () => {
         service.post(accessType!).then((res) => {
             if (res.data) {
-                window.location.href = `/accesstypes/${res.data.id}`
+                window.location.href = `/react/accesstypes/${res.data.id}`
             }
         })
     }

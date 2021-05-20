@@ -54,7 +54,7 @@ const TypesDetails = () => {
 
     const onClickDelete = () => {
         service.delete(type!.id).then(() => {
-            window.location.href = '/types'
+            window.location.href = '/react//types'
         })
     }
 

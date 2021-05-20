@@ -50,7 +50,7 @@ const CarAccessesCreate = () => {
         console.log(access)
         service.post(access!).then((res) => {
             if (res.data) {
-                window.location.href = `/accesses/${res.data.id}`
+                window.location.href = `/react/accesses/${res.data.id}`
             }
         })
     }

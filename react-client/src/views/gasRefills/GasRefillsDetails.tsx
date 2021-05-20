@@ -51,7 +51,7 @@ const GasRefillsDetails = () => {
 
     const onClickDelete = () => {
         service.delete(gasRefill!.id).then(() => {
-            window.location.href = '/refills'
+            window.location.href = '/react//refills'
         })
     }
 

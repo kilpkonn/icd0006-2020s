@@ -26,7 +26,7 @@ const CarCreate = () => {
     const onClickSave = () => {
         service.post(car!).then((res) => {
             if (res.data) {
-                window.location.href = `/cars/${res.data.id}`;
+                window.location.href = `/react/cars/${res.data.id}`;
             }
         })
     }

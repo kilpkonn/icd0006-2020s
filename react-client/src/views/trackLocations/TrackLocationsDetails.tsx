@@ -49,7 +49,7 @@ const TrackLocationsDetails = () => {
 
     const onClickDelete = () => {
         service.delete(trackLocation!.id).then(() => {
-            window.location.href = '/locations'
+            window.location.href = '/react//locations'
         })
     }
 

@@ -26,7 +26,7 @@ const ModelsCreate = () => {
     const onClickSave = () => {
         service.post(model!).then((res) => {
             if (res.data) {
-                window.location.href = `/models/${res.data.id}`
+                window.location.href = `/react/models/${res.data.id}`
             }
         })
     }

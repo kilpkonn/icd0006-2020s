@@ -50,7 +50,7 @@ const ErrorCodesDetails = () => {
 
     const onClickDelete = () => {
         service.delete(errorCode!.id).then(() => {
-            window.location.href = '/errors'
+            window.location.href = '/react//errors'
         })
     }
 
