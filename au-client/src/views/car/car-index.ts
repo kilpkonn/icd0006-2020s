@@ -12,6 +12,7 @@ export class CarIndex {
     attached() {
         this.carsService.getAll()
             .then(data => this.data = data.data)
+            .then(() => console.log(this.data))
     }
 
 }
