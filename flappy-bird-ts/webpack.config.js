@@ -6,7 +6,7 @@ module.exports = {
     entry: "./src/index.ts",
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/flappy-bird-js/',
+        publicPath: '/flappy-bird-ts/',
         filename: "[name].js"
     },
     resolve: {
@@ -18,6 +18,7 @@ module.exports = {
             template: "./src/index.html",
             inject: "body",
             minify: false,
+            base: "flappy-bird-ts"
         })
     ],
     module: {

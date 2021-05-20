@@ -14,6 +14,7 @@ module.exports = {
             template: "./src/index.html",
             inject: "body",
             minify: false,
+            base: "flappy-bird-js"
         })
     ],
     module: {
