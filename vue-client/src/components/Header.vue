@@ -22,10 +22,10 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a v-if="!token" class="button is-primary" href="/register">
+          <a v-if="!token" class="button is-primary" href="/vue/register">
             <strong>Sign up</strong>
           </a>
-          <a v-if="!token" class="button is-light" href="/login">
+          <a v-if="!token" class="button is-light" href="/vue/login">
             Log in
           </a>
           <button v-if="token" class="button is-light" @click="onLogOutClicked">
