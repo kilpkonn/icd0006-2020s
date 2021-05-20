@@ -25,7 +25,7 @@
                 class="button is-block is-primary is-fullwidth is-medium">Submit
         </button>
         <br/>
-        <small><em>Or you can login <a href="/login">here</a></em></small>
+        <small><em>Or you can login <a href="/vue/login">here</a></em></small>
       </form>
     </div>
   </div>
@@ -53,7 +53,7 @@ export default class Register extends Vue {
         displayName: this.displayName
       })
       .then(() => {
-        this.$router.push('/')
+        this.$router.push('/vue')
       })
   }
 }

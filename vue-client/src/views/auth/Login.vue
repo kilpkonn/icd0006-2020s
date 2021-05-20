@@ -19,7 +19,7 @@
           Submit
         </button>
         <br/>
-        <small><em>Or you can register <a href="/register">here</a></em></small>
+        <small><em>Or you can register <a href="/vue/register">here</a></em></small>
       </form>
     </div>
   </div>
@@ -43,7 +43,7 @@ export default class Login extends Vue {
     store
       .dispatch('logIn', { email: this.email, password: this.password })
       .then(() => {
-        this.$router.push('/')
+        this.$router.push('/vue')
       })
   }
 }
