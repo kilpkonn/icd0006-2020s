@@ -21,14 +21,14 @@ RUN npm run build
 WORKDIR /source/flappy-bird-js
 RUN npm ci
 RUN npx webpack ./src/index.js
-RUN cp ./css ./dist/
-RUN cp ./assets ./assets/
+RUN cp -r ./css ./dist/
+RUN cp -r ./assets ./assets/
 
 WORKDIR /source/flappy-bird-ts
 RUN npm ci
 RUN npx webpack ./src/index.ts
-RUN cp ./css ./dist/
-RUN cp ./assets ./assets/
+RUN cp -r ./css ./dist/
+RUN cp -r ./assets ./assets/
 
 WORKDIR /source/react-client
 RUN npm ci
