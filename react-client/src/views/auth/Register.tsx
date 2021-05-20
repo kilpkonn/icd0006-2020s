@@ -26,7 +26,7 @@ const Register = () => {
         let response = await AccountService.register(registerData);
         if (response) {
             setSessionToken(response.token);
-            window.location.href = "/cars"
+            window.location.href = "/react/cars"
         }
     }
 
@@ -66,7 +66,7 @@ const Register = () => {
                             className="button is-block is-primary is-fullwidth is-medium">{resources.Register.ButtonRegister}
                     </button>
                     <br/>
-                    <small><em><a href="/login">{resources.Register.Login}</a></em></small>
+                    <small><em><a href="/react/login">{resources.Register.Login}</a></em></small>
                 </form>
             </div>
         </div>

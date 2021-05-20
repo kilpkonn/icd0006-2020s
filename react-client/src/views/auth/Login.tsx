@@ -18,7 +18,7 @@ const Login = () => {
         let response = await AccountService.login(loginData);
         if (response) {
             setSessionToken(response.token);
-            window.location.href = "/cars"
+            window.location.href = "/react/cars"
         }
     }
 
@@ -51,7 +51,7 @@ const Login = () => {
                         {resources.Login.LogIn}
                     </button>
                     <br/>
-                    <small><em> <a href="/register">{resources.Login.RgeisterNewUser}</a></em></small>
+                    <small><em> <a href="/react/register">{resources.Login.RgeisterNewUser}</a></em></small>
                 </form>
             </div>
         </div>
