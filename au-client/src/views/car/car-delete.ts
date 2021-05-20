@@ -16,7 +16,7 @@ export class CarDelete implements IRouteViewModel {
     deleteCar() {
         this.carsService.delete(this.data.id)
             .then(async () => {
-                await this.router.load('/cars');
+                await this.router.load('/au/cars');
             })
     }
 }
