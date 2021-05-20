@@ -19,7 +19,7 @@
     </div>
     <div>
       <button class="button m-2 is-primary" @click="onClickCreate">Create</button>
-      <router-link class="button m-2" to="/vue/cars">Back</router-link>
+      <router-link class="button m-2" to="/cars">Back</router-link>
     </div>
   </div>
 </template>

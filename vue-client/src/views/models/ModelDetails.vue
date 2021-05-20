@@ -73,7 +73,7 @@
       <button class="button m-2 is-primary" v-if="!isEditing && isAdmin" @click="onClickEdit">Edit</button>
       <button class="button m-2 is-success" v-if="isEditing && isAdmin" @click="onClickSave">Save</button>
       <button class="button m-2 is-danger" v-if="isAdmin" @click="onClickDelete">Delete</button>
-      <router-link class="button m-2" to="/vue/models">Back to List</router-link>
+      <router-link class="button m-2" to="/models">Back to List</router-link>
     </div>
   </div>
 </template>

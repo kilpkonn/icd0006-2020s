@@ -150,7 +150,7 @@ const ModelsDetails = () => {
                     {(admin) &&
                     <button className="button m-2 is-danger" onClick={onClickDelete}>{resources.Common.Delete}</button>
                     }
-                    <NavLink className="button m-2" to="/react/models">{resources.Common.Back}</NavLink>
+                    <NavLink className="button m-2" to="/models">{resources.Common.Back}</NavLink>
                 </div>
             </>
             }

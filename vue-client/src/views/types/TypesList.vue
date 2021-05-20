@@ -1,6 +1,6 @@
 <template>
   <div class="columns m-6">
-    <router-link v-if="isAdmin" to="/vue/types/create">Create</router-link>
+    <router-link v-if="isAdmin" to="/types/create">Create</router-link>
   </div>
   <div class="column is-10-desktop m-6">
     <table class="table">

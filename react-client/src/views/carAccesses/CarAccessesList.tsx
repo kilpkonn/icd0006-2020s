@@ -29,7 +29,7 @@ const CarAccessesList = () => {
     return (
         <>
             <div className="columns m-6">
-                <NavLink to="/react/accesses/create">{resources.Common.Create}</NavLink>
+                <NavLink to="/accesses/create">{resources.Common.Create}</NavLink>
             </div>
             <div className="column is-10-desktop m-6">
                 <table className="table">

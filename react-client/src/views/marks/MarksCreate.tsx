@@ -37,7 +37,7 @@ const MarksCreate = () => {
             </div>
             <div>
                 <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Create}</button>
-                <NavLink className="button m-2" to="/react/marks">{resources.Common.Back}</NavLink>
+                <NavLink className="button m-2" to="/marks">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )

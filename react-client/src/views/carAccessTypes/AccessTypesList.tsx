@@ -35,7 +35,7 @@ const AccessTypesList = () => {
         <>
             <div className="columns m-6">
                 {admin &&
-                <NavLink to="/react/accesstypes/create">{resources.Common.Create}</NavLink>
+                <NavLink to="/accesstypes/create">{resources.Common.Create}</NavLink>
                 }
             </div>
             <div className="column is-10-desktop m-6">

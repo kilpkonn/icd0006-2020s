@@ -38,7 +38,7 @@ const Header = () => {
         document.cookie.split(";").forEach(function (c) {
             document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
         });
-        window.location.href = '/'
+        window.location.href = '/react'
     }
 
     const setLang = (lang: ISupportedLanguage) => {
@@ -67,16 +67,16 @@ const Header = () => {
 
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-start">
-                        {jwt && <NavLink to="/react/cars" className="navbar-item">{resources.Shared.Car}</NavLink>}
-                        {jwt && <NavLink to="/react/errors" className="navbar-item">{resources.Shared.Error}</NavLink>}
-                        {jwt && isAdmin() && <NavLink to="/react/accesstypes" className="navbar-item">{resources.Shared.CarAccessType}</NavLink>}
-                        {jwt && <NavLink to="/react/accesses" className="navbar-item">{resources.Shared.CarAccess}</NavLink>}
-                        {jwt && <NavLink to="/react/refills" className="navbar-item">{resources.Shared.GasRefill}</NavLink>}
-                        {jwt && <NavLink to="/react/tracks" className="navbar-item">{resources.Shared.Track}</NavLink>}
-                        {jwt && <NavLink to="/react/locations" className="navbar-item">{resources.Shared.TrackLocation}</NavLink>}
-                        <NavLink to="/react/marks" className="navbar-item">{resources.Shared.CarMark}</NavLink>
-                        <NavLink to="/react/models" className="navbar-item">{resources.Shared.CarModel}</NavLink>
-                        <NavLink to="/react/types" className="navbar-item">{resources.Shared.CarType}</NavLink>
+                        {jwt && <NavLink to="/cars" className="navbar-item">{resources.Shared.Car}</NavLink>}
+                        {jwt && <NavLink to="/errors" className="navbar-item">{resources.Shared.Error}</NavLink>}
+                        {jwt && isAdmin() && <NavLink to="/accesstypes" className="navbar-item">{resources.Shared.CarAccessType}</NavLink>}
+                        {jwt && <NavLink to="/accesses" className="navbar-item">{resources.Shared.CarAccess}</NavLink>}
+                        {jwt && <NavLink to="/refills" className="navbar-item">{resources.Shared.GasRefill}</NavLink>}
+                        {jwt && <NavLink to="/tracks" className="navbar-item">{resources.Shared.Track}</NavLink>}
+                        {jwt && <NavLink to="/locations" className="navbar-item">{resources.Shared.TrackLocation}</NavLink>}
+                        <NavLink to="/marks" className="navbar-item">{resources.Shared.CarMark}</NavLink>
+                        <NavLink to="/models" className="navbar-item">{resources.Shared.CarModel}</NavLink>
+                        <NavLink to="/types" className="navbar-item">{resources.Shared.CarType}</NavLink>
                     </div>
                 </div>
                 <div className={"navbar-item dropdown" + (dropDownActive ? " is-active" : "")}>
@@ -103,10 +103,10 @@ const Header = () => {
                         <div className="buttons">
                             {(jwt || '') === ''
                                 ? <>
-                                    <a className="button is-primary" href="/register">
+                                    <a className="button is-primary" href="/react/register">
                                         <strong>{resources.Common.Register}</strong>
                                     </a>
-                                    <a className="button is-light" href="/login">
+                                    <a className="button is-light" href="/react/login">
                                         {resources.Common.Login}
                                     </a>
                                 </>

@@ -62,7 +62,7 @@ const TypesCreate = () => {
             </div>
             <div>
                 <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
-                <NavLink className="button m-2" to="/react/types">{resources.Common.Back}</NavLink>
+                <NavLink className="button m-2" to="/types">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )

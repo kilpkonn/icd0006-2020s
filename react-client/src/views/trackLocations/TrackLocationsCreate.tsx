@@ -126,7 +126,7 @@ const TrackLocationsCreate = () => {
             </div>
             <div>
                 <button className="button m-2 is-success" onClick={onClickSave}>{resources.Common.Save}</button>
-                <NavLink className="button m-2" to="/react/locations">{resources.Common.Back}</NavLink>
+                <NavLink className="button m-2" to="/locations">{resources.Common.Back}</NavLink>
             </div>
         </div>
     )

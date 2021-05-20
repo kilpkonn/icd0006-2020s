@@ -36,7 +36,7 @@ const MarksList = () => {
         <>
             <div className="columns m-6">
                 {admin &&
-                <NavLink to="/react/marks/create">{resources.Common.Create}</NavLink>
+                <NavLink to="/marks/create">{resources.Common.Create}</NavLink>
                 }
             </div>
             <div className="column is-10-desktop m-6">
