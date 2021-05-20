@@ -22,13 +22,13 @@ WORKDIR /source/flappy-bird-js
 RUN npm ci
 RUN npx webpack ./src/index.js
 RUN cp -r ./css ./dist/
-RUN cp -r ./assets ./assets/
+RUN cp -r ./assets ./dist/
 
 WORKDIR /source/flappy-bird-ts
 RUN npm ci
 RUN npx webpack ./src/index.ts
 RUN cp -r ./css ./dist/
-RUN cp -r ./assets ./assets/
+RUN cp -r ./assets ./dist/
 
 WORKDIR /source/react-client
 RUN npm ci
