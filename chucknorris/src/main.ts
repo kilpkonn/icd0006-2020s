@@ -3,6 +3,6 @@ import {RouterConfiguration} from 'aurelia-direct-router'
 import { MyApp } from './my-app';
 
 Aurelia
-  .register(RouterConfiguration.customize({ useUrlFragmentHash: false }))
+  .register(RouterConfiguration.customize({ useUrlFragmentHash: false, basePath: '/chucknorris' }))
   .app(MyApp)
   .start();
