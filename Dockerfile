@@ -43,7 +43,7 @@ FROM nginx:latest AS deploy
 COPY --from=build /source/au-client/dist/ /usr/share/nginx/html/au/
 COPY --from=build /source/chucknorris/dist/ /usr/share/nginx/html/chucknorris/
 COPY --from=build /source/flappy-bird-js/dist/ /usr/share/nginx/html/flappy-bird-js/
-COPY --from=build /source/flappy-bird-ts/dist/ /usr/share/nginx/html/fplappy-bird-ts/
+COPY --from=build /source/flappy-bird-ts/dist/ /usr/share/nginx/html/flappy-bird-ts/
 COPY --from=build /source/react-client/build/ /usr/share/nginx/html/react/
 COPY --from=build /source/vue-client/dist/ /usr/share/nginx/html/vue/
 COPY nginx.conf /etc/nginx/nginx.conf
