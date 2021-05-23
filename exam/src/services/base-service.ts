@@ -111,7 +111,7 @@ export class BaseService<TEntity extends IIdentifiable> {
     }
 
     async put(entity: TEntity, queryParams?: IQueryParams): Promise<IFetchResponse<TEntity>> {
-        const {authHeaders, url} = this.prepareUrl(entity.id, queryParams)
+        const {authHeaders, url} = this.prepareUrl(entity.id!, queryParams)
         try {
             const response = await axios.put(url, entity, {headers: authHeaders})
             if (response.status > 199 && response.status < 300) {

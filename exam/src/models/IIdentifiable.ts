@@ -1,4 +1,4 @@
 
 export interface IIdentifiable {
-    id: string
+    id?: string
 }
