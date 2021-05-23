@@ -1,6 +1,6 @@
 <template>
   <h1 class="title is-2">Semesters</h1>
-  <div class="m-4 card columns" v-for="semester of semesters" :key="semester.id" @click="$router.push('/semesters/' + semester.id + '/subjects')">
+  <div class="m-4 card columns" v-for="semester of semesters" :key="semester.id" @click="$router.push('/semesters/' + semester.id)">
     <div class="column is-one-third">
       <h3 class="subtitle is-3">
         {{ semester.name }}
@@ -18,7 +18,7 @@
 <script lang="ts">
 import {Vue} from 'vue-class-component';
 import {SemestersService} from '@/services/semesters-service';
-import {ISemester} from "../../models/ISemester";
+import {ISemester} from "@/models/ISemester";
 
 
 export default class SemestersIndex extends Vue {

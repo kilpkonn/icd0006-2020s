@@ -32,12 +32,18 @@
 
 <script lang="ts">
 
-import {Vue} from "vue-class-component";
+import {Options, Vue} from "vue-class-component";
 import {ISubject} from "@/models/ISubject";
 import {SubjectsService} from "@/services/subjects-service";
 import {getParsedJwt} from "@/util/jwt";
 import {IJwt} from "@/models/IJwt";
 
+@Options({
+  components: {},
+  props: {
+    id: String
+  }
+})
 export default class SubjectsIndex extends Vue {
   subjects: ISubject[] = []
   service: SubjectsService | null = null
@@ -46,6 +52,7 @@ export default class SubjectsIndex extends Vue {
   mounted(): void {
     console.log("mounted")
     this.service = new SubjectsService()
+    console.log(this.$route.params.id as string)
     this.service?.getAll({semesterId: this.$route.params.id as string}).then(res => {
       console.log(res)
       if (res.data) {
@@ -56,6 +63,11 @@ export default class SubjectsIndex extends Vue {
 
   addSubject() {
     this.newSubject.semesterId = this.$route.params.id as string
+    this.service?.post(this.newSubject).then(_ => {
+      this.service?.getAll({semesterId: this.$route.params.id as string}).then(res => {
+        if (res.data) this.subjects = res.data
+      })
+    })
   }
 
   get isLecturer() {

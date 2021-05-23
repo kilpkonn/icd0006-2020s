@@ -17,7 +17,9 @@ export class BaseService<TEntity extends IIdentifiable> {
 
         if (queryParams !== undefined) {
             url += '?'
-            for (const param in Object.keys(queryParams)) {
+            for (const i in Object.keys(queryParams)) {
+                const param = Object.keys(queryParams)[i]
+                // console.log(Object.keys(queryParams), queryParams, param, queryParams[param])
                 url += '&' + param + '=' + queryParams[param]
             }
         }
