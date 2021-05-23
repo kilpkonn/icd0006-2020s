@@ -105,7 +105,7 @@ export default class SubjectDetails extends Vue {
 
   onDelete() {
     this.service?.delete(this.subject!.id!).then(_ => {
-      this.$router.push('/subjects')
+      this.$router.push('/semesters/' + this.subject!.semesterId! + '/subjects')
     })
   }
 

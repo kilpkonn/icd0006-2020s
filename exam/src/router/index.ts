@@ -18,7 +18,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/auth/Register.vue')
   },
   {
-    path: '/subjects',
+    path: '/semesters',
+    component: () => import('../views/semesters/SemestersIndex.vue')
+  },
+  {
+    path: '/semesters/:id/subjects',
     component: () => import('../views/subjects/SubjectsIndex.vue')
   },
   {
