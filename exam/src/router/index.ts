@@ -29,6 +29,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/subjects/:id',
     component: () => import('../views/subjects/SubjectDetails.vue')
   },
+  {
+    path: '/submissions/:id',
+    component: () => import('../views/submissions/GradeSubmission.vue')
+  },
 ]
 
 const router = createRouter({
