@@ -6,7 +6,7 @@ export interface ISubmission extends IIdentifiable {
 
     homeworkId: string,
     gradeId: string | null,
-    appUserId: string,
+    appUserId: string | null,
 
-    grade: IGrade,
+    grade: IGrade | null,
 }

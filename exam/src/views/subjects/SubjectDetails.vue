@@ -30,7 +30,7 @@
       <button class="button is-success" @click="addHomework">Add</button>
     </div>
   </div>
-  <div v-if="subject" v-for="homework of subject.homeworks" :key="homework.id" class="card columns m-4">
+  <div v-if="subject" v-for="homework of subject.homeworks" :key="homework.id" class="card columns m-4" @click="() => tryDoHomework(homework.id)">
     <div class="column is-one-quarter">
       {{ homework.title }}
     </div>
@@ -104,7 +104,6 @@ import {GradeType, IGrade} from "@/models/IGrade";
 import {IDeclaration} from "@/models/IDeclaration";
 import {GradesService} from "@/services/grades-service";
 import {DeclarationsService} from "@/services/declarations-service";
-import isAdmin from "../../../../react-client/src/utils/isAdmin";
 
 @Options({
   components: {},
@@ -214,6 +213,12 @@ export default class SubjectDetails extends Vue {
     this.declarationService?.post(declaration).then(_ => {
       window.location.reload()
     })
+  }
+
+  tryDoHomework(id: string) {
+    if (this.isStudent && (this.subject?.declarations?.length || 0) > 0) {
+      this.$router.push('/submissions/' + id + '/create')
+    }
   }
 
   get isLecturer() {

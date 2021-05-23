@@ -33,6 +33,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/submissions/:id',
     component: () => import('../views/submissions/GradeSubmission.vue')
   },
+  {
+    path: '/submissions/:id/create',
+    component: () => import('../views/submissions/CreateSubmission.vue')
+  },
 ]
 
 const router = createRouter({
