@@ -43,7 +43,7 @@ export default class Login extends Vue {
     store
       .dispatch('logIn', { email: this.email, password: this.password })
       .then(() => {
-        this.$router.push('/vue')
+        this.$router.push('/subjects')
       })
   }
 }

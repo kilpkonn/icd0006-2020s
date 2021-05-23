@@ -53,7 +53,7 @@ export default class Register extends Vue {
         displayName: this.displayName
       })
       .then(() => {
-        this.$router.push('/vue')
+        this.$router.push('/subjects')
       })
   }
 }
