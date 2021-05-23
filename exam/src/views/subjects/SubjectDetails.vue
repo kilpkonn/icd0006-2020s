@@ -48,6 +48,40 @@
       <button v-if="isLecturer" class="button is-danger" @click="deleteHomework(homework.id)">Delete</button>
     </div>
   </div>
+  <h2 class="subtitle is-3">
+    Declarations
+  </h2>
+  <div v-if="isLecturer">
+    <table class="table m-4 is-fullwidth">
+      <thead>
+      <tr>
+        <th>User id</th>
+        <th>Status</th>
+        <th>Grade</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-if="subject" v-for="declaration of subject.declarations">
+        <td>{{ declaration.appUserId }}</td>
+        <td v-if="declaration.declarationStatus !== 3">{{ printStatus(declaration.declarationStatus) }}</td>
+        <td v-if="declaration.declarationStatus === 3">
+          <select v-model="declaration.declarationStatus" class="select">
+            <option value="0">Accepted</option>
+            <option value="1">Rejected</option>
+          </select>
+        </td>
+        <td v-if="declaration.declarationStatus === 3">
+          <input v-if="declaration.grade" type="number" class="input" v-model="declaration.grade">
+          <input v-if="!declaration.grade" type="number" class="input" v-model="newGrade">
+        </td>
+        <td v-if="declaration.declarationStatus !== 3">{{ declaration.grade?.value || '-' }}</td>
+        <td>
+          <button class="button is-primary" @click="() => updateDeclaration(declaration)">Update</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script lang="ts">
@@ -58,6 +92,10 @@ import {getParsedJwt} from "@/util/jwt";
 import {IJwt} from "@/models/IJwt";
 import {IHomework} from "@/models/IHomework";
 import {HomeworksService} from "@/services/homeworks-service";
+import {GradeType, IGrade} from "@/models/IGrade";
+import {IDeclaration} from "@/models/IDeclaration";
+import {GradesService} from "@/services/grades-service";
+import {DeclarationsService} from "@/services/declarations-service";
 
 @Options({
   components: {},
@@ -68,16 +106,22 @@ import {HomeworksService} from "@/services/homeworks-service";
 export default class SubjectDetails extends Vue {
   service: SubjectsService | null = null
   homeworkService: HomeworksService | null = null
+  gradeService: GradesService | null = null
+  declarationService: DeclarationsService | null = null
   subject: ISubject | null = null
   newHw: IHomework = {title: '', description: '', subjectId: '', submissions: []}
   isEditing: boolean = false
+  newGrade: IGrade = {value: 0, gradeType: GradeType.COURSE}
 
   mounted() {
     this.service = new SubjectsService()
     this.homeworkService = new HomeworksService()
+    this.gradeService = new GradesService()
+    this.declarationService = new DeclarationsService()
     this.service.get(this.$route.params.id as string).then(res => {
       if (res.data) {
         this.subject = res.data
+        console.log(res.data)
       }
     })
   }
@@ -88,6 +132,37 @@ export default class SubjectDetails extends Vue {
           if (res.data) this.subject = res.data
           this.isEditing = false
         }))
+  }
+
+  printStatus(n: number): string {
+    if (n === 0) return 'Accepted'
+    if (n === 1) return 'Rejected'
+    if (n === 2) return 'Cancelled'
+    return 'Pending'
+  }
+
+  updateDeclaration(declaration: IDeclaration) {
+    if (declaration.grade) {
+      this.gradeService?.put(declaration.grade).then(_ =>
+          this.declarationService?.put(declaration).then(_ =>
+              this.service?.get(this.$route.params.id as string).then(res => {
+                if (res.data) {
+                  this.subject = res.data
+                }
+              })))
+    } else {
+      this.gradeService?.put(this.newGrade).then(grade => {
+        if (grade.data) {
+          declaration.gradeId = grade.data!.id!
+          this.declarationService?.put(declaration).then(_ =>
+              this.service?.get(this.$route.params.id as string).then(res => {
+                if (res.data) {
+                  this.subject = res.data
+                }
+              }))
+        }
+      })
+    }
   }
 
   addHomework() {

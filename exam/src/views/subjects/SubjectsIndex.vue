@@ -47,7 +47,7 @@ import {IJwt} from "@/models/IJwt";
 export default class SubjectsIndex extends Vue {
   subjects: ISubject[] = []
   service: SubjectsService | null = null
-  newSubject: ISubject = {title: '', description: '', semesterId: '', homeworks: []}
+  newSubject: ISubject = {title: '', description: '', semesterId: '', homeworks: [], declarations: []}
 
   mounted(): void {
     console.log("mounted")
