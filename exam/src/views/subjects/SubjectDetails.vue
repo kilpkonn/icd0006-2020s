@@ -51,8 +51,9 @@
   <h2 class="subtitle is-3">
     Declarations
   </h2>
-  <div v-if="isLecturer">
-    <table class="table m-4 is-fullwidth">
+  <!--  <div v-if="isLecturer">-->
+  <div>
+    <table v-if="isLecturer || subject?.declarations" class="table m-4 is-fullwidth">
       <thead>
       <tr>
         <th>User id</th>
@@ -64,23 +65,30 @@
       <tr v-if="subject" v-for="declaration of subject.declarations">
         <td>{{ declaration.appUserId }}</td>
         <td v-if="declaration.declarationStatus !== 3">{{ printStatus(declaration.declarationStatus) }}</td>
-        <td v-if="declaration.declarationStatus === 3">
+        <td v-if="isLecturer && declaration.declarationStatus === 3">
           <select v-model="declaration.declarationStatus" class="select">
             <option value="0">Accepted</option>
             <option value="1">Rejected</option>
           </select>
         </td>
-        <td v-if="declaration.declarationStatus === 3">
+        <td v-if="isStudent && declaration.declarationStatus === 3">
+          <select v-model="declaration.declarationStatus" class="select" @change="() => updateDeclaration(declaration)">
+            <option value="2">Cancelled</option>
+            <option value="3">Pending</option>
+          </select>
+        </td>
+        <td v-if="isLecturer && declaration.declarationStatus === 3">
           <input v-if="declaration.grade" type="number" class="input" v-model="declaration.grade">
           <input v-if="!declaration.grade" type="number" class="input" v-model="newGrade">
         </td>
-        <td v-if="declaration.declarationStatus !== 3">{{ declaration.grade?.value || '-' }}</td>
-        <td>
-          <button class="button is-primary" @click="() => updateDeclaration(declaration)">Update</button>
-        </td>
+        <td v-if="isStudent || declaration.declarationStatus !== 3">{{ declaration.grade?.value || '-' }}</td>
+<!--        <td>-->
+<!--          <button class="button is-primary" @click="() => updateDeclaration(declaration)">Update</button>-->
+<!--        </td>-->
       </tr>
       </tbody>
     </table>
+    <button v-if="isStudent && subject?.declarations.length === 0" class="button is-primary" @click="declareSubject">Declare subject</button>
   </div>
 </template>
 
@@ -96,6 +104,7 @@ import {GradeType, IGrade} from "@/models/IGrade";
 import {IDeclaration} from "@/models/IDeclaration";
 import {GradesService} from "@/services/grades-service";
 import {DeclarationsService} from "@/services/declarations-service";
+import isAdmin from "../../../../react-client/src/utils/isAdmin";
 
 @Options({
   components: {},
@@ -142,26 +151,36 @@ export default class SubjectDetails extends Vue {
   }
 
   updateDeclaration(declaration: IDeclaration) {
-    if (declaration.grade) {
-      this.gradeService?.put(declaration.grade).then(_ =>
-          this.declarationService?.put(declaration).then(_ =>
-              this.service?.get(this.$route.params.id as string).then(res => {
-                if (res.data) {
-                  this.subject = res.data
-                }
-              })))
-    } else {
-      this.gradeService?.put(this.newGrade).then(grade => {
-        if (grade.data) {
-          declaration.gradeId = grade.data!.id!
-          this.declarationService?.put(declaration).then(_ =>
-              this.service?.get(this.$route.params.id as string).then(res => {
-                if (res.data) {
-                  this.subject = res.data
-                }
-              }))
-        }
-      })
+    declaration.declarationStatus = +declaration.declarationStatus
+    if (this.isLecturer) {
+      if (declaration.grade) {
+        this.gradeService?.put(declaration.grade).then(_ =>
+            this.declarationService?.put(declaration).then(_ =>
+                this.service?.get(this.$route.params.id as string).then(res => {
+                  if (res.data) {
+                    this.subject = res.data
+                  }
+                })))
+      } else {
+        this.gradeService?.put(this.newGrade).then(grade => {
+          if (grade.data) {
+            declaration.gradeId = grade.data!.id!
+            this.declarationService?.put(declaration).then(_ =>
+                this.service?.get(this.$route.params.id as string).then(res => {
+                  if (res.data) {
+                    this.subject = res.data
+                  }
+                }))
+          }
+        })
+      }
+    } else if (this.isStudent){
+      this.declarationService?.put(declaration).then(_ =>
+          this.service?.get(this.$route.params.id as string).then(res => {
+            if (res.data) {
+              this.subject = res.data
+            }
+          }))
     }
   }
 
@@ -184,10 +203,28 @@ export default class SubjectDetails extends Vue {
     })
   }
 
+  declareSubject() {
+    const declaration: IDeclaration = {
+      appUserId: null,
+      subjectId: this.subject!.id!,
+      declarationStatus: 3,
+      gradeId: null,
+      grade: null
+    }
+    this.declarationService?.post(declaration).then(_ => {
+      window.location.reload()
+    })
+  }
+
   get isLecturer() {
     const jwt = getParsedJwt<IJwt>(localStorage.getItem('token') || '')
     return jwt !== null && (jwt!['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']?.includes('Lecturer') ||
         jwt!['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']?.includes('Admin') || false)
+  }
+
+  get isStudent() {
+    const jwt = getParsedJwt<IJwt>(localStorage.getItem('token') || '')
+    return jwt !== null && (jwt!['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']?.includes('Student') || false)
   }
 }
 </script>

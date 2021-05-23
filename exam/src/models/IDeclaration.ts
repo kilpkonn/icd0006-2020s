@@ -2,9 +2,9 @@ import {IIdentifiable} from "@/models/IIdentifiable";
 import {IGrade} from "@/models/IGrade";
 
 export interface IDeclaration extends IIdentifiable {
-    appUserId: string,
+    appUserId: string | null,
     subjectId: string,
-    gradeId: string,
-    grade: IGrade,
+    gradeId: string | null,
+    grade: IGrade | null,
     declarationStatus: number,
 }
