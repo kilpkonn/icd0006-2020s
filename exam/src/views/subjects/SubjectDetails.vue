@@ -30,7 +30,7 @@
       <button class="button is-success" @click="addHomework">Add</button>
     </div>
   </div>
-  <div v-if="subject" v-for="homework of subject.homeworks" :key="homework.id" class="card columns m-4" @click="() => tryDoHomework(homework.id)">
+  <div v-if="subject" v-for="homework of subject.homeworks" :key="homework.id" class="card columns m-4" @click="() => tryDoHomework(homework)">
     <div class="column is-one-quarter">
       {{ homework.title }}
     </div>
@@ -66,25 +66,27 @@
         <td>{{ declaration.appUserId }}</td>
         <td v-if="declaration.declarationStatus !== 3">{{ printStatus(declaration.declarationStatus) }}</td>
         <td v-if="isLecturer && declaration.declarationStatus === 3">
-          <select v-model="declaration.declarationStatus" class="select">
+          <select v-model="declaration.declarationStatus" class="select" @change="() => updateDeclaration(declaration, true)">
+            <option value="3" selected>Pending</option>
             <option value="0">Accepted</option>
             <option value="1">Rejected</option>
           </select>
         </td>
         <td v-if="isStudent && declaration.declarationStatus === 3">
-          <select v-model="declaration.declarationStatus" class="select" @change="() => updateDeclaration(declaration)">
+          <select v-model="declaration.declarationStatus" class="select" @change="() => updateDeclaration(declaration, true)">
+            <option value="3" selected>Pending</option>
             <option value="2">Cancelled</option>
             <option value="3">Pending</option>
           </select>
         </td>
-        <td v-if="isLecturer && declaration.declarationStatus === 3">
-          <input v-if="declaration.grade" type="number" class="input" v-model="declaration.grade">
-          <input v-if="!declaration.grade" type="number" class="input" v-model="newGrade">
+        <td v-if="isLecturer && declaration.declarationStatus === 0">
+          <input v-if="declaration.grade" type="number" class="input" v-model="declaration.grade.value">
+          <input v-if="!declaration.grade" type="number" class="input" v-model="newGrade.value">
         </td>
-        <td v-if="isStudent || declaration.declarationStatus !== 3">{{ declaration.grade?.value || '-' }}</td>
-<!--        <td>-->
-<!--          <button class="button is-primary" @click="() => updateDeclaration(declaration)">Update</button>-->
-<!--        </td>-->
+        <td v-if="isLecturer">
+          <button class="button is-primary" @click="() => updateDeclaration(declaration)">Update</button>
+        </td>
+        <td v-if="isStudent || (!isLecturer && declaration.declarationStatus !== 3)">{{ declaration.grade?.value || '-' }}</td>
       </tr>
       </tbody>
     </table>
@@ -149,10 +151,13 @@ export default class SubjectDetails extends Vue {
     return 'Pending'
   }
 
-  updateDeclaration(declaration: IDeclaration) {
+  updateDeclaration(declaration: IDeclaration, byPassGrade: boolean = false) {
+    console.log(declaration)
+    declaration.subjectId = this.subject?.id!
     declaration.declarationStatus = +declaration.declarationStatus
-    if (this.isLecturer) {
+    if (this.isLecturer && !byPassGrade) {
       if (declaration.grade) {
+        console.log("grade", declaration)
         this.gradeService?.put(declaration.grade).then(_ =>
             this.declarationService?.put(declaration).then(_ =>
                 this.service?.get(this.$route.params.id as string).then(res => {
@@ -161,19 +166,20 @@ export default class SubjectDetails extends Vue {
                   }
                 })))
       } else {
-        this.gradeService?.put(this.newGrade).then(grade => {
+        console.log("New grade", this.newGrade)
+        this.gradeService?.post(this.newGrade).then(grade => {
           if (grade.data) {
             declaration.gradeId = grade.data!.id!
-            this.declarationService?.put(declaration).then(_ =>
-                this.service?.get(this.$route.params.id as string).then(res => {
-                  if (res.data) {
-                    this.subject = res.data
-                  }
-                }))
           }
+          this.declarationService?.put(declaration).then(_ =>
+              this.service?.get(this.$route.params.id as string).then(res => {
+                if (res.data) {
+                  this.subject = res.data
+                }
+              }))
         })
       }
-    } else if (this.isStudent){
+    } else {
       this.declarationService?.put(declaration).then(_ =>
           this.service?.get(this.$route.params.id as string).then(res => {
             if (res.data) {
@@ -215,9 +221,9 @@ export default class SubjectDetails extends Vue {
     })
   }
 
-  tryDoHomework(id: string) {
-    if (this.isStudent && (this.subject?.declarations?.length || 0) > 0) {
-      this.$router.push('/submissions/' + id + '/create')
+  tryDoHomework(homework: IHomework) {
+    if (this.isStudent && (this.subject?.declarations?.length || 0) > 0 && homework.submissions.length == 0) {
+      this.$router.push('/submissions/' + homework.id + '/create')
     }
   }
 

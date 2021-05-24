@@ -49,6 +49,7 @@ export default class Header extends Vue {
 
   async onLogOutClicked() {
     store.commit('logOut')
+    await this.$router.push('/login')
   }
 }
 </script>

@@ -13,19 +13,24 @@
 
     </div>
     <div class="column">
-      <div v-if="submission?.grade" class="columns">
-        <label>
+      <div v-if="isLecturer && submission?.grade" class="columns">
+        <label v-if="isLecturer">
           Grade
           <input type="number" class="input" v-model="submission.grade.value">
         </label>
-        <button class="button is-primary m-5" @click="updateGrade">Update Grade</button>
+        <button v-if="isLecturer" class="button is-primary m-5" @click="updateGrade">Update Grade</button>
+      </div>
+      <div v-if="!isLecturer && submission?.grade" class="columns">
+        <span>
+          Grade {{ submission.grade.value }}
+        </span>
       </div>
       <div v-if="!submission?.grade" class="columns">
-        <label>
+        <label v-if="isLecturer">
           Grade
-          <input type="number" class="input" v-model="newGrade.value">
+          <input v-if="isLecturer" type="number" class="input" v-model="newGrade.value">
         </label>
-        <button class="button is-success m-5" @click="addGrade">Add Grade</button>
+        <button v-if="isLecturer" class="button is-success m-5" @click="addGrade">Add Grade</button>
       </div>
     </div>
   </div>
@@ -39,6 +44,8 @@ import {ISubmission} from "@/models/ISubmission";
 import {HomeworksService} from "@/services/homeworks-service";
 import {IHomework} from "@/models/IHomework";
 import {GradeType, IGrade} from "@/models/IGrade";
+import {getParsedJwt} from "@/util/jwt";
+import {IJwt} from "@/models/IJwt";
 
 @Options({
   components: {},
@@ -88,6 +95,12 @@ export default class GradeSubmission extends Vue {
             }))
       }
     })
+  }
+
+  get isLecturer() {
+    const jwt = getParsedJwt<IJwt>(localStorage.getItem('token') || '')
+    return jwt !== null && (jwt!['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']?.includes('Lecturer') ||
+        jwt!['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']?.includes('Admin') || false)
   }
 
 }
