@@ -14,7 +14,7 @@
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
         <!--        <router-link v-if="token" to="/cars" class="navbar-item">CarsList</router-link>-->
-        <!--        <router-link to="/marks" class="navbar-item">Marks</router-link>-->
+                <router-link to="/" class="navbar-item">Stats</router-link>
                 <router-link to="/semesters" class="navbar-item">Semesters</router-link>
 <!--                <router-link to="/subjects" class="navbar-item">Subjects</router-link>-->
       </div>
